@@ -65,7 +65,7 @@ const Navbar = () => {
   const NameButton = ({ children }) => (
     <button
       onClick={scrollToTop}
-      className="text-3xl xl:text-4xl font-bold gradient-text hover:opacity-80 transition-opacity"
+      className="text-3xl xl:text-4xl font-bold gradient-text hover:opacity-80 transition-opacity min-h-[45px] mx-2"
     >
       {children}
     </button>
@@ -76,7 +76,7 @@ const Navbar = () => {
       <div className="max-w-[1440px] mx-auto px-2 sm:px-3 lg:px-4 pt-2 sm:pt-3 lg:pt-4">
         <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
           {/* Left Section - Name with Flags */}
-          <div className="min-w-[200px] sm:min-w-[200px] lg:min-w-[200px]">
+          <div className="min-w-[200px] sm:min-w-[200px] lg:min-w-[200px] ">
             {/* Desktop Version */}
             <div className="hidden lg:block backdrop-blur-sm bg-white/60 rounded-lg p-2 ">
               <div className="flex flex-col gap-1 font-dancing">

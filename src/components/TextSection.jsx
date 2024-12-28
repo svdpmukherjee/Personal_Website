@@ -50,11 +50,11 @@ const TextSection = () => {
             </p>
             <p className="scroll-reveal opacity-0 translate-y-5 transition-all duration-600">
               This requires both{" "}
-              <Highlight delay={600} color="#ffa624" style="rectangular">
+              <Highlight delay={600} color="#FFFF00" style="rectangular">
                 technical expertise
               </Highlight>{" "}
               to develop working solutions and{" "}
-              <Highlight delay={900} color="#000000" style="circular_1">
+              <Highlight delay={900} color="#00ff00" style="circular_1">
                 analytical skills
               </Highlight>{" "}
               to validate and improve user experience.
@@ -62,7 +62,7 @@ const TextSection = () => {
             <p className="scroll-reveal opacity-0 translate-y-5 transition-all duration-600">
               While AI helps bridge skill gaps quickly, the human perspective
               remains essential in creating{" "}
-              <Highlight delay={1200} color="#ef59e8" style="circular_1">
+              <Highlight delay={1200} color="#dd0000" style="circular_1">
                 meaningful
               </Highlight>{" "}
               solutions.
