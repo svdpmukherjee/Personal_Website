@@ -193,7 +193,7 @@ const Hero = () => {
                 </button>
                 <div className="flex gap-4">
                   <a
-                    href="https://linkedin.com"
+                    href="https://linkedin.com/in/svdpmukherjee"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-blue-100 transition-all duration-300 group"
@@ -201,7 +201,7 @@ const Hero = () => {
                     <AiFillLinkedin className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 group-hover:text-blue-600" />
                   </a>
                   <a
-                    href="https://github.com"
+                    href="https://github.com/svdpmukherjee"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-gray-100 transition-all duration-300 group"
