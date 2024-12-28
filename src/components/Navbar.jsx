@@ -65,7 +65,7 @@ const Navbar = () => {
   const NameButton = ({ children }) => (
     <button
       onClick={scrollToTop}
-      className="text-2xl xl:text-3xl font-bold gradient-text hover:opacity-80 transition-opacity"
+      className="text-3xl xl:text-4xl font-bold gradient-text hover:opacity-80 transition-opacity"
     >
       {children}
     </button>
@@ -78,8 +78,8 @@ const Navbar = () => {
           {/* Left Section - Name with Flags */}
           <div className="min-w-[200px] sm:min-w-[200px] lg:min-w-[200px]">
             {/* Desktop Version */}
-            <div className="hidden lg:block backdrop-blur-sm bg-white/60 rounded-lg p-2">
-              <div className="flex flex-col gap-1">
+            <div className="hidden lg:block backdrop-blur-sm bg-white/60 rounded-lg p-2 ">
+              <div className="flex flex-col gap-1 font-dancing">
                 <div className="flex items-center justify-between">
                   <NameButton>Suvadeep</NameButton>
                   <span className="text-xl h-1">🇱🇺</span>

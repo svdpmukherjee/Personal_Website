@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import profilepic from "../assets/portrait.jpg";
 import background from "../assets/background.png";
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 import { TypeAnimation } from "react-type-animation";
 import { useScrollEffects } from "./ScrollEffects";
+import ProfilePicture from "./ProlifePicture";
 
 const Hero = () => {
   useScrollEffects();
   const [showContent, setShowContent] = useState(false);
   const [currentKeyIndex, setCurrentKeyIndex] = useState(-1);
   const [showButtons, setShowButtons] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const introContent = {
     "Core Expertise": [
@@ -102,6 +104,18 @@ const Hero = () => {
     }, 1000);
   };
 
+  const handleImageHover = () => {
+    setIsHovered(true);
+    setTimeout(() => {
+      setIsTransitioning(true);
+    }, 300);
+  };
+
+  const handleImageLeave = () => {
+    setIsHovered(false);
+    setIsTransitioning(false);
+  };
+
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8"
@@ -121,22 +135,14 @@ const Hero = () => {
                   />
                 </div>
               </div>
-              <div className="relative w-full h-full p-8 sm:p-10 lg:p-12">
-                <div className="w-full h-full overflow-hidden rounded-full border-4 border-blue-500/40 relative z-10 shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/30 transition-shadow duration-300">
-                  <img
-                    className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110"
-                    src={profilepic}
-                    alt="Profile"
-                  />
-                </div>
-              </div>
+              <ProfilePicture />
             </div>
 
             {/* Name Animation */}
             <div className="h-16 flex items-center">
               <TypeAnimation
                 sequence={[
-                  "Hello! I am SUVO",
+                  "Hello! I am Suvo...",
                   1000,
                   () => handleNameTypingComplete(),
                 ]}
@@ -153,11 +159,11 @@ const Hero = () => {
               <TypeAnimation
                 sequence={[
                   2000,
-                  "I am a PhD student in Human-Computer Interaction at University of Luxembourg",
+                  "I am pursuing PhD in Human-Computer Interaction at University of Luxembourg",
                 ]}
                 wrapper="p"
                 speed={50}
-                className="text-base sm:text-lg lg:text-xl xl:text-3xl font-dancing text-gray-400"
+                className="text-base sm:text-lg lg:text-xl xl:text-xl text-gray-500 font-mono"
                 repeat={0}
                 cursor={true}
               />
