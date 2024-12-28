@@ -22,7 +22,7 @@ const Hero = () => {
     "Technical Skills": [
       "Research Prototyping & Development",
       "Data Analytics (Quantitative & Qualitative)",
-      "Data Visualization & Reporting",
+      "Interactive Data Visualization & Reporting",
     ],
   };
 
