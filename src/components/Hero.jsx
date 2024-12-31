@@ -165,7 +165,7 @@ const Hero = () => {
                 speed={50}
                 className="text-base sm:text-lg lg:text-xl xl:text-xl text-gray-500 font-mono"
                 repeat={0}
-                cursor={true}
+                cursor={false}
               />
             </div>
           </div>

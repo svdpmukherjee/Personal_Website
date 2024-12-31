@@ -1,132 +1,214 @@
 import { useState } from "react";
-import project1 from "../assets/project1.png";
-import project2 from "../assets/project2.png";
-import project3 from "../assets/project3.png";
-import project4 from "../assets/project4.png";
-import project5 from "../assets/project5.png";
-import project6 from "../assets/project6.png";
-import arrow from "../assets/arrow.png";
 import { AiFillGithub } from "react-icons/ai";
-
-const projects = [
-  {
-    img: project1,
-    title: "Project #1",
-    description: "UI for frontend development using React.",
-    links: {
-      site: "#",
-      github: "#",
-    },
-  },
-  {
-    img: project2,
-    title: "Project #2",
-    description: "A fullstack application built with Node.js and MongoDB.",
-    links: {
-      site: "#",
-      github: "#",
-    },
-  },
-  {
-    img: project3,
-    title: "Project #3",
-    description: "A responsive website designed with modern CSS.",
-    links: {
-      site: "#",
-      github: "#",
-    },
-  },
-  {
-    img: project4,
-    title: "Project #4",
-    description: "An e-commerce platform with various features.",
-    links: {
-      site: "#",
-      github: "#",
-    },
-  },
-  {
-    img: project5,
-    title: "Project #5",
-    description: "A mobile-friendly application using React Native.",
-    links: {
-      site: "#",
-      github: "#",
-    },
-  },
-  {
-    img: project6,
-    title: "Project #6",
-    description:
-      "A data visualization project using D3.js and other libraries.",
-    links: {
-      site: "#",
-      github: "#",
-    },
-  },
-];
+import {
+  FaExternalLinkAlt,
+  FaGraduationCap,
+  FaLightbulb,
+  FaChevronRight,
+} from "react-icons/fa";
+import PhDProjectStory from "./PhDProjectStory";
+import PortfolioIntro from "./PortfolioIntro";
+import Project1Details from "./projects/Project1Details";
+import Project2Details from "./projects/Project2Details";
+import RagAgentDetails from "./projects/RagAgentDetails";
+import PhobiaAppDetails from "./projects/PhobiaAppDetails";
 
 const Portfolio = () => {
-  const [currentProject, setCurrentProject] = useState(0);
+  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeProject, setActiveProject] = useState(null);
+
+  const portfolioData = {
+    phd: {
+      title: "PhD Projects",
+      icon: <FaGraduationCap className="text-2xl text-blue-500" />,
+      description:
+        "Research focusing on privacy and security in remote examination",
+      subProjects: [
+        {
+          id: "privacy-video",
+          heading: "PROJECT 1",
+          title:
+            "Privacy preservation in Recorded Video in a Webcam-monitored Remote Exam",
+          links: {
+            site: "#",
+            github: "#",
+          },
+        },
+        {
+          id: "privacy-interventions",
+          heading: "PROJECT 2",
+          title:
+            "Privacy-non-invasive Interventions to Prevent Cheating in an Unsupervised Remote Exam",
+          links: {
+            site: "#",
+            github: "#",
+          },
+        },
+      ],
+    },
+    side: {
+      title: "Side Projects",
+      icon: <FaLightbulb className="text-2xl text-yellow-500" />,
+      description:
+        "Exploring innovative solutions through design thinking and AI",
+      subProjects: [
+        {
+          id: "rag-agent",
+          heading: "PROJECT 1",
+          title: "Multimodal RAG agent app",
+          links: {
+            site: "#",
+            github: "#",
+          },
+        },
+        {
+          id: "phobia-app",
+          heading: "PROJECT 2",
+          title: "Needle-phobia trump app",
+          links: {
+            site: "#",
+            github: "#",
+          },
+        },
+      ],
+    },
+  };
+
+  const handleCategoryClick = (category) => {
+    setActiveCategory((prevCategory) =>
+      prevCategory === category ? null : category
+    );
+    setActiveProject(null);
+  };
+
+  const handleProjectClick = (project) => {
+    setActiveProject(project);
+  };
+
+  const renderProjectContent = (project) => {
+    switch (project.id) {
+      case "privacy-video":
+        return <Project1Details />;
+      case "privacy-interventions":
+        return <Project2Details />;
+      case "rag-agent":
+        return <RagAgentDetails />;
+      case "phobia-app":
+        return <PhobiaAppDetails />;
+      default:
+        return null;
+    }
+  };
 
   return (
-    <div
-      className="my-6 max-w-[1200px] mx-auto grid grid-cols-8 gap-6 md:py-40"
-      id="portfolio"
-    >
-      <div className="z-10 col-span-3 grid place-items-center grid-cols-1 relative">
-        <p className="text-gray-200 font-bold text-4xl -skew-y-6 ">
-          Select Project
-        </p>
-        <img src={arrow} className="absolute w-[50px] top-10 right-12" />
+    <div className="min-h-screen bg-gray-50 py-20" id="portfolio">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-16 text-gray-800">
+          My <span className="gradient-text">Projects</span>
+        </h2>
 
-        <ul
-          className="ml-6 flex flex-row md:flex-col gap-6 flex-wrap justify-center md:gap-1
-   space-y-2 md:space-y-4 text-2xl"
-        >
-          {projects.map((project, index) => (
-            <li
-              key={index}
-              onClick={() => setCurrentProject(index)}
-              className={`cursor-pointer text-gray-300 rounded-lg px-2 hover:bg-slate-600
-         transition duration-300 ${
-           currentProject === index ? "active-project" : ""
-         }`}
-            >
-              {project.title}
-            </li>
-          ))}
-        </ul>
-      </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left Column - Project Navigation */}
+          <div className="lg:sticky lg:top-48 h-fit">
+            <div className="space-y-4">
+              {Object.entries(portfolioData).map(([key, category]) => (
+                <div key={key} className="space-y-2">
+                  {/* Main Category */}
+                  <button
+                    onClick={() => handleCategoryClick(key)}
+                    className={`w-full p-4 rounded-lg flex items-center gap-3 transition-all
+                    ${
+                      activeCategory === key
+                        ? "bg-blue-100 shadow-md border border-blue-200"
+                        : "bg-white hover:bg-gray-50 border border-gray-200"
+                    }`}
+                  >
+                    {category.icon}
+                    <span className="font-semibold text-gray-800">
+                      {category.title}
+                    </span>
+                  </button>
 
-      <div className="z-10 glass w-full border-2 col-span-5">
-        <div className="w-full h-80">
-          <img
-            src={projects[currentProject].img}
-            alt={projects[currentProject].title}
-            className="w-full h-full object-cover rounded-lg mb-4"
-          />
-        </div>
+                  {/* Sub Projects */}
+                  {activeCategory === key && (
+                    <div className="ml-6 space-y-2">
+                      {category.subProjects.map((project) => (
+                        <button
+                          key={project.id}
+                          onClick={() => handleProjectClick(project)}
+                          className={`w-full p-4 rounded-lg flex flex-col items-start gap-2 transition-all
+                          ${
+                            activeProject?.id === project.id
+                              ? "bg-blue-50 shadow-sm border border-blue-200"
+                              : "bg-white hover:bg-gray-50 border border-gray-200"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2 w-full">
+                            <FaChevronRight
+                              className={`text-sm ${
+                                activeProject?.id === project.id
+                                  ? "text-blue-500"
+                                  : "text-gray-400"
+                              }`}
+                            />
+                            <span className="text-xs font-semibold text-blue-500">
+                              {project.heading}
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-700 text-left pl-6 leading-tight">
+                            {project.title}
+                          </p>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
 
-        <div className="p-6">
-          <p className="text-gray-200 my-4">
-            {projects[currentProject].description}
-          </p>
-          <div className="flex space-x-4">
-            <a
-              href={projects[currentProject].links.site}
-              className="px-4 py-2 bg-slate-600
-                   text-gray-200 rounded-lg hover:bg-slate-700 transition duration-300"
-            >
-              View Site
-            </a>
-            <a
-              href={projects[currentProject].links.github}
-              className="px-4 py-2 bg-gray-800
-                   text-gray-200 text-2xl rounded-lg hover:bg-gray-600 transition duration-300"
-            >
-              <AiFillGithub />
-            </a>
+          {/* Right Column - Content Display */}
+          <div className="lg:col-span-2">
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+              {!activeCategory ? (
+                <PortfolioIntro />
+              ) : !activeProject && activeCategory === "phd" ? (
+                <PhDProjectStory />
+              ) : (
+                <>
+                  {activeProject ? (
+                    <>
+                      <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                        {activeProject.title}
+                      </h3>
+                      {renderProjectContent(activeProject)}
+                      <div className="flex gap-4 mt-8">
+                        <a
+                          href={activeProject.links.site}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all flex items-center gap-2"
+                        >
+                          <FaExternalLinkAlt /> Learn More
+                        </a>
+                        <a
+                          href={activeProject.links.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-all flex items-center gap-2"
+                        >
+                          <AiFillGithub /> GitHub
+                        </a>
+                      </div>
+                    </>
+                  ) : (
+                    <p className="text-gray-600">
+                      {portfolioData[activeCategory].description}
+                    </p>
+                  )}
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
