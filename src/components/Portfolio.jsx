@@ -178,7 +178,7 @@ const Portfolio = () => {
                 <>
                   {activeProject ? (
                     <>
-                      <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                      <h3 className="text-2xl font-bold gradient-text mb-6">
                         {activeProject.title}
                       </h3>
                       {renderProjectContent(activeProject)}
@@ -189,7 +189,7 @@ const Portfolio = () => {
                           rel="noopener noreferrer"
                           className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all flex items-center gap-2"
                         >
-                          <FaExternalLinkAlt /> Learn More
+                          <FaExternalLinkAlt /> Learn
                         </a>
                         <a
                           href={activeProject.links.github}
