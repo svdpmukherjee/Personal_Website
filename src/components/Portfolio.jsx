@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { AiFillGithub } from "react-icons/ai";
 import {
   FaExternalLinkAlt,
   FaGraduationCap,
   FaLightbulb,
   FaChevronRight,
+  FaAward,
 } from "react-icons/fa";
 import PhDProjectStory from "./PhDProjectStory";
 import PortfolioIntro from "./PortfolioIntro";
@@ -17,6 +19,13 @@ const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeProject, setActiveProject] = useState(null);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: document.getElementById("portfolio").offsetTop - 100,
+      behavior: "smooth",
+    });
+  };
+
   const portfolioData = {
     phd: {
       title: "PhD Projects",
@@ -27,6 +36,11 @@ const Portfolio = () => {
         {
           id: "privacy-video",
           heading: "PROJECT 1",
+          publication: {
+            venue: "European Symposium on Usable Security",
+            year: "2024",
+            type: "conference",
+          },
           title:
             "Privacy preservation in Recorded Video in a Webcam-monitored Remote Exam",
           links: {
@@ -37,6 +51,11 @@ const Portfolio = () => {
         {
           id: "privacy-interventions",
           heading: "PROJECT 2",
+          publication: {
+            venue: "Computers & Education",
+            year: "2023",
+            type: "journal",
+          },
           title:
             "Privacy-non-invasive Interventions to Prevent Cheating in an Unsupervised Remote Exam",
           links: {
@@ -64,7 +83,7 @@ const Portfolio = () => {
         {
           id: "phobia-app",
           heading: "PROJECT 2",
-          title: "Needle-phobia trump app",
+          title: "Needle-phobia app",
           links: {
             site: "#",
             github: "#",
@@ -79,10 +98,12 @@ const Portfolio = () => {
       prevCategory === category ? null : category
     );
     setActiveProject(null);
+    scrollToTop();
   };
 
   const handleProjectClick = (project) => {
     setActiveProject(project);
+    scrollToTop();
   };
 
   const renderProjectContent = (project) => {
@@ -100,84 +121,156 @@ const Portfolio = () => {
     }
   };
 
+  useEffect(() => {
+    if (!activeCategory) {
+      const timer = setTimeout(() => {
+        const buttons = document.querySelectorAll(".category-button");
+        buttons.forEach((button) => {
+          button.classList.add("pulse-attention");
+        });
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [activeCategory]);
+
   return (
     <div className="min-h-screen bg-gray-50 py-20" id="portfolio">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-16 text-gray-800">
-          My <span className="gradient-text">Projects</span>
-        </h2>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Project Navigation */}
+          {/* Enhanced Navigation Column */}
           <div className="lg:sticky lg:top-48 h-fit">
-            <div className="space-y-4">
+            <div className="space-y-6 relative">
+              {/* Navigation Header */}
+              {!activeCategory && (
+                <div className="absolute -top-12 left-0 right-0 text-center text-blue-600 font-semibold animate-bounce">
+                  ↓ Explore My Work ↓
+                </div>
+              )}
+
               {Object.entries(portfolioData).map(([key, category]) => (
-                <div key={key} className="space-y-2">
-                  {/* Main Category */}
+                <motion.div
+                  key={key}
+                  initial={false}
+                  animate={{
+                    scale: activeCategory === key ? 1.05 : 1,
+                    y: activeCategory === key ? -5 : 0,
+                  }}
+                >
                   <button
                     onClick={() => handleCategoryClick(key)}
-                    className={`w-full p-4 rounded-lg flex items-center gap-3 transition-all
-                    ${
-                      activeCategory === key
-                        ? "bg-blue-100 shadow-md border border-blue-200"
-                        : "bg-white hover:bg-gray-50 border border-gray-200"
-                    }`}
+                    className={`category-button w-full p-6 rounded-xl flex items-center gap-4 transition-all 
+                      ${
+                        activeCategory === key
+                          ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg transform scale-105"
+                          : "bg-white hover:bg-blue-50 text-gray-800 border-2 border-gray-100 hover:border-blue-200"
+                      }`}
                   >
-                    {category.icon}
-                    <span className="font-semibold text-gray-800">
-                      {category.title}
-                    </span>
+                    <div
+                      className={`p-3 rounded-lg ${
+                        activeCategory === key ? "bg-white/20" : "bg-blue-50"
+                      }`}
+                    >
+                      {category.icon}
+                    </div>
+                    <div className="text-left">
+                      <h3 className="font-bold text-lg">{category.title}</h3>
+                      <p
+                        className={`text-sm ${
+                          activeCategory === key
+                            ? "text-blue-100"
+                            : "text-gray-500"
+                        }`}
+                      >
+                        {category.description}
+                      </p>
+                    </div>
                   </button>
 
-                  {/* Sub Projects */}
+                  {/* Sub-projects Panel */}
                   {activeCategory === key && (
-                    <div className="ml-6 space-y-2">
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-4 ml-4 space-y-3"
+                    >
                       {category.subProjects.map((project) => (
                         <button
                           key={project.id}
                           onClick={() => handleProjectClick(project)}
-                          className={`w-full p-4 rounded-lg flex flex-col items-start gap-2 transition-all
-                          ${
-                            activeProject?.id === project.id
-                              ? "bg-blue-50 shadow-sm border border-blue-200"
-                              : "bg-white hover:bg-gray-50 border border-gray-200"
-                          }`}
+                          className={`w-full p-4 rounded-lg border-2 transition-all
+                            ${
+                              activeProject?.id === project.id
+                                ? "border-blue-200 bg-blue-50"
+                                : "border-gray-100 hover:border-blue-100 bg-white"
+                            }`}
                         >
-                          <div className="flex items-center gap-2 w-full">
-                            <FaChevronRight
-                              className={`text-sm ${
-                                activeProject?.id === project.id
-                                  ? "text-blue-500"
-                                  : "text-gray-400"
-                              }`}
-                            />
-                            <span className="text-xs font-semibold text-blue-500">
+                          <div className="flex items-center gap-2 text-blue-600 mb-2">
+                            <FaChevronRight className="text-sm" />
+                            <span className="text-xs font-bold">
                               {project.heading}
                             </span>
                           </div>
-                          <p className="text-sm text-gray-700 text-left pl-6 leading-tight">
+
+                          <p className="text-sm text-gray-700 text-left">
                             {project.title}
                           </p>
                         </button>
                       ))}
-                    </div>
+                    </motion.div>
                   )}
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Right Column - Content Display */}
+          {/* Content Display */}
           <div className="lg:col-span-2">
-            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white p-8 rounded-xl shadow-lg"
+            >
               {!activeCategory ? (
-                <PortfolioIntro />
+                <PortfolioIntro onCategorySelect={setActiveCategory} />
               ) : !activeProject && activeCategory === "phd" ? (
                 <PhDProjectStory />
               ) : (
                 <>
                   {activeProject ? (
                     <>
+                      {activeCategory === "phd" &&
+                        activeProject.publication && (
+                          <div
+                            className={`mb-6 px-4 py-3 rounded-lg ${
+                              activeProject.publication?.type === "conference"
+                                ? "bg-gradient-to-r from-blue-50 to-blue-100"
+                                : "bg-gradient-to-r from-purple-50 to-purple-100"
+                            }`}
+                          >
+                            <div className="flex items-center space-x-4">
+                              <FaAward className="text-amber-500 text-xl flex-shrink-0" />
+                              <span
+                                className={`text-xs font-semibold px-3 py-1 rounded-full bg-white shadow-sm ${
+                                  activeProject.publication?.type ===
+                                  "conference"
+                                    ? "text-blue-700"
+                                    : "text-purple-700"
+                                }`}
+                              >
+                                {activeProject.publication?.type ===
+                                "conference"
+                                  ? "Conference Paper"
+                                  : "Journal Article"}
+                              </span>
+                              <span className="text-sm font-medium flex-grow">
+                                {activeProject.publication?.venue}
+                              </span>
+                              <span className="text-gray-600 text-sm flex-shrink-0">
+                                {activeProject.publication?.year}
+                              </span>
+                            </div>
+                          </div>
+                        )}
                       <h3 className="text-2xl font-bold gradient-text mb-6">
                         {activeProject.title}
                       </h3>
@@ -189,7 +282,7 @@ const Portfolio = () => {
                           rel="noopener noreferrer"
                           className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all flex items-center gap-2"
                         >
-                          <FaExternalLinkAlt /> Learn
+                          <FaExternalLinkAlt /> Learn More
                         </a>
                         <a
                           href={activeProject.links.github}
@@ -208,10 +301,27 @@ const Portfolio = () => {
                   )}
                 </>
               )}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes pulse-attention {
+          0%,
+          100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+          }
+          50% {
+            transform: scale(1.01);
+            box-shadow: 0 0 0 5px rgba(59, 130, 246, 0);
+          }
+        }
+        .pulse-attention {
+          animation: pulse-attention 7s infinite;
+        }
+      `}</style>
     </div>
   );
 };

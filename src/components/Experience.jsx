@@ -19,7 +19,7 @@ const Experience = () => {
       description: [
         "Conducting research at the intersection of cheating prevention and user experience in remote computer-based examinations",
         "Leading multiple user studies and developing prototypes for testing novel design solutions",
-        "Published research papers in top-tier HCI conferences and journals",
+        "Published research papers in top-tier conferences and journals",
         // "Collaborating with industry partners on real-world applications",
       ],
       delay: 0,

@@ -22,7 +22,7 @@ const QuoteBox = ({ heading, text }) => (
     <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
       {heading}
     </h3>
-    <p className="text-lg md:text-xl italic text-gray-700 leading-relaxed text-left px-6 py-6 bg-blue-50/50 rounded-lg border border-blue-100 shadow-sm">
+    <p className="text-md md:text-md text-gray-700 leading-relaxed text-left px-6 py-6 bg-blue-50/50 rounded-lg border border-blue-100 shadow-sm">
       {text}
     </p>
   </div>
@@ -298,9 +298,10 @@ const MonitoringApproach = () => (
       </div>
       <div className="p-6 bg-amber-50 rounded-lg">
         <p className="text-gray-700 italic leading-relaxed">
-          "While webcam monitoring may deter cheating, it creates significant
-          stress for honest students. The constant surveillance and privacy
-          concerns can negatively impact their performance and well-being."
+          "Webcam exam recording prevents dishonest students from cheating but
+          may cause significant stress for honest students, raises privacy
+          concerns about video reviews by unknown individuals, and risks bias
+          that may impact performance and well-being"
         </p>
       </div>
     </div>
@@ -421,18 +422,17 @@ const ApproachComparison = () => (
 const HumanCenteredApproach = () => (
   <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 md:p-8 rounded-xl">
     <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-6 text-center">
-      My Human-Centered Approach
+      My research aims to...
     </h3>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-      {/* User-First Design Card */}
-      <div className="bg-white p-4 md:p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-        <FaUsers className="text-2xl md:text-3xl text-blue-500 mb-3" />
-        <h4 className="font-bold text-base md:text-lg text-gray-800 mb-2">
-          User-First Design
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <FaBalanceScale className="text-2xl text-blue-500 mb-4" />
+        <h4 className="font-bold text-lg text-gray-800 mb-3">
+          Balanced Approach
         </h4>
-        <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-          Prioritizing student well-being while maintaining examination
-          credibility through innovative, user-centered solutions.
+        <p className="text-gray-600 leading-relaxed">
+          Creating solutions that harmonize examination security with student
+          comfort and psychological well-being.
         </p>
       </div>
 
@@ -446,15 +446,15 @@ const HumanCenteredApproach = () => (
           protection without compromising assessment validity.
         </p>
       </div>
-
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <FaBalanceScale className="text-2xl text-blue-500 mb-4" />
-        <h4 className="font-bold text-lg text-gray-800 mb-3">
-          Balanced Approach
+      {/* User-First Design Card */}
+      <div className="bg-white p-4 md:p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <FaUsers className="text-2xl md:text-3xl text-blue-500 mb-3" />
+        <h4 className="font-bold text-base md:text-lg text-gray-800 mb-2">
+          User-First Design
         </h4>
-        <p className="text-gray-600 leading-relaxed">
-          Creating solutions that harmonize examination security with student
-          comfort and psychological well-being.
+        <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+          Prioritizing student well-being while maintaining examination
+          credibility through innovative, user-centered solutions.
         </p>
       </div>
     </div>
