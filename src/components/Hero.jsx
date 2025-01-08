@@ -164,7 +164,7 @@ const Hero = () => {
                 ]}
                 wrapper="p"
                 speed={50}
-                className="text-base sm:text-lg lg:text-xl xl:text-xl text-gray-500 font-mono"
+                className="text-base sm:text-lg lg:text-2xl xl:text-2xl font-dancing bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text"
                 repeat={0}
                 cursor={false}
               />
@@ -192,7 +192,7 @@ const Hero = () => {
                 <button className="px-6 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl w-full sm:w-auto text-sm sm:text-base">
                   Read My CV
                 </button>
-                <div className="flex gap-4">
+                <div className="flex gap-2">
                   <a
                     href="https://linkedin.com/in/svdpmukherjee"
                     target="_blank"
@@ -213,9 +213,9 @@ const Hero = () => {
                     href="https://scholar.google.com/citations?user=BOmtS4sAAAAJ&hl=en&inst=15483811489544987344&oi=ao"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-gray-100 transition-all duration-300 group"
+                    className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-blue-50 transition-all duration-300 group"
                   >
-                    <SiGooglescholar className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 group-hover:text-black" />
+                    <SiGooglescholar className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 group-hover:text-blue-500" />
                   </a>
                 </div>
               </div>
