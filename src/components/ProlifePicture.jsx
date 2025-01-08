@@ -1,4 +1,4 @@
-import profilepic from "../assets/portrait.jpg";
+import profilepic1 from "../assets/portrait_1.jpg";
 import profilepic2 from "../assets/portrait_2.jpg";
 import { useState } from "react";
 
@@ -22,7 +22,7 @@ const ProfilePicture = () => {
           <div className="absolute inset-0 backface-hidden">
             <div className="w-full h-full rounded-full border-4 border-blue-500/40 shadow-2xl shadow-blue-500/20 overflow-hidden">
               <img
-                src={profilepic}
+                src={profilepic1}
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
