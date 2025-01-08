@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import background from "../assets/background.png";
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
+import { SiGooglescholar } from "react-icons/si";
 import { TypeAnimation } from "react-type-animation";
 import { useScrollEffects } from "./ScrollEffects";
 import ProfilePicture from "./ProlifePicture";
@@ -207,6 +208,14 @@ const Hero = () => {
                     className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-gray-100 transition-all duration-300 group"
                   >
                     <AiFillGithub className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 group-hover:text-black" />
+                  </a>
+                  <a
+                    href="https://scholar.google.com/citations?user=BOmtS4sAAAAJ&hl=en&inst=15483811489544987344&oi=ao"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-gray-100 transition-all duration-300 group"
+                  >
+                    <SiGooglescholar className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 group-hover:text-black" />
                   </a>
                 </div>
               </div>

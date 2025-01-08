@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FaApple, FaFolder, FaHome } from "react-icons/fa";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { TypeAnimation } from "react-type-animation";
+import ReactCountryFlag from "react-country-flag";
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -82,11 +83,15 @@ const Navbar = () => {
               <div className="flex flex-col gap-1 font-dancing">
                 <div className="flex items-center justify-between">
                   <NameButton>Suvadeep</NameButton>
-                  <span className="text-xl h-1">🇱🇺</span>
+                  <span className="text-xl h-1">
+                    <ReactCountryFlag countryCode="LU" />
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <NameButton>Mukherjee</NameButton>
-                  <span className="text-xl h-10">🇮🇳</span>
+                  <span className="text-xl h-10">
+                    <ReactCountryFlag countryCode="IN" />
+                  </span>
                 </div>
               </div>
             </div>
