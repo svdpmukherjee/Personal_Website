@@ -20,14 +20,14 @@ const MainHeading = ({ children, className = "" }) => (
 
 const SectionHeading = ({ children, className = "" }) => (
   <h2
-    className={`text-2xl sm:text-2xl lg:text-2xl font-bold text-slate-600 ${className}`}
+    className={`text-4xl sm:text-2xl lg:text-2xl font-bold text-slate-600 ${className}`}
   >
     {children}
   </h2>
 );
 
 const BodyText = ({ children, className = "" }) => (
-  <p className={`text-xl sm:text-xl lg:text-xl text-slate-600 ${className}`}>
+  <p className={`text-3xl sm:text-xl lg:text-xl text-slate-600 ${className}`}>
     {children}
   </p>
 );
