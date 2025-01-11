@@ -1,11 +1,57 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 
+const HexagonTitle = ({ children, isCenter, className = "" }) => (
+  <span
+    className={`text-white font-bold whitespace-normal ${
+      isCenter ? "text-sm sm:text-base" : "text-xs sm:text-sm"
+    } ${className}`}
+  >
+    {children}
+  </span>
+);
+
+const InfoBoxTitle = ({ children, className = "" }) => (
+  <h4 className={`text-xs sm:text-sm font-bold ${className}`}>{children}</h4>
+);
+
+const InfoBoxText = ({ children, className = "" }) => (
+  <li className={`text-xs sm:text-sm text-slate-600 ${className}`}>
+    {children}
+  </li>
+);
+
 const InteractiveExpertise = () => {
   const [activeArea, setActiveArea] = useState(null);
   const [visibleHexagons, setVisibleHexagons] = useState([]);
   const [glowingIndex, setGlowingIndex] = useState(0);
 
-  // Memoize areas data to prevent recreation on every render
+  // Fixed base sizes that will scale with container
+  const SHAPE_CONFIG = {
+    centerHexagon: {
+      size: 120, // Base size for center hexagon
+      scale: 1.5, // Scale factor for center hexagon
+    },
+    circleSize: 100, // Base size for surrounding circles
+    spacing: 160, // Base spacing between shapes
+  };
+
+  // Calculate container size based on viewport
+  const getContainerSize = useCallback(() => {
+    const vw = Math.max(
+      document.documentElement.clientWidth || 0,
+      window.innerWidth || 0
+    );
+    if (vw < 640) {
+      return 300; // Mobile
+    } else if (vw < 1024) {
+      return 400; // Tablet
+    }
+    return 500; // Desktop
+  }, []);
+
+  const [containerSize, setContainerSize] = useState(getContainerSize());
+
+  // Memoize areas data
   const areas = useMemo(
     () => [
       {
@@ -96,47 +142,36 @@ const InteractiveExpertise = () => {
     []
   );
 
-  // Calculate spacing based on screen size - moved inside component to reduce complexity
-  const baseRadius = 45;
-  const getScaledRadius = (width) => {
-    if (width >= 1024) return baseRadius * 1.2;
-    if (width >= 768) return baseRadius * 1.1;
-    return baseRadius * 0.9;
-  };
+  // Calculate spacing based on screen size
+  //   const baseRadius = 45;
+  //   const getScaledRadius = (width) => {
+  //     if (width >= 1024) return baseRadius * 1.2;
+  //     if (width >= 768) return baseRadius * 1.1;
+  //     return baseRadius * 0.9;
+  //   };
 
-  const [spacing, setSpacing] = useState(() => {
-    const radius = getScaledRadius(window.innerWidth);
-    return {
-      radius,
-      verticalSpacing: radius * 3,
-      horizontalSpacing: radius * 3,
-    };
-  });
+  //   const [spacing, setSpacing] = useState(() => {
+  //     const { radius, spacing: spacingMultiplier } = getBaseSizes(
+  //       dimensions.width
+  //     );
+  //     return {
+  //       radius,
+  //       verticalSpacing: radius * spacingMultiplier,
+  //       horizontalSpacing: radius * spacingMultiplier,
+  //     };
+  //   });
 
   // Handle window resize
   useEffect(() => {
-    let timeoutId;
-
     const handleResize = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        const radius = getScaledRadius(window.innerWidth);
-        setSpacing({
-          radius,
-          verticalSpacing: radius * 3,
-          horizontalSpacing: radius * 3,
-        });
-      }, 250);
+      setContainerSize(getContainerSize());
     };
 
     window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      clearTimeout(timeoutId);
-    };
-  }, []);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [getContainerSize]);
 
-  // Initial animation to show hexagons
+  // Initial animation
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisibleHexagons(["center"]);
@@ -151,15 +186,12 @@ const InteractiveExpertise = () => {
   // Glow animation effect
   useEffect(() => {
     if (activeArea) return;
-
     const interval = setInterval(() => {
       setGlowingIndex((prev) => (prev + 1) % (areas.length - 1));
     }, 500);
-
     return () => clearInterval(interval);
   }, [activeArea, areas.length]);
 
-  // Memoized event handlers
   const handleAreaHover = useCallback((areaId) => {
     setActiveArea(areaId);
   }, []);
@@ -168,7 +200,17 @@ const InteractiveExpertise = () => {
     setActiveArea(null);
   }, []);
 
-  // Render the info box for active area
+  // Calculate positions relative to container size
+  const getShapePosition = (x, y) => {
+    const centerOffset = containerSize / 2;
+    const spacingFactor = containerSize / 500; // Scale spacing based on container size
+    return {
+      left: centerOffset + x * SHAPE_CONFIG.spacing * spacingFactor,
+      top: centerOffset + y * SHAPE_CONFIG.spacing * spacingFactor,
+    };
+  };
+
+  // Render info box
   const renderInfoBox = useCallback(() => {
     if (!activeArea || areas.find((a) => a.id === activeArea)?.isCenter)
       return null;
@@ -179,17 +221,15 @@ const InteractiveExpertise = () => {
     return (
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 transition-opacity duration-300">
         <div className="w-64 sm:w-72 bg-white rounded-xl shadow-xl p-4">
-          <h4
-            className={`font-bold ${activeAreaData.textColor} text-base mb-2`}
-          >
+          <InfoBoxTitle className={activeAreaData.textColor}>
             {activeAreaData.title}
-          </h4>
+          </InfoBoxTitle>
           <ul className="space-y-2">
             {activeAreaData.bullets?.map((bullet, idx) => (
-              <li key={idx} className="flex items-start text-sm text-slate-600">
+              <InfoBoxText key={idx} className="flex items-start">
                 <span className={`${activeAreaData.textColor} mr-2`}>•</span>
                 {bullet}
-              </li>
+              </InfoBoxText>
             ))}
           </ul>
         </div>
@@ -198,65 +238,40 @@ const InteractiveExpertise = () => {
   }, [activeArea, areas]);
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4">
-      {/* Header Content */}
-      <div className="mb-8 space-y-8">
-        <div>
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-600">
-            Current Activity
-          </h3>
-          <p className="text-base sm:text-lg lg:text-xl text-slate-600">
-            Pursuing PhD in Human-Computer Interaction at University of
-            Luxembourg
-          </p>
-        </div>
-        <div>
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-600">
-            Career Interest
-          </h3>
-          <p className="text-base sm:text-lg lg:text-xl text-slate-600">
-            R&D Specialist at the Intersection of Technology and Psychology:
-            Dedicated to advancing User Experience Research to inspire
-            meaningful innovation in digital solutions.
-          </p>
-        </div>
-      </div>
-
-      {/* Main Expertise Diagram */}
+    <div className="w-full max-w-6xl mx-auto">
       <div className="relative w-full" style={{ paddingBottom: "100%" }}>
-        {/* Circular Background */}
-        <div
-          className="absolute inset-0 rounded-full bg-gray-50 shadow-lg"
-          style={{
-            width: "95%",
-            height: "95%",
-            left: "2.5%",
-            top: "2.5%",
-          }}
-        />
-
-        {/* Expertise Areas Container */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-full h-full max-w-[500px] max-h-[500px] sm:max-w-[600px] sm:max-h-[600px] lg:max-w-[700px] lg:max-h-[700px]">
-            {areas.map((area, index) => {
-              const scale = area.isCenter ? 1.5 : 1;
-              const xPos = area.x * spacing.horizontalSpacing;
-              const yPos = area.y * spacing.verticalSpacing;
+        {/* Main container */}
+        <div className="absolute inset-0">
+          <div
+            className="relative mx-auto rounded-full bg-gray-50 shadow-lg"
+            style={{
+              width: containerSize,
+              height: containerSize,
+              margin: "0 auto",
+            }}
+          >
+            {areas.map((area) => {
+              const { left, top } = getShapePosition(area.x, area.y);
               const isGlowing =
                 !area.isCenter && glowingIndex === areas.indexOf(area) - 1;
+              const shapeSize = area.isCenter
+                ? SHAPE_CONFIG.centerHexagon.size
+                : SHAPE_CONFIG.circleSize;
 
               return (
                 <div
                   key={area.id}
-                  className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700
-                    ${
+                  className={`absolute transform -translate-x-1/2 -translate-y-1/2 
+                    transition-all duration-700 ${
                       visibleHexagons.includes(area.id)
                         ? "opacity-100 scale-100"
                         : "opacity-0 scale-0"
                     }`}
                   style={{
-                    left: `calc(50% + ${xPos}px)`,
-                    top: `calc(50% + ${yPos}px)`,
+                    left,
+                    top,
+                    width: shapeSize,
+                    height: shapeSize,
                     zIndex: area.isCenter ? 10 : 20,
                   }}
                   onMouseEnter={() => handleAreaHover(area.id)}
@@ -264,8 +279,10 @@ const InteractiveExpertise = () => {
                 >
                   <div
                     className={`
-                      flex flex-col items-center justify-center text-center p-2 sm:p-3
-                      transform transition-all duration-300 cursor-pointer
+                      w-full h-full
+                      flex flex-col items-center justify-center 
+                      text-center p-2
+                      transition-all duration-300 cursor-pointer
                       ${
                         area.isCenter
                           ? "shadow-2xl ring-2 ring-white/50"
@@ -284,18 +301,16 @@ const InteractiveExpertise = () => {
                       bg-gradient-to-br ${area.color}
                     `}
                     style={{
-                      width: `${spacing.radius * 2 * scale}px`,
-                      height: `${spacing.radius * 2 * scale}px`,
                       clipPath: area.isCenter
                         ? "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)"
                         : undefined,
                     }}
                   >
-                    <span className="text-base sm:text-lg lg:text-xl text-white font-bold">
+                    <HexagonTitle isCenter={area.isCenter}>
                       {area.title}
-                    </span>
+                    </HexagonTitle>
                     {area.isCenter && (
-                      <span className="text-white/90 text-xs sm:text-sm mt-1">
+                      <span className="text-white/90 text-xs mt-1">
                         {area.subtitle}
                       </span>
                     )}
@@ -303,7 +318,6 @@ const InteractiveExpertise = () => {
                 </div>
               );
             })}
-
             {/* Info Box */}
             {renderInfoBox()}
           </div>
