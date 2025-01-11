@@ -35,37 +35,51 @@ const TextSection = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         {/* Vision Section */}
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8 gradient-text scroll-reveal opacity-0 translate-y-5 transition-all duration-600">
+          <h2 className="text-2xl sm:text-4xl font-bold mb-8 gradient-text scroll-reveal opacity-0 translate-y-5 transition-all duration-600">
             My Vision
           </h2>
-          <div className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 space-y-6">
+          <div className="text-md sm:text-md text-gray-600 dark:text-gray-300 space-y-6">
             <p className="scroll-reveal opacity-0 translate-y-5 transition-all duration-600">
-              Identifying a problem is just the beginning - finding solutions
-              can take many paths! I have focused on developing critical
-              thinking to find{" "}
+              In today's digital landscape, creating{" "}
               <Highlight delay={300} color="#ef59e8" style="circular_1">
-                user-centric
+                meaningful solutions
               </Highlight>{" "}
-              solutions.
+              requires understanding both human needs and technological
+              capabilities. My research focuses on designing and developing
+              digital solutions that{" "}
+              <Highlight delay={600} color="#FFFF00" style="rectangular">
+                prioritizes user experiences.
+              </Highlight>{" "}
             </p>
             <p className="scroll-reveal opacity-0 translate-y-5 transition-all duration-600">
-              This requires both{" "}
-              <Highlight delay={600} color="#FFFF00" style="rectangular">
-                technical expertise
+              My work combines technical expertise with human behavior research
+              to create solutions that are both{" "}
+              <Highlight delay={900} color="#0000FF" style="circular_1">
+                robust
               </Highlight>{" "}
-              to develop working solutions and{" "}
-              <Highlight delay={900} color="#00ff00" style="circular_1">
+              and ethically sound. By{" "}
+              <Highlight delay={600} color="#00ff00" style="rectangular">
+                bridging technology and human needs,
+              </Highlight>{" "}
+              , I ensure privacy and user experience remain paramount in every
+              solution.
+              {/* <Highlight delay={600} color="#FFFF00" style="rectangular">
+                technical expertise
+              </Highlight>{" "} */}
+              {/* to develop working solutions and{" "} */}
+              {/* <Highlight delay={900} color="#00ff00" style="circular_1">
                 analytical skills
               </Highlight>{" "}
-              to validate and improve user experience.
+              to validate and improve user experience. */}
             </p>
             <p className="scroll-reveal opacity-0 translate-y-5 transition-all duration-600">
-              While AI helps bridge skill gaps quickly, the human perspective
-              remains essential in creating{" "}
+              While AI offers powerful capabilities, my interest emphasizes
               <Highlight delay={1200} color="#dd0000" style="circular_1">
-                meaningful
+                responsible innovation
               </Highlight>{" "}
-              solutions.
+              where technology amplifies human agency. I develop frameworks
+              where AI enhances human capabilities while preserving privacy,
+              trust, and meaningful control.
             </p>
           </div>
         </div>

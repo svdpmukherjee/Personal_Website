@@ -77,9 +77,9 @@ const Navbar = () => {
       <div className="max-w-[1440px] mx-auto px-2 sm:px-3 lg:px-4 pt-2 sm:pt-3 lg:pt-4">
         <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
           {/* Left Section - Name with Flags */}
-          <div className="min-w-[200px] sm:min-w-[200px] lg:min-w-[200px] ">
+          <div className="min-w-[200px] sm:min-w-[200px] lg:min-w-[200px]">
             {/* Desktop Version */}
-            <div className="hidden lg:block backdrop-blur-sm bg-white/60 rounded-lg p-2 ">
+            <div className="hidden lg:block backdrop-blur-sm bg-white/60 rounded-lg p-2">
               <div className="flex flex-col gap-1 font-dancing">
                 <div className="flex items-center justify-between">
                   <NameButton>Suvadeep</NameButton>
@@ -99,21 +99,21 @@ const Navbar = () => {
             {/* Mobile Version */}
             <div className="lg:hidden backdrop-blur-sm bg-white/60 rounded-lg px-3 py-2">
               <div className="flex items-center justify-between">
-                <span className="text-base sm:text-lg font-bold gradient-text">
-                  SM
-                </span>
-                <div className="flex gap-1">
-                  <span className="text-sm sm:text-base">🇱🇺</span>
-                  <span className="text-sm sm:text-base">🇮🇳</span>
+                <div className="text-base sm:text-lg font-bold gradient-text font-dancing">
+                  Suvadeep Mukherjee
                 </div>
+              </div>
+              <div className="flex gap-1">
+                <span className="text-sm sm:text-base">🇱🇺</span>
+                <span className="text-sm sm:text-base">🇮🇳</span>
               </div>
             </div>
           </div>
 
           {/* Center Section - Search Bar and Navigation */}
-          <div className="flex-1 min-w-[1000px]">
+          <div className="flex-1 min-w-0 lg:min-w-[1000px]">
             <div className="backdrop-blur-md bg-white/30 rounded-2xl sm:rounded-3xl border border-gray-700/50 shadow-lg p-1 sm:p-2">
-              <div className="flex items-center justify-between h-8 sm:h-10 lg:h-12 px-2 sm:px-3 gap-2 sm:gap-3 lg:gap-4 ">
+              <div className="flex items-center justify-between h-8 sm:h-10 lg:h-12 px-2 sm:px-3 gap-2 sm:gap-3 lg:gap-4">
                 {/* URL Path Section */}
                 <div className="flex items-center space-x-1 sm:space-x-2 transition-transform duration-300 hover:scale-110 hover:cursor-pointer">
                   <button
@@ -186,6 +186,7 @@ const Navbar = () => {
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   className="md:hidden text-gray-700 focus:outline-none p-1"
+                  aria-label="Toggle menu"
                 >
                   {isMenuOpen ? (
                     <AiOutlineClose className="text-lg sm:text-xl" />
@@ -195,35 +196,39 @@ const Navbar = () => {
                 </button>
               </div>
             </div>
+
+            {/* Mobile Menu Dropdown */}
+            <div
+              className={`md:hidden absolute left-0 right-0 top-full mt-2 mx-2 transform transition-all duration-300 ease-in-out origin-top
+                ${
+                  isMenuOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"
+                }`}
+            >
+              <div className="backdrop-blur-md bg-white/90 rounded-lg shadow-lg border border-gray-200/50 overflow-hidden">
+                <nav className="flex flex-col">
+                  {sections.map((section) => (
+                    <button
+                      key={section.id}
+                      onClick={() => handleNavClick(section.id)}
+                      className={`flex items-center gap-2 px-4 py-3 text-left transition-colors duration-200 text-sm
+                        ${
+                          activeSection === section.id
+                            ? "text-blue-600 bg-blue-50/50"
+                            : "text-gray-700 hover:bg-gray-50/50"
+                        }`}
+                    >
+                      {section.icon}
+                      {section.label}
+                    </button>
+                  ))}
+                </nav>
+              </div>
+            </div>
           </div>
 
           {/* Optional Right Section if needed */}
           <div className="w-[180px] sm:w-[200px] lg:w-[240px] hidden lg:block"></div>
         </div>
-
-        {/* Mobile Menu Dropdown */}
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 mt-2 mx-2 sm:mx-4">
-            <div className="backdrop-blur-md bg-white/90 rounded-lg shadow-sm border border-gray-200/50">
-              <nav className="flex flex-col py-1 sm:py-2">
-                {sections.map((section) => (
-                  <button
-                    key={section.id}
-                    onClick={() => handleNavClick(section.id)}
-                    className={`px-4 sm:px-6 py-2 sm:py-3 text-left transition-colors duration-200 text-sm sm:text-base
-                      ${
-                        activeSection === section.id
-                          ? "text-blue-600 bg-blue-50/50"
-                          : "text-gray-700 hover:bg-gray-50/50"
-                      }`}
-                  >
-                    {section.label}
-                  </button>
-                ))}
-              </nav>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

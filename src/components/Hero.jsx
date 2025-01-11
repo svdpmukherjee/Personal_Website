@@ -4,7 +4,8 @@ import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 import { SiGooglescholar } from "react-icons/si";
 import { TypeAnimation } from "react-type-animation";
 import { useScrollEffects } from "./ScrollEffects";
-import ProfilePicture from "./ProlifePicture";
+import ProfilePicture from "./ProfilePicture";
+import InteractiveExpertise from "./InteractiveExpertise";
 
 const Hero = () => {
   useScrollEffects();
@@ -14,20 +15,20 @@ const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const introContent = {
-    "Core Expertise": [
-      "End-to-End Mixed-Methods User Research Design",
-      "User Behavior Analytics",
-      "Data-Driven UX Solutions",
-    ],
-    "Technical Skills": [
-      "Research Prototyping & Development",
-      "Data Analytics (Quantitative & Qualitative)",
-      "Interactive Data Viz & Scientific Reporting",
-    ],
-  };
+  // const introContent = {
+  //   "Core Expertise": [
+  //     "End-to-End Mixed-Methods User Research Design",
+  //     "User Behavior Analytics",
+  //     "Data-Driven UX Solutions",
+  //   ],
+  //   "Technical Skills": [
+  //     "Research Prototyping & Development",
+  //     "Data Analytics (Quantitative & Qualitative)",
+  //     "Interactive Data Viz & Scientific Reporting",
+  //   ],
+  // };
 
-  const contentKeys = Object.keys(introContent);
+  // const contentKeys = Object.keys(introContent);
 
   const wrapInColor = (text, type) => {
     const colors = {
@@ -41,88 +42,79 @@ const Hero = () => {
     return <span className={colors[type]}>{text}</span>;
   };
 
-  const renderJsonContent = () => {
-    const indent = (level) => "    ".repeat(level);
+  // const renderJsonContent = () => {
+  //   const indent = (level) => "    ".repeat(level);
 
-    return (
-      <div className="whitespace-pre-wrap text-sm lg:text-base xl:text-lg">
-        {wrapInColor("{", "brace")}
-        {Object.entries(introContent).map(([key, value], index) => {
-          if (index > currentKeyIndex) return null;
+  //   return (
+  //     <div className="whitespace-pre-wrap text-sm lg:text-base xl:text-lg">
+  //       {wrapInColor("{", "brace")}
+  //       {Object.entries(introContent).map(([key, value], index) => {
+  //         if (index > currentKeyIndex) return null;
 
-          const isLast = index === contentKeys.length - 1;
+  //         const isLast = index === contentKeys.length - 1;
 
-          if (Array.isArray(value)) {
-            return (
-              <React.Fragment key={key}>
-                {"\n"}
-                {indent(1)}
-                {wrapInColor(`"${key}"`, "key")}
-                {wrapInColor(":", "colon")} {wrapInColor("[", "bracket")}
-                {value.map((item, i) => (
-                  <React.Fragment key={i}>
-                    {"\n"}
-                    {indent(2)}
-                    {wrapInColor(`"${item}"`, "string")}
-                    {i < value.length - 1 ? wrapInColor(",", "comma") : ""}
-                  </React.Fragment>
-                ))}
-                {"\n"}
-                {indent(1)}
-                {wrapInColor("]", "bracket")}
-                {!isLast && wrapInColor(",", "comma")}
-              </React.Fragment>
-            );
-          }
+  //         if (Array.isArray(value)) {
+  //           return (
+  //             <React.Fragment key={key}>
+  //               {"\n"}
+  //               {indent(1)}
+  //               {wrapInColor(`"${key}"`, "key")}
+  //               {wrapInColor(":", "colon")} {wrapInColor("[", "bracket")}
+  //               {value.map((item, i) => (
+  //                 <React.Fragment key={i}>
+  //                   {"\n"}
+  //                   {indent(2)}
+  //                   {wrapInColor(`"${item}"`, "string")}
+  //                   {i < value.length - 1 ? wrapInColor(",", "comma") : ""}
+  //                 </React.Fragment>
+  //               ))}
+  //               {"\n"}
+  //               {indent(1)}
+  //               {wrapInColor("]", "bracket")}
+  //               {!isLast && wrapInColor(",", "comma")}
+  //             </React.Fragment>
+  //           );
+  //         }
 
-          return (
-            <React.Fragment key={key}>
-              {"\n"}
-              {indent(1)}
-              {wrapInColor(`"${key}"`, "key")}
-              {wrapInColor(":", "colon")} {wrapInColor(`"${value}"`, "string")}
-              {!isLast && wrapInColor(",", "comma")}
-            </React.Fragment>
-          );
-        })}
-        {"\n"}
-        {wrapInColor("}", "brace")}
-      </div>
-    );
-  };
+  //         return (
+  //           <React.Fragment key={key}>
+  //             {"\n"}
+  //             {indent(1)}
+  //             {wrapInColor(`"${key}"`, "key")}
+  //             {wrapInColor(":", "colon")} {wrapInColor(`"${value}"`, "string")}
+  //             {!isLast && wrapInColor(",", "comma")}
+  //           </React.Fragment>
+  //         );
+  //       })}
+  //       {"\n"}
+  //       {wrapInColor("}", "brace")}
+  //     </div>
+  //   );
+  // };
 
-  const handleNameTypingComplete = () => {
-    setShowContent(true);
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index >= contentKeys.length) {
-        clearInterval(interval);
-        setTimeout(() => setShowButtons(true), 500);
-        return;
-      }
-      setCurrentKeyIndex(index);
-      index++;
-    }, 1000);
-  };
-
-  const handleImageHover = () => {
-    setIsHovered(true);
-    setTimeout(() => {
-      setIsTransitioning(true);
-    }, 300);
-  };
-
-  const handleImageLeave = () => {
-    setIsHovered(false);
-    setIsTransitioning(false);
-  };
+  // // const handleNameTypingComplete = () => {
+  // //   setShowContent(true);
+  // //   let index = 0;
+  // //   const interval = setInterval(() => {
+  // //     if (index >= contentKeys.length) {
+  // //       clearInterval(interval);
+  // //       setTimeout(() => setShowButtons(true), 500);
+  // //       return;
+  // //     }
+  // //     setCurrentKeyIndex(index);
+  // //     index++;
+  // //   }, 1000);
+  // // };
+  // const handleNameTypingComplete = () => {
+  //   setTimeout(() => setShowButtons(true), 500);
+  // };
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8"
+      className="min-h-screen pt-16 sm:pt-36 lg:pt-24 flex items-center justify-center px-4 sm:px-6 lg:px-8"
       id="home"
     >
-      <div className="max-w-[1400px] w-full mx-auto py-8 sm:py-12 lg:py-16">
+      <div className="max-w-[1400px] w-full mx-auto pt-8 sm:pt-12 lg:pt-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 xl:gap-12 items-start">
           {/* Left Column - Image Container */}
           <div className="w-full flex flex-col items-center space-y-6 lg:sticky lg:top-24">
@@ -155,32 +147,7 @@ const Hero = () => {
               />
             </div>
 
-            {/* PhD Text */}
-            <div className="h-12 flex items-center">
-              <TypeAnimation
-                sequence={[
-                  2000,
-                  "I am pursuing PhD in Human-Computer Interaction at University of Luxembourg",
-                ]}
-                wrapper="p"
-                speed={50}
-                className="text-base sm:text-lg lg:text-2xl xl:text-2xl font-dancing bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text"
-                repeat={0}
-                cursor={false}
-              />
-            </div>
-          </div>
-
-          {/* Right Column - Content Section */}
-          <div className="w-full flex flex-col space-y-6 py-4">
-            {/* JSON Content Container */}
-            {showContent && (
-              <div className="w-full bg-white/5 backdrop-blur-sm rounded-lg p-4 sm:p-6 font-mono">
-                {renderJsonContent()}
-              </div>
-            )}
-
-            {/* Buttons Container */}
+            {/* Social Links */}
             <div
               className={`transition-all duration-500 transform ${
                 showButtons
@@ -193,38 +160,48 @@ const Hero = () => {
                   Read My CV
                 </button>
                 <div className="flex gap-2">
-                  <a
+                  <SocialLink
                     href="https://linkedin.com/in/svdpmukherjee"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-blue-100 transition-all duration-300 group"
-                  >
-                    <AiFillLinkedin className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 group-hover:text-blue-600" />
-                  </a>
-                  <a
+                    Icon={AiFillLinkedin}
+                    hoverClass="group-hover:text-blue-600"
+                  />
+                  <SocialLink
                     href="https://github.com/svdpmukherjee"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-gray-100 transition-all duration-300 group"
-                  >
-                    <AiFillGithub className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 group-hover:text-black" />
-                  </a>
-                  <a
+                    Icon={AiFillGithub}
+                    hoverClass="group-hover:text-black"
+                  />
+                  <SocialLink
                     href="https://scholar.google.com/citations?user=BOmtS4sAAAAJ&hl=en&inst=15483811489544987344&oi=ao"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-blue-50 transition-all duration-300 group"
-                  >
-                    <SiGooglescholar className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 group-hover:text-blue-500" />
-                  </a>
+                    Icon={SiGooglescholar}
+                    hoverClass="group-hover:text-blue-500"
+                  />
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Right Column - InteractiveExpertise */}
+          <div className="w-full flex flex-col space-y-6 py-4">
+            <InteractiveExpertise />
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+// Extracted SocialLink component for better organization
+const SocialLink = ({ href, Icon, hoverClass }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-gray-100 transition-all duration-300 group"
+  >
+    <Icon
+      className={`text-2xl sm:text-3xl lg:text-4xl text-gray-600 ${hoverClass}`}
+    />
+  </a>
+);
 
 export default Hero;

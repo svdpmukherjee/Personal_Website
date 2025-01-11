@@ -8,12 +8,12 @@ const Footer = () => {
           Suvadeep Mukherjee
         </h3>
         <div className="flex flex-row gap-6 text-gray-400 text-4xl">
-          <a>
+          {/* <a>
             <FaGithubSquare />
           </a>
           <a>
             <FaInstagram />
-          </a>
+          </a> */}
         </div>
       </div>
 

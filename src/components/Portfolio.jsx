@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AiFillGithub } from "react-icons/ai";
+import { IoIosPaper } from "react-icons/io";
 import {
   FaExternalLinkAlt,
   FaGraduationCap,
@@ -31,7 +32,7 @@ const Portfolio = () => {
       title: "PhD Projects",
       icon: <FaGraduationCap className="text-2xl text-blue-500" />,
       description:
-        "Research focusing on privacy and security in remote examination",
+        "Research focusing on privacy and security in remote examination (EdTech)",
       subProjects: [
         {
           id: "privacy-video",
@@ -46,6 +47,7 @@ const Portfolio = () => {
           links: {
             site: "#",
             github: "#",
+            publication: "https://dl.acm.org/doi/10.1145/3688459.3688474",
           },
         },
         {
@@ -61,12 +63,14 @@ const Portfolio = () => {
           links: {
             site: "#",
             github: "#",
+            publication:
+              "https://www.sciencedirect.com/science/article/pii/S0360131523002026",
           },
         },
       ],
     },
     side: {
-      title: "Side Projects",
+      title: "Other Recent Projects",
       icon: <FaLightbulb className="text-2xl text-yellow-500" />,
       description:
         "Exploring innovative solutions through design thinking and AI",
@@ -291,6 +295,14 @@ const Portfolio = () => {
                           className="px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-all flex items-center gap-2"
                         >
                           <AiFillGithub /> GitHub
+                        </a>
+                        <a
+                          href={activeProject.links.publication}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-3 bg-purple-700 text-white rounded-lg hover:bg-gray-600 transition-all flex items-center gap-2"
+                        >
+                          <IoIosPaper /> Publication
                         </a>
                       </div>
                     </>

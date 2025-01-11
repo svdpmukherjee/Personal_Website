@@ -1,4 +1,4 @@
-import profilepic1 from "../assets/portrait_1.jpg";
+import profilepic1 from "../assets/portrait_4.jpg";
 import profilepic2 from "../assets/portrait_2.jpg";
 import { useState } from "react";
 
