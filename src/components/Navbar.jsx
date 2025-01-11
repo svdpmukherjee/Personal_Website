@@ -104,14 +104,18 @@ const Navbar = () => {
                 </div>
               </div>
               <div className="flex gap-1">
-                <span className="text-sm sm:text-base">🇱🇺</span>
-                <span className="text-sm sm:text-base">🇮🇳</span>
+                <span className="text-sm sm:text-base">
+                  <ReactCountryFlag countryCode="LU" />
+                </span>
+                <span className="text-sm sm:text-base">
+                  <ReactCountryFlag countryCode="IN" />
+                </span>
               </div>
             </div>
           </div>
 
           {/* Center Section - Search Bar and Navigation */}
-          <div className="flex-1 min-w-0 lg:min-w-[1000px]">
+          <div className="flex-1 min-w-0">
             <div className="backdrop-blur-md bg-white/30 rounded-2xl sm:rounded-3xl border border-gray-700/50 shadow-lg p-1 sm:p-2">
               <div className="flex items-center justify-between h-8 sm:h-10 lg:h-12 px-2 sm:px-3 gap-2 sm:gap-3 lg:gap-4">
                 {/* URL Path Section */}
@@ -161,7 +165,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Navigation Items */}
-                <nav className="hidden md:flex items-center space-x-2 lg:space-x-3">
+                <nav className="hidden lg:flex items-center space-x-2 lg:space-x-3">
                   {sections.map((section) => (
                     <button
                       key={section.id}
@@ -185,7 +189,7 @@ const Navbar = () => {
                 {/* Mobile Menu Button */}
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="md:hidden text-gray-700 focus:outline-none p-1"
+                  className="lg:hidden text-gray-700 focus:outline-none p-1"
                   aria-label="Toggle menu"
                 >
                   {isMenuOpen ? (
@@ -198,32 +202,29 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu Dropdown */}
-            <div
-              className={`md:hidden absolute left-0 right-0 top-full mt-2 mx-2 transform transition-all duration-300 ease-in-out origin-top
-                ${
-                  isMenuOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"
-                }`}
-            >
-              <div className="backdrop-blur-md bg-white/90 rounded-lg shadow-lg border border-gray-200/50 overflow-hidden">
-                <nav className="flex flex-col">
-                  {sections.map((section) => (
-                    <button
-                      key={section.id}
-                      onClick={() => handleNavClick(section.id)}
-                      className={`flex items-center gap-2 px-4 py-3 text-left transition-colors duration-200 text-sm
-                        ${
-                          activeSection === section.id
-                            ? "text-blue-600 bg-blue-50/50"
-                            : "text-gray-700 hover:bg-gray-50/50"
-                        }`}
-                    >
-                      {section.icon}
-                      {section.label}
-                    </button>
-                  ))}
-                </nav>
+            {isMenuOpen && (
+              <div className="lg:hidden absolute left-0 right-0 top-full mt-2 mx-2">
+                <div className="backdrop-blur-md bg-white/90 rounded-lg shadow-lg border border-gray-200/50 overflow-hidden">
+                  <nav className="flex flex-col">
+                    {sections.map((section) => (
+                      <button
+                        key={section.id}
+                        onClick={() => handleNavClick(section.id)}
+                        className={`flex items-center gap-2 px-4 py-3 text-left transition-colors duration-200 text-sm
+                          ${
+                            activeSection === section.id
+                              ? "text-blue-600 bg-blue-50/50"
+                              : "text-gray-700 hover:bg-gray-50/50"
+                          }`}
+                      >
+                        {section.icon}
+                        {section.label}
+                      </button>
+                    ))}
+                  </nav>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Optional Right Section if needed */}

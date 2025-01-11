@@ -97,7 +97,7 @@ const InteractiveExpertise = () => {
   );
 
   // Calculate spacing based on screen size - moved inside component to reduce complexity
-  const baseRadius = 60;
+  const baseRadius = 45;
   const getScaledRadius = (width) => {
     if (width >= 1024) return baseRadius * 1.2;
     if (width >= 768) return baseRadius * 1.1;
@@ -202,19 +202,19 @@ const InteractiveExpertise = () => {
       {/* Header Content */}
       <div className="mb-8 space-y-8">
         <div>
-          <h3 className="text-2xl sm:text-xl font-bold text-slate-600">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-600">
             Current Activity
           </h3>
-          <p className="text-slate-600 text-md sm:text-base">
+          <p className="text-base sm:text-lg lg:text-xl text-slate-600">
             Pursuing PhD in Human-Computer Interaction at University of
             Luxembourg
           </p>
         </div>
         <div>
-          <h3 className="text-2xl sm:text-xl font-bold text-slate-600">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-600">
             Career Interest
           </h3>
-          <p className="text-slate-600 text-md sm:text-base">
+          <p className="text-base sm:text-lg lg:text-xl text-slate-600">
             R&D Specialist at the Intersection of Technology and Psychology:
             Dedicated to advancing User Experience Research to inspire
             meaningful innovation in digital solutions.
@@ -291,7 +291,7 @@ const InteractiveExpertise = () => {
                         : undefined,
                     }}
                   >
-                    <span className="text-white font-bold text-sm sm:text-base lg:text-lg px-1">
+                    <span className="text-base sm:text-lg lg:text-xl text-white font-bold">
                       {area.title}
                     </span>
                     {area.isCenter && (

@@ -32,13 +32,13 @@ const TextSection = () => {
       className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
       id="skills"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
         {/* Vision Section */}
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <h2 className="text-2xl sm:text-4xl font-bold mb-8 gradient-text scroll-reveal opacity-0 translate-y-5 transition-all duration-600">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 gradient-text scroll-reveal opacity-0 translate-y-5 transition-all duration-600">
             My Vision
           </h2>
-          <div className="text-md sm:text-md text-gray-600 dark:text-gray-300 space-y-6">
+          <div className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 space-y-4 sm:space-y-6">
             <p className="scroll-reveal opacity-0 translate-y-5 transition-all duration-600">
               In today's digital landscape, creating{" "}
               <Highlight delay={300} color="#ef59e8" style="circular_1">

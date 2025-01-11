@@ -107,7 +107,7 @@ const Experience = () => {
             <FaBuilding className="text-xl sm:text-2xl text-purple-400 mt-1 flex-shrink-0" />
           )}
           <div>
-            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">
+            <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2">
               {type === "education" ? entry.institution : entry.company}
             </h4>
             <p
@@ -132,7 +132,7 @@ const Experience = () => {
                 {entry.role}
               </p>
             )}
-            <ul className="space-y-2 list-disc pl-4 text-gray-300 text-sm sm:text-base">
+            <ul className="space-y-2 list-disc pl-4 text-gray-300 text-base sm:text-lg lg:text-xl">
               {entry.description.map((point, i) => (
                 <li key={i} className="leading-relaxed">
                   {point}
@@ -147,11 +147,11 @@ const Experience = () => {
 
   return (
     <div
-      className="py-12 sm:py-20 bg-gradient-to-b from-cyan-900 to-slate-900"
+      className="py-12 sm:py-20 bg-gradient-to-b from-cyan-900 to-slate-900 text-base sm:text-lg"
       id="experience"
     >
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-16 reveal text-blue-300">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-12 reveal text-blue-300">
           Education & <span className="gradient-text">Experience</span>
         </h2>
 

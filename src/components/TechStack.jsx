@@ -105,7 +105,9 @@ const TechnologyCard = ({
       <div className="flex items-center justify-between p-2 bg-white rounded-lg border border-gray-100">
         <div className="flex items-center gap-2">
           <img src={IconSrc} alt={name} className="w-4 h-4" />
-          <span className="text-xs font-medium text-gray-700">{name}</span>
+          <span className="text-base sm:text-lg text-gray-700 font-medium">
+            {name}
+          </span>
         </div>
         <SkillIndicator level={expertiseLevel} isMobile={true} />
       </div>
@@ -139,11 +141,7 @@ const TechnologyCard = ({
 
 const StackSection = ({ title, items, isMobile }) => (
   <div className={isMobile ? "space-y-2" : "space-y-4 w-full"}>
-    <h3
-      className={`${
-        isMobile ? "text-sm" : "text-xl"
-      } font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-2`}
-    >
+    <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-4">
       {title}
     </h3>
     <div

@@ -7,7 +7,7 @@ const ProfilePicture = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="relative w-full h-full p-8 sm:p-10 lg:p-12">
+    <div className="relative w-full h-full p-4 sm:p-8 lg:p-12">
       <div
         className="relative w-full h-full perspective-1000"
         onMouseEnter={() => setIsHovered(true)}

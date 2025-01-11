@@ -275,7 +275,7 @@ const Portfolio = () => {
                             </div>
                           </div>
                         )}
-                      <h3 className="text-2xl font-bold gradient-text mb-6">
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold">
                         {activeProject.title}
                       </h3>
                       {renderProjectContent(activeProject)}
@@ -307,7 +307,7 @@ const Portfolio = () => {
                       </div>
                     </>
                   ) : (
-                    <p className="text-gray-600">
+                    <p className="text-base sm:text-lg lg:text-xl text-gray-600">
                       {portfolioData[activeCategory].description}
                     </p>
                   )}
