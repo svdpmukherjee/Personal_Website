@@ -19,17 +19,6 @@ const InteractiveExpertise = () => {
       isCenter: true,
     },
     {
-      id: "user",
-      title: "User Research",
-      color: "from-purple-400 to-purple-800",
-      textColor: "text-purple-500",
-      bullets: [
-        "User Behavioral Analysis",
-        "UX Research & Evaluation",
-        "Usability Testing",
-      ],
-    },
-    {
       id: "technical",
       title: "Technical Development",
       color: "from-red-400 to-red-800",
@@ -45,25 +34,33 @@ const InteractiveExpertise = () => {
       title: "Research Methods",
       color: "from-blue-400 to-blue-800",
       textColor: "text-blue-500",
-      bullets: ["Mixed Methods Design", "Data Analysis", "Insights Generation"],
+      bullets: [
+        "Mixed Methods Experimental Design",
+        "Quantitative & Qualitative Data Collection & Analysis",
+        "Meaningful Insights Through Visualization",
+      ],
     },
     {
       id: "innovation",
-      title: "Innovation & AI",
+      title: "Innovation with AI",
       color: "from-emerald-400 to-emerald-800",
       textColor: "text-emerald-500",
       bullets: [
-        "AI Integration",
+        "AI Integration to Applications",
         "Agentic AI Development",
         "Human-AI Interaction",
       ],
     },
     {
       id: "project",
-      title: "Project Management",
+      title: "Problem Solving",
       color: "from-amber-400 to-amber-800",
       textColor: "text-amber-500",
-      bullets: ["Problem Solving", "Team Collaboration", "Technical Writing"],
+      bullets: [
+        "Collaborative Brainstorming",
+        "Design Solutions",
+        "Technical Writing",
+      ],
     },
     {
       id: "privacy",
@@ -76,15 +73,24 @@ const InteractiveExpertise = () => {
         "Data Protection Frameworks",
       ],
     },
+    {
+      id: "user",
+      title: "User Research",
+      color: "from-purple-400 to-purple-800",
+      textColor: "text-purple-500",
+      bullets: [
+        "User Behavioral Analysis",
+        "UX Research & Evaluation",
+        "Usability Testing",
+      ],
+    },
   ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
-          // Only start animation if it hasn't happened yet
           setHasAnimated(true);
-          // Start the hexagon animation
           setTimeout(() => {
             setVisibleHexagons(["center"]);
             setTimeout(() => {
@@ -93,7 +99,7 @@ const InteractiveExpertise = () => {
           }, 100);
         }
       },
-      { threshold: 0.3 } // Adjust this value to control when animation triggers
+      { threshold: 0.3 }
     );
 
     if (componentRef.current) {
@@ -111,16 +117,7 @@ const InteractiveExpertise = () => {
     if (activeArea) return;
     const interval = setInterval(() => {
       setGlowingIndex((prev) => (prev + 1) % (areas.length - 1));
-    }, 500);
-    return () => clearInterval(interval);
-  }, [activeArea]);
-
-  // Glow animation effect
-  useEffect(() => {
-    if (activeArea) return;
-    const interval = setInterval(() => {
-      setGlowingIndex((prev) => (prev + 1) % (areas.length - 1));
-    }, 500);
+    }, 1000);
     return () => clearInterval(interval);
   }, [activeArea, areas.length]);
 
@@ -131,13 +128,13 @@ const InteractiveExpertise = () => {
   return (
     <div
       ref={componentRef}
-      className="relative w-full aspect-square max-w-[300px] mx-auto mt-8 reveal"
+      className="relative w-[260px] xs:w-[280px] sm:w-[340px] aspect-square mx-auto mt-8 reveal"
     >
       {/* Center Hexagon */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div
-          className={`w-40 h-40 bg-gradient-to-br from-slate-500 to-slate-900 
-          transform transition-all duration-700 shadow-lg ${
+          className={`w-28 xs:w-36 sm:w-40 h-28 xs:h-36 sm:h-40 bg-gradient-to-br from-slate-500 to-slate-900 
+          transform transition-all duration-700 ${
             visibleHexagons.includes("center")
               ? "scale-100 opacity-100"
               : "scale-0 opacity-0"
@@ -148,10 +145,10 @@ const InteractiveExpertise = () => {
           }}
         >
           <div className="w-full h-full flex flex-col items-center justify-center text-center p-2">
-            <span className="text-white  font-bold">
+            <span className="text-white text-xs xs:text-sm sm:text-base font-bold">
               Research & Development
             </span>
-            <span className="text-white/90 text-[12px] mt-1">
+            <span className="text-white/90 text-[10px] xs:text-[11px] sm:text-[12px] mt-1">
               Interdisciplinary Specialist
             </span>
           </div>
@@ -171,30 +168,36 @@ const InteractiveExpertise = () => {
             <div
               key={area.id}
               className={`absolute transform -translate-x-1/2 -translate-y-1/2 
-              transition-all duration-700 ${
+              transition-all duration-700  ${
                 visibleHexagons.includes(area.id)
                   ? "scale-100 opacity-100"
                   : "scale-0 opacity-0"
               }`}
               style={{
-                left: `${50 + (x / radius) * 50}%`,
-                top: `${50 + (y / radius) * 50}%`,
+                left: `${50 + (x / (radius + 10)) * 50}%`,
+                top: `${50 + (y / (radius + 10)) * 50}%`,
                 zIndex: activeArea === area.id ? 30 : 20,
               }}
               onClick={() => handleAreaClick(area.id)}
             >
               <div
-                className={`w-32 h-32 rounded-full flex items-center justify-center
-              cursor-pointer transition-all duration-300 shadow-lg
-              bg-gradient-to-br ${area.color}
-              ${activeArea === area.id ? "scale-110 shadow-xl" : ""}
-              ${
-                !activeArea && glowingIndex === index
-                  ? "shadow-[0_0_20px_rgba(0,0,255,10)]"
-                  : ""
-              }`}
+                className={`w-20 xs:w-24 sm:w-32 h-20 xs:h-24 sm:h-32 rounded-full flex items-center justify-center
+                cursor-pointer transition-all duration-300 shadow-lg
+                bg-gradient-to-br ${area.color}
+                ${
+                  activeArea === area.id
+                    ? "scale-110 shadow-[0_0_20px_rgba(59,0,255,10)]"
+                    : ""
+                }
+                ${
+                  !activeArea && glowingIndex === index
+                    ? // ? "shadow-[0_0_20px_rgba(0,0,255,10)]"
+                      // : ""
+                      "shadow-[0_0_20px_rgba(59,0,255,10)]"
+                    : ""
+                }`}
               >
-                <span className="text-white font-bold p-2 text-center">
+                <span className="text-white font-bold text-xs xs:text-xs sm:text-base p-2 text-center">
                   {area.title}
                 </span>
               </div>
@@ -206,10 +209,10 @@ const InteractiveExpertise = () => {
       {activeArea && !areas.find((a) => a.id === activeArea)?.isCenter && (
         <div
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50
-          w-64 bg-white rounded-xl shadow-xl p-3 transition-opacity duration-300"
+          w-56 xs:w-60 sm:w-64 bg-white rounded-xl shadow-xl p-3 transition-opacity duration-300"
         >
           <h4
-            className={`text-md font-bold ${
+            className={`text-sm xs:text-base sm:text-lg font-bold ${
               areas.find((a) => a.id === activeArea)?.textColor
             }`}
           >
@@ -221,7 +224,7 @@ const InteractiveExpertise = () => {
               ?.bullets.map((bullet, idx) => (
                 <li
                   key={idx}
-                  className="text-md text-slate-600 flex items-start"
+                  className="text-xs xs:text-sm sm:text-base text-slate-600 flex items-start"
                 >
                   <span
                     className={`${

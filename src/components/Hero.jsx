@@ -46,7 +46,7 @@ const Hero = () => {
           </div>
 
           {/* Name Animation */}
-          <div className="h-12 md:h-16 flex items-center">
+          <div className="h-16 flex items-center">
             <TypeAnimation
               sequence={[
                 "Hello! I am Suvo...",
@@ -55,7 +55,7 @@ const Hero = () => {
               ]}
               wrapper="span"
               speed={50}
-              className="text-2xl md:text-3xl lg:text-4xl font-dancing bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text font-bold"
+              className="text-3xl md:text-3xl lg:text-4xl font-dancing bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text font-bold"
               repeat={0}
               cursor={false}
             />

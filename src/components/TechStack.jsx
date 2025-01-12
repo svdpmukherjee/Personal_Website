@@ -1,10 +1,8 @@
-import React from "react";
-
 const TechStack = () => {
   const stacks = {
     development: {
       frontend_backend: {
-        title: "Frontend and Backend Dev",
+        title: "Frontend & Backend",
         items: [
           {
             name: "React",
@@ -32,8 +30,8 @@ const TechStack = () => {
             expertiseLevel: 0.8,
           },
           {
-            name: "VS Code",
-            iconName: "vscode",
+            name: "GitHub",
+            iconName: "github",
             expertiseLevel: 0.9,
           },
         ],
@@ -41,7 +39,7 @@ const TechStack = () => {
     },
     tools: {
       research: {
-        title: "Data Collection & Analysis",
+        title: "Research Tools",
         items: [
           {
             name: "MAXQDA",
@@ -66,7 +64,7 @@ const TechStack = () => {
         ],
       },
       design: {
-        title: "Prototype Design",
+        title: "Design Tools",
         items: [
           {
             name: "Figma",
@@ -92,7 +90,7 @@ const TechStack = () => {
       },
     },
     cloud: {
-      title: "DevOps and Cloud",
+      title: "DevOps & Cloud",
       items: [
         {
           name: "AWS",
@@ -144,7 +142,7 @@ const TechStack = () => {
         {[...Array(dots)].map((_, index) => (
           <div
             key={index}
-            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 
+            className={`w-1 h-1 rounded-full transition-all duration-300 
               ${
                 index < filledDots
                   ? "bg-gradient-to-r from-blue-500 to-cyan-400"
@@ -161,10 +159,10 @@ const TechStack = () => {
     const IconSrc = icons[item.iconName];
 
     return (
-      <div className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-100">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-col items-center justify-center p-3 bg-white rounded-lg border border-gray-100 shadow-sm ">
+        <div className="flex items-center gap-2 mb-2">
           <img src={IconSrc} alt={item.name} className="w-5 h-5" />
-          <span className="text-gray-700 font-medium">{item.name}</span>
+          <span className="text-sm text-gray-700 font-medium">{item.name}</span>
         </div>
         <ExpertiseDots level={item.expertiseLevel} />
       </div>
@@ -173,11 +171,11 @@ const TechStack = () => {
 
   // Component to render a stack section
   const StackSection = ({ title, items }) => (
-    <div className="space-y-3">
-      <h3 className="text-2xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+    <div className="mb-8">
+      <h3 className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-2.5">
         {title}
       </h3>
-      <div className="space-y-2 text-lg">
+      <div className="grid grid-cols-2 gap-2">
         {items.map((item, index) => (
           <SkillItem key={index} item={item} />
         ))}
@@ -186,7 +184,7 @@ const TechStack = () => {
   );
 
   return (
-    <div className="space-y-8 p-3 ">
+    <div className="space-y-6">
       <StackSection
         title={stacks.development.frontend_backend.title}
         items={stacks.development.frontend_backend.items}

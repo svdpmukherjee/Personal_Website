@@ -60,63 +60,67 @@ const PortfolioIntro = () => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 px-4">
       {/* Main Introduction */}
-      <div className="max-w-3xl mx-auto text-center mb-8">
-        <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-4">
+      <div className="space-y-4">
+        <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
           Bridging Research and Innovation
-        </h3>
-        <p className="text-md text-left text-gray-500 leading-relaxed">
+        </h2>
+        <p className="text-sm text-gray-600 leading-relaxed">
           As a PhD researcher in Human-Computer Interaction at the University of
           Luxembourg, I am passionate about creating{" "}
-          <span className="gradient-text font-semibold">
+          <span className="font-semibold text-blue-600">
             user-centered solutions{" "}
           </span>
           that enhance digital experiences. My work spans{" "}
-          <span className="text-black font-semibold">
+          <span className="font-semibold text-gray-800">
             from academic research to practical applications
           </span>
           , always focusing on the{" "}
-          <span className="text-black ">human element in technology</span>.
+          <span className="text-gray-800">human element in technology</span>.
         </p>
       </div>
 
-      {/* Combined Research Areas & Side Interests Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* Areas Grid */}
+      <div className="grid grid-cols-1 gap-3">
         {areas.map((area, index) => (
           <motion.div
             key={index}
-            className={`p-4 bg-white rounded-xl shadow-sm border border-gray-100 
+            className={`p-4 bg-white rounded-lg shadow-sm border 
               ${
                 area.type === "research"
-                  ? "hover:border-blue-200"
-                  : "hover:border-purple-200"
-              } 
+                  ? "border-blue-100"
+                  : "border-purple-100"
+              }
               transition-all`}
-            whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            whileHover={{ y: -2, transition: { duration: 0.2 } }}
             onHoverStart={() => setHoveredCard(index)}
             onHoverEnd={() => setHoveredCard(null)}
           >
-            <div
-              className={`text-2xl ${
-                area.type === "research" ? "text-blue-500" : "text-purple-500"
-              } mb-3`}
-            >
-              {area.icon}
+            <div className="flex items-start gap-3">
+              <div
+                className={`text-xl ${
+                  area.type === "research" ? "text-blue-500" : "text-purple-500"
+                }`}
+              >
+                {area.icon}
+              </div>
+              <div>
+                <h3 className="text-base font-semibold text-gray-800 mb-1">
+                  {area.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {area.description}
+                </p>
+              </div>
             </div>
-            <h5 className="text-base font-semibold text-gray-800 mb-2">
-              {area.title}
-            </h5>
-            <p className="text-sm text-gray-600">{area.description}</p>
           </motion.div>
         ))}
       </div>
 
-      <div className="text-center">
-        <p className="text-gray-500 italic text-sm">
-          Select a category from the left to explore my projects in detail
-        </p>
-      </div>
+      <p className="text-sm text-gray-500 text-center italic">
+        Select a category from above to explore my projects in detail
+      </p>
     </div>
   );
 };

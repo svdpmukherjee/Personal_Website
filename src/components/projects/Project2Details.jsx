@@ -64,54 +64,63 @@ const Project2Details = () => {
 
   return (
     <div className="space-y-8">
-      <h3 className="text-xl font-bold text-gray-600">
-        As a privacy-conscious educator trusting students in unsupervised online
-        exams, how do you minimize exam cheating?
-      </h3>
-      <p className="text-md  text-gray-600">
-        Without relying on tools like webcams, keyboard, or mouse tracking to
-        safeguard students' privacy, simple text-based interventions have been
-        effective in preventing cheating
-      </p>
+      {/* Main Question */}
+      <div className="space-y-4">
+        <h3 className="text-base sm:text-xl text-gray-500">
+          As a privacy-conscious educator trusting students in unsupervised
+          online exams, how do you minimize exam cheating?
+        </h3>
+        <p className="text-sm sm:text-base text-gray-600">
+          Without relying on tools like webcams, keyboard, or mouse tracking to
+          safeguard students' privacy, simple text-based interventions have been
+          effective in preventing cheating
+        </p>
+      </div>
 
       {/* Research Gaps Card */}
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">
+      <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-4 sm:p-6">
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
           Research Gaps
         </h3>
         <div className="space-y-3">
           {researchGaps.map((gap, index) => (
-            <div key={index} className="bg-amber-50 p-3 rounded-lg">
-              <h4 className="font-medium text-red-600">{gap.title}</h4>
-              <p className="text-gray-600 text-sm mt-1">{gap.description}</p>
+            <div key={index} className="bg-amber-50 p-3 sm:p-4 rounded-lg">
+              <h4 className="font-medium text-red-600 text-sm sm:text-base">
+                {gap.title}
+              </h4>
+              <p className="text-gray-600 text-xs sm:text-sm mt-1">
+                {gap.description}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Interventions Card */}
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-6">
+      <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-4 sm:p-6">
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
           Three Text-Based Interventions Were Shown During a Simulated Exam:
-          <span className="text-gray-500">
-            {" "}
+          <span className="text-gray-500 text-sm sm:text-base block mt-2">
             Ranging from Moral Appeal to Instilling Fear of Getting Caught
           </span>
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {interventions.map((intervention, index) => (
             <div key={index} className="flex flex-col items-center">
-              <div className="bg-gray-100 p-4 rounded-lg w-full h-48 flex items-center justify-center">
-                <img
-                  src={intervention.image}
-                  alt={intervention.title}
-                  className="object-contain h-full"
-                />
+              <div className="bg-gray-200 p-4 rounded-lg w-full">
+                <div className="aspect-square relative">
+                  <img
+                    src={intervention.image}
+                    alt={intervention.title}
+                    className="absolute inset-0 w-full h-full object-contain"
+                  />
+                </div>
               </div>
-              <h4 className="font-medium  text-gray-700 mt-3">
+              <h4 className="font-medium text-gray-700 mt-3 text-sm sm:text-base">
                 {intervention.title}
               </h4>
-              <p className="text-gray-400 text-sm text-center mt-1">
+              <p className="text-gray-400 text-xs sm:text-sm text-center mt-1">
                 {intervention.description}
               </p>
             </div>
@@ -120,15 +129,17 @@ const Project2Details = () => {
       </div>
 
       {/* Approach Card */}
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">
+      <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-4 sm:p-6">
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
           Our Innovative Approach
         </h3>
         <div className="space-y-3">
           {approachHighlights.map((highlight, index) => (
-            <div key={index} className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-medium text-gray-700">{highlight.title}</h4>
-              <p className="text-gray-600 text-sm mt-1">
+            <div key={index} className="bg-blue-50 p-3 sm:p-4 rounded-lg">
+              <h4 className="font-medium text-gray-700 text-sm sm:text-base">
+                {highlight.title}
+              </h4>
+              <p className="text-gray-600 text-xs sm:text-sm mt-1">
                 {highlight.description}
               </p>
             </div>

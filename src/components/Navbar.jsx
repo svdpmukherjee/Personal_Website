@@ -66,7 +66,7 @@ const Navbar = () => {
   const NameButton = ({ children }) => (
     <button
       onClick={scrollToTop}
-      className="text-2xl  font-bold gradient-text font-dancing hover:opacity-80 transition-opacity mx-2"
+      className="font-bold gradient-text font-dancing hover:opacity-80 transition-opacity mx-1 sm:mx-2"
     >
       {children}
     </button>
@@ -74,57 +74,56 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
-      <div className="px-2 md:px-4 pt-2">
-        <div className="flex items-center gap-2">
-          {/* Name and Flags - Give it more space with flex-grow-0 to prevent shrinking */}
-          <div className="backdrop-blur-sm bg-white/60 rounded-lg px-3 py-2 flex-shrink-0 w-auto">
+      <div className="pt-2 px-1 sm:px-2 md:px-4">
+        <div className="flex items-center gap-1 sm:gap-2">
+          {/* Name and Flags Section */}
+          <div className="backdrop-blur-sm bg-white/60 rounded-lg px-2 sm:px-3 py-1 sm:py-2 flex-shrink-0">
             <div>
-              {/* <div className="text-xl md:text-2xl font-bold gradient-text font-dancing whitespace-nowrap">
-                Suvadeep Mukherjee
-              </div>
-              <div className="flex gap-1">
-                <span className="text-base md:text-xl">
-                  <ReactCountryFlag countryCode="LU" />
-                </span>
-                <span className="text-base md:text-xl">
-                  <ReactCountryFlag countryCode="IN" />
-                </span>
-              </div> */}
               <div className="flex items-center justify-between">
-                <NameButton>Suvadeep</NameButton>
-                <span className="text-xl h-3">
+                <NameButton>
+                  <span className="text-2xl sm:text-base md:text-xl">
+                    Suvadeep
+                  </span>
+                </NameButton>
+                <span className="text-xs sm:text-sm md:text-base h-1">
                   <ReactCountryFlag countryCode="LU" />
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <NameButton>Mukherjee</NameButton>
-                <span className="text-xl h-10">
+                <NameButton>
+                  <span className="text-2xl sm:text-xl md:text-xl">
+                    Mukherjee
+                  </span>
+                </NameButton>
+                <span className="text-xs sm:text-sm md:text-base h-8">
                   <ReactCountryFlag countryCode="IN" />
                 </span>
               </div>
             </div>
           </div>
 
-          {/* URL Path Section - Make it take only the space it needs */}
-          <div className="flex-shrink flex-grow-0">
+          {/* URL Path Section */}
+          <div className="flex-1 min-w-0">
             <div className="backdrop-blur-md bg-white/30 rounded-2xl border border-gray-700/50 shadow-lg p-1">
-              <div className="flex items-center h-6 md:h-8 px-2 gap-2">
-                <div className="flex items-center space-x-1">
+              <div className="flex items-center justify-between h-6 sm:h-7 md:h-8 px-1 sm:px-2 gap-1 sm:gap-2">
+                <div className="flex items-center gap-1">
                   <button
                     onClick={() => handleNavClick("home")}
                     className="hover:opacity-70 transition-opacity"
                     aria-label="Home"
                   >
-                    <FaApple className="text-cyan-400 text-base md:text-xl" />
+                    <FaApple className="text-cyan-400 text-lg sm:text-sm md:text-base" />
                   </button>
 
-                  <span className="text-gray-500 text-base md:text-xl">›</span>
+                  <span className="text-gray-500 text-lg sm:text-sm md:text-base">
+                    ›
+                  </span>
 
                   <button
                     onClick={() => handleNavClick("home")}
                     className="hover:opacity-70 transition-opacity"
                   >
-                    <span className="text-gray-700 text-base md:text-xl">
+                    <span className="text-gray-700 text-lg sm:text-sm md:text-base">
                       {getCurrentSection()?.id === "home" ? (
                         <FaHome />
                       ) : (
@@ -133,14 +132,14 @@ const Navbar = () => {
                     </span>
                   </button>
 
-                  <div className="flex items-center space-x-1">
-                    <span className="text-gray-500 text-base md:text-xl">
+                  <div className="flex items-center gap-1">
+                    <span className="text-gray-500 text-lg sm:text-sm md:text-base">
                       ~
                     </span>
-                    <span className="text-gray-500 text-base md:text-xl">
+                    <span className="text-gray-500 text-lg sm:text-sm md:text-base">
                       /
                     </span>
-                    <span className="text-gray-700 w-24 md:w-24 text-base md:text-xl overflow-hidden text-ellipsis">
+                    <span className="text-gray-700 flex-1 text-lg sm:text-sm md:text-base overflow-hidden text-ellipsis whitespace-nowrap">
                       <TypeAnimation
                         key={pathKey}
                         sequence={[getCurrentSection()?.id || "home"]}
@@ -155,13 +154,13 @@ const Navbar = () => {
                 {/* Mobile Menu Button */}
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="text-gray-700 focus:outline-none p-1 ml-1"
+                  className="text-gray-700 focus:outline-none p-0.5 sm:p-1"
                   aria-label="Toggle menu"
                 >
                   {isMenuOpen ? (
-                    <AiOutlineClose className="text-lg md:text-xl" />
+                    <AiOutlineClose className="text-sm sm:text-base md:text-lg" />
                   ) : (
-                    <AiOutlineMenu className="text-lg md:text-xl" />
+                    <AiOutlineMenu className="text-sm sm:text-base md:text-lg" />
                   )}
                 </button>
               </div>
@@ -178,7 +177,7 @@ const Navbar = () => {
                   <button
                     key={section.id}
                     onClick={() => handleNavClick(section.id)}
-                    className={`flex items-center gap-2 px-3 md:px-4 py-2 md:py-3 text-left transition-colors duration-200 text-base md:text-lg 
+                    className={`flex items-center gap-2 px-2 sm:px-3 md:px-4 py-2 md:py-3 text-left transition-colors duration-200 text-sm sm:text-base md:text-lg 
                       ${
                         activeSection === section.id
                           ? "text-blue-600 bg-blue-50/50"

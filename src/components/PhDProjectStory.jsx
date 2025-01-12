@@ -97,9 +97,9 @@ const NavigationButton = ({ item, activeSection, setActiveSection }) => (
       >
         {item.title}
       </div>
-      <div className="text-[10px] text-gray-500 leading-tight">
+      {/* <div className="text-[10px] text-gray-500 leading-tight">
         {item.subtitle}
-      </div>
+      </div> */}
     </div>
   </motion.button>
 );
@@ -507,39 +507,43 @@ const PhDProjectStory = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-4 md:p-8">
-      <div className="mb-16 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-4">
-          User-centric Design Solutions to Prevent Cheating in Remote Exams
-        </h2>
-        <p className="text-xl text-gray-500 max-w-3xl mx-auto text-left leading-relaxed">
-          A human-centered approach to prevent exam cheating while preserving
-          students&apos; privacy and well-being in remote computer-based exams
-        </p>
+    <div className="px-4 py-8">
+      <div className="space-y-8">
+        <div className="text-center space-y-4">
+          {/* <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+            User-centric Design Solutions to Prevent Cheating in Remote Exams
+          </h2> */}
+          <p className="text-sm text-gray-600 leading-relaxed">
+            A human-centered approach to prevent exam cheating while preserving
+            students&apos; privacy and well-being in remote computer-based exams
+          </p>
+        </div>
+
+        <div className="flex justify-between items-center py-8 relative">
+          <div className="absolute top-1/2 w-full h-px bg-gray-300 transform -translate-y-1/2" />
+          {navigationItems.map((item) => (
+            <NavigationButton
+              key={item.id}
+              item={item}
+              activeSection={activeSection}
+              setActiveSection={setActiveSection}
+            />
+          ))}
+        </div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeSection}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-8"
+          >
+            {renderContent()}
+          </motion.div>
+        </AnimatePresence>
       </div>
-
-      <NavigationCircles
-        navigationItems={navigationItems}
-        activeSection={activeSection}
-        setActiveSection={setActiveSection}
-      />
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeSection}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5 }}
-        >
-          {renderContent()}
-          <NextSectionButton
-            navigationItems={navigationItems}
-            activeSection={activeSection}
-            setActiveSection={setActiveSection}
-          />
-        </motion.div>
-      </AnimatePresence>
     </div>
   );
 };

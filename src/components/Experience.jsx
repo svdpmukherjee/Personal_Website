@@ -2,8 +2,8 @@ import { useScrollEffects } from "./ScrollEffects";
 import {
   FaGraduationCap,
   FaBriefcase,
-  FaBuilding,
   FaUniversity,
+  FaBuilding,
   FaClock,
   FaCalendarAlt,
 } from "react-icons/fa";
@@ -24,7 +24,7 @@ const Experience = () => {
       delay: 0,
     },
     {
-      institution: "Eindhoven University of Technology",
+      institution: "Eindhoven University of Technology (Netherlands)",
       period: "2014 - 2016",
       degree: "M.Sc. in Human-Technology Interaction",
       description: [
@@ -36,7 +36,7 @@ const Experience = () => {
       delay: 400,
     },
     {
-      institution: "Heritage Institute of Technology",
+      institution: "Heritage Institute of Technology (India)",
       period: "2007 - 2011",
       degree: "B.Tech in Information Technology",
       description: [
@@ -51,37 +51,34 @@ const Experience = () => {
 
   const workExperience = [
     {
-      company: "Sterlite EdIndia Foundation",
+      company: "Sterlite EdIndia Foundation (India)",
       period: "2021 Apr - 2021 Oct",
       role: "Data Analyst and Researcher",
       description: [
-        "Led data-driven initiatives to improve educational outcomes",
-        "Developed data analytics frameworks to evaluate and monitor educational outcomes",
-        "Collaborated with administrators and stakeholders to create actionable insights",
-        "Designed and deployed regular interactive data visualization dashboards",
+        "Led data-driven strategies to enhance school performance, supporting district school coordinators across India",
+        "Designed and implemented data analytics frameworks to assess and track educational outcomes effectively",
+        "Worked closely with administrators and stakeholders to generate actionable insights for informed decision-making",
       ],
       delay: 200,
     },
     {
-      company: "Signify N.V. (formerly Philips Lighting N.V.), Eindhoven",
+      company: "Signify N.V. (formerly Philips Lighting) (Netherlands)",
       period: "2016 Jan - 2016 Oct",
       role: "Research Intern",
       description: [
-        "Conducted user research for smart lighting systems",
+        "Carried out user research to address a color-over-angle issue in smart lighting systems",
         "Designed and executed user studies to evaluate interfaces",
-        "Developed prototypes for testing lighting control systems",
-        "Contributed to user-centered design guidelines",
+        "Developed prototypes for testing the proposed solutions",
       ],
       delay: 600,
     },
     {
-      company: "Infosys Limited",
+      company: "Infosys Limited (India)",
       period: "2011 - 2014",
       role: "Senior Software Engineer",
       description: [
         "Led development teams in maintaining enterprise applications in Finance and Banking sector",
         "Managed client relationships and project deliverables with American Express",
-        "Implemented agile methodologies to improve efficiency",
         "Mentored junior developers and conducted training",
       ],
       delay: 1000,
@@ -90,125 +87,88 @@ const Experience = () => {
 
   const EntryCard = ({ entry, type }) => (
     <div
-      className="reveal scroll-trigger"
+      className="reveal scroll-trigger bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10
+        hover:border-white/20 transition-all duration-300 shadow-lg"
       style={{ "--delay": `${entry.delay}ms` }}
     >
-      <div
-        className={`glass p-4 sm:p-6 rounded-lg hover:shadow-xl transition-all duration-300 border ${
-          type === "education"
-            ? "border-blue-500/20 hover:border-blue-500/40"
-            : "border-purple-500/20 hover:border-purple-500/40"
-        }`}
-      >
-        <div className="flex items-start gap-3">
+      <div className="flex flex-col gap-3">
+        <div className="flex items-center gap-3">
           {type === "education" ? (
-            <FaUniversity className="text-2xl sm:text-2xl text-blue-400 mt-1 flex-shrink-0" />
+            <FaUniversity className="text-xl text-blue-400 flex-shrink-0" />
           ) : (
-            <FaBuilding className="text-2xl sm:text-2xl text-purple-400 mt-1 flex-shrink-0" />
+            <FaBuilding className="text-xl text-purple-400 flex-shrink-0" />
           )}
-          <div>
-            <h4 className="text-2xl sm:text-2xl lg:text-2xl font-bold text-white mb-2">
-              {type === "education" ? entry.institution : entry.company}
-            </h4>
-            <p
-              className={`${
-                type === "education" ? "text-blue-300" : "text-purple-300"
-              } flex items-center gap-2 mb-3 text-sm sm:text-base`}
-            >
-              {type === "education" ? (
-                <FaCalendarAlt className="text-lg sm:text-lg flex-shrink-0" />
-              ) : (
-                <FaClock className="text-xs sm:text-sm flex-shrink-0" />
-              )}
-              {entry.period}
-            </p>
-            {type === "education" && (
-              <p className="text-gray-200 font-semibold mb-3 text-lg sm:text-base">
-                {entry.degree}
-              </p>
-            )}
-            {type === "work" && (
-              <p className="text-gray-200 font-semibold mb-3 text-lg sm:text-base">
-                {entry.role}
-              </p>
-            )}
-            <ul className="space-y-2 list-disc pl-4 text-gray-300 text-base sm:text-lg lg:text-xl">
-              {entry.description.map((point, i) => (
-                <li key={i} className="leading-relaxed">
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <h4 className="text-lg font-bold text-white leading-tight">
+            {type === "education" ? entry.institution : entry.company}
+          </h4>
         </div>
+
+        <div className="flex items-center gap-2 text-sm">
+          <span
+            className={`${
+              type === "education" ? "text-blue-300" : "text-purple-300"
+            } flex items-center gap-2`}
+          >
+            {type === "education" ? (
+              <FaCalendarAlt className="text-sm" />
+            ) : (
+              <FaClock className="text-sm" />
+            )}
+            {entry.period}
+          </span>
+        </div>
+
+        <div className="text-base font-medium text-gray-200">
+          {type === "education" ? entry.degree : entry.role}
+        </div>
+
+        <ul className="space-y-2 list-disc pl-4 text-sm text-gray-300">
+          {entry.description.map((point, i) => (
+            <li key={i} className="leading-relaxed">
+              {point}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
 
   return (
     <div
-      className="py-12 sm:py-20 bg-gradient-to-b from-cyan-900 to-slate-900 text-base sm:text-lg"
+      className="py-16 bg-gradient-to-b from-cyan-900 to-slate-900"
       id="experience"
     >
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-12 reveal text-blue-300">
-          Education & <span className="gradient-text">Experience</span>
+      <div className="max-w-[90%] mx-auto px-4 space-y-12">
+        <h2 className="text-2xl font-bold text-center gradient-text reveal">
+          Education &{" "}
+          <span className="bg-gradient-to-r text-transparent bg-clip-text from-purple-600 to-purple-400">
+            Experience
+          </span>
         </h2>
 
-        {/* Mobile View */}
-        <div className="lg:hidden space-y-8">
-          <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-blue-400 flex items-center justify-center gap-2">
-              <FaGraduationCap className="text-2xl" />
-              Education
-            </h3>
+        {/* Education Section */}
+        <div className="space-y-6">
+          <div className="flex items-center justify-center gap-2 text-lg font-semibold text-blue-400">
+            <FaGraduationCap className="text-xl" />
+            <h3>Education</h3>
           </div>
-          {education.map((entry, index) => (
-            <EntryCard key={index} entry={entry} type="education" />
-          ))}
-
-          <div className="text-center mt-12 mb-6">
-            <h3 className="text-xl font-bold text-blue-400 flex items-center justify-center gap-2">
-              <FaBriefcase className="text-2xl" />
-              Work Experience
-            </h3>
+          <div className="space-y-4">
+            {education.map((entry, index) => (
+              <EntryCard key={index} entry={entry} type="education" />
+            ))}
           </div>
-          {workExperience.map((entry, index) => (
-            <EntryCard key={index} entry={entry} type="work" />
-          ))}
         </div>
 
-        {/* Desktop View */}
-        <div className="hidden lg:block">
-          <div className="grid grid-cols-2 mb-12 gap-8">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-blue-400 flex items-center justify-center gap-2">
-                <FaGraduationCap className="text-3xl" />
-                Education
-              </h3>
-            </div>
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-blue-400 flex items-center justify-center gap-2">
-                <FaBriefcase className="text-3xl" />
-                Work Experience
-              </h3>
-            </div>
+        {/* Work Experience Section */}
+        <div className="space-y-6">
+          <div className="flex items-center justify-center gap-2 text-lg font-semibold text-purple-400">
+            <FaBriefcase className="text-xl" />
+            <h3>Work Experience</h3>
           </div>
-
-          <div className="grid grid-cols-2 gap-8 relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-blue-500 to-purple-500" />
-
-            <div className="space-y-8 pr-12">
-              {education.map((entry, index) => (
-                <EntryCard key={index} entry={entry} type="education" />
-              ))}
-            </div>
-
-            <div className="space-y-8 pl-12">
-              {workExperience.map((entry, index) => (
-                <EntryCard key={index} entry={entry} type="work" />
-              ))}
-            </div>
+          <div className="space-y-4">
+            {workExperience.map((entry, index) => (
+              <EntryCard key={index} entry={entry} type="work" />
+            ))}
           </div>
         </div>
       </div>

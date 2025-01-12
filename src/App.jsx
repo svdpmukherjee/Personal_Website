@@ -19,8 +19,8 @@ export default function App() {
             <TextSection />
             <Experience />
             <Portfolio />
-            <Contact />
             <About />
+            <Contact />
           </main>
           <Footer />
         </div>
