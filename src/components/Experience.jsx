@@ -102,12 +102,12 @@ const Experience = () => {
       >
         <div className="flex items-start gap-3">
           {type === "education" ? (
-            <FaUniversity className="text-xl sm:text-2xl text-blue-400 mt-1 flex-shrink-0" />
+            <FaUniversity className="text-2xl sm:text-2xl text-blue-400 mt-1 flex-shrink-0" />
           ) : (
-            <FaBuilding className="text-xl sm:text-2xl text-purple-400 mt-1 flex-shrink-0" />
+            <FaBuilding className="text-2xl sm:text-2xl text-purple-400 mt-1 flex-shrink-0" />
           )}
           <div>
-            <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2">
+            <h4 className="text-2xl sm:text-2xl lg:text-2xl font-bold text-white mb-2">
               {type === "education" ? entry.institution : entry.company}
             </h4>
             <p
@@ -116,19 +116,19 @@ const Experience = () => {
               } flex items-center gap-2 mb-3 text-sm sm:text-base`}
             >
               {type === "education" ? (
-                <FaCalendarAlt className="text-xs sm:text-sm flex-shrink-0" />
+                <FaCalendarAlt className="text-lg sm:text-lg flex-shrink-0" />
               ) : (
                 <FaClock className="text-xs sm:text-sm flex-shrink-0" />
               )}
               {entry.period}
             </p>
             {type === "education" && (
-              <p className="text-gray-200 font-semibold mb-3 text-sm sm:text-base">
+              <p className="text-gray-200 font-semibold mb-3 text-lg sm:text-base">
                 {entry.degree}
               </p>
             )}
             {type === "work" && (
-              <p className="text-gray-200 font-semibold mb-3 text-sm sm:text-base">
+              <p className="text-gray-200 font-semibold mb-3 text-lg sm:text-base">
                 {entry.role}
               </p>
             )}

@@ -1,187 +1,119 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
-
-const HexagonTitle = ({ children, isCenter, className = "" }) => (
-  <span
-    className={`text-white font-bold whitespace-normal ${
-      isCenter ? "text-sm sm:text-base" : "text-xs sm:text-sm"
-    } ${className}`}
-  >
-    {children}
-  </span>
-);
-
-const InfoBoxTitle = ({ children, className = "" }) => (
-  <h4 className={`text-xs sm:text-sm font-bold ${className}`}>{children}</h4>
-);
-
-const InfoBoxText = ({ children, className = "" }) => (
-  <li className={`text-xs sm:text-sm text-slate-600 ${className}`}>
-    {children}
-  </li>
-);
+import { useState, useEffect, useRef } from "react";
+import { useScrollEffects } from "./ScrollEffects";
 
 const InteractiveExpertise = () => {
+  useScrollEffects();
   const [activeArea, setActiveArea] = useState(null);
   const [visibleHexagons, setVisibleHexagons] = useState([]);
   const [glowingIndex, setGlowingIndex] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const componentRef = useRef(null);
 
-  // Fixed base sizes that will scale with container
-  const SHAPE_CONFIG = {
-    centerHexagon: {
-      size: 120, // Base size for center hexagon
-      scale: 1.5, // Scale factor for center hexagon
+  const areas = [
+    {
+      id: "center",
+      title: "Research & Development",
+      subtitle: "Interdisciplinary Specialist",
+      color: "from-slate-700 to-slate-900",
+      textColor: "text-slate-800",
+      isCenter: true,
     },
-    circleSize: 100, // Base size for surrounding circles
-    spacing: 160, // Base spacing between shapes
-  };
+    {
+      id: "user",
+      title: "User Research",
+      color: "from-purple-400 to-purple-800",
+      textColor: "text-purple-500",
+      bullets: [
+        "User Behavioral Analysis",
+        "UX Research & Evaluation",
+        "Usability Testing",
+      ],
+    },
+    {
+      id: "technical",
+      title: "Technical Development",
+      color: "from-red-400 to-red-800",
+      textColor: "text-red-500",
+      bullets: [
+        "Full Stack Development",
+        "Research Prototyping",
+        "System Architecture Design",
+      ],
+    },
+    {
+      id: "research",
+      title: "Research Methods",
+      color: "from-blue-400 to-blue-800",
+      textColor: "text-blue-500",
+      bullets: ["Mixed Methods Design", "Data Analysis", "Insights Generation"],
+    },
+    {
+      id: "innovation",
+      title: "Innovation & AI",
+      color: "from-emerald-400 to-emerald-800",
+      textColor: "text-emerald-500",
+      bullets: [
+        "AI Integration",
+        "Agentic AI Development",
+        "Human-AI Interaction",
+      ],
+    },
+    {
+      id: "project",
+      title: "Project Management",
+      color: "from-amber-400 to-amber-800",
+      textColor: "text-amber-500",
+      bullets: ["Problem Solving", "Team Collaboration", "Technical Writing"],
+    },
+    {
+      id: "privacy",
+      title: "Privacy-Preserving Solutions",
+      color: "from-cyan-400 to-cyan-800",
+      textColor: "text-cyan-500",
+      bullets: [
+        "Privacy by Design",
+        "Responsible AI Development",
+        "Data Protection Frameworks",
+      ],
+    },
+  ];
 
-  // Calculate container size based on viewport
-  const getContainerSize = useCallback(() => {
-    const vw = Math.max(
-      document.documentElement.clientWidth || 0,
-      window.innerWidth || 0
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          // Only start animation if it hasn't happened yet
+          setHasAnimated(true);
+          // Start the hexagon animation
+          setTimeout(() => {
+            setVisibleHexagons(["center"]);
+            setTimeout(() => {
+              setVisibleHexagons(areas.map((area) => area.id));
+            }, 700);
+          }, 100);
+        }
+      },
+      { threshold: 0.3 } // Adjust this value to control when animation triggers
     );
-    if (vw < 640) {
-      return 300; // Mobile
-    } else if (vw < 1024) {
-      return 400; // Tablet
+
+    if (componentRef.current) {
+      observer.observe(componentRef.current);
     }
-    return 500; // Desktop
-  }, []);
 
-  const [containerSize, setContainerSize] = useState(getContainerSize());
-
-  // Memoize areas data
-  const areas = useMemo(
-    () => [
-      {
-        id: "center",
-        title: "Research & Development",
-        subtitle: "Interdisciplinary Specialist",
-        color: "from-slate-700 to-slate-900",
-        textColor: "text-slate-800",
-        x: 0,
-        y: 0,
-        isCenter: true,
-      },
-      {
-        id: "user",
-        title: "User Research",
-        color: "from-purple-400 to-purple-600",
-        textColor: "text-purple-500",
-        x: 0,
-        y: -1,
-        bullets: [
-          "User Behavioral Analysis",
-          "UX Research & Evaluation",
-          "Usability Testing",
-        ],
-      },
-      {
-        id: "technical",
-        title: "Technical Development",
-        color: "from-red-400 to-red-600",
-        textColor: "text-red-500",
-        x: 0.866,
-        y: -0.5,
-        bullets: [
-          "Full Stack Development",
-          "Research Prototyping",
-          "System Architecture Design",
-        ],
-      },
-      {
-        id: "research",
-        title: "Research Methods",
-        color: "from-blue-400 to-blue-600",
-        textColor: "text-blue-500",
-        x: 0.866,
-        y: 0.5,
-        bullets: [
-          "Mixed Methods Design",
-          "Data Analysis",
-          "Insights Generation",
-        ],
-      },
-      {
-        id: "innovation",
-        title: "Innovation & AI",
-        color: "from-emerald-400 to-emerald-600",
-        textColor: "text-emerald-500",
-        x: 0,
-        y: 1,
-        bullets: [
-          "AI Integration",
-          "Agentic AI Development",
-          "Human-AI Interaction",
-        ],
-      },
-      {
-        id: "project",
-        title: "Project Management",
-        color: "from-amber-400 to-amber-600",
-        textColor: "text-amber-500",
-        x: -0.866,
-        y: 0.5,
-        bullets: ["Problem Solving", "Team Collaboration", "Technical Writing"],
-      },
-      {
-        id: "privacy",
-        title: "Privacy-Preserving Solutions",
-        color: "from-cyan-400 to-cyan-600",
-        textColor: "text-cyan-500",
-        x: -0.866,
-        y: -0.5,
-        bullets: [
-          "Privacy by Design",
-          "Responsible AI Development",
-          "Data Protection Frameworks",
-        ],
-      },
-    ],
-    []
-  );
-
-  // Calculate spacing based on screen size
-  //   const baseRadius = 45;
-  //   const getScaledRadius = (width) => {
-  //     if (width >= 1024) return baseRadius * 1.2;
-  //     if (width >= 768) return baseRadius * 1.1;
-  //     return baseRadius * 0.9;
-  //   };
-
-  //   const [spacing, setSpacing] = useState(() => {
-  //     const { radius, spacing: spacingMultiplier } = getBaseSizes(
-  //       dimensions.width
-  //     );
-  //     return {
-  //       radius,
-  //       verticalSpacing: radius * spacingMultiplier,
-  //       horizontalSpacing: radius * spacingMultiplier,
-  //     };
-  //   });
-
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      setContainerSize(getContainerSize());
+    return () => {
+      if (componentRef.current) {
+        observer.unobserve(componentRef.current);
+      }
     };
+  }, [hasAnimated]);
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [getContainerSize]);
-
-  // Initial animation
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setVisibleHexagons(["center"]);
-      setTimeout(() => {
-        setVisibleHexagons(areas.map((area) => area.id));
-      }, 300);
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, [areas]);
+    if (activeArea) return;
+    const interval = setInterval(() => {
+      setGlowingIndex((prev) => (prev + 1) % (areas.length - 1));
+    }, 500);
+    return () => clearInterval(interval);
+  }, [activeArea]);
 
   // Glow animation effect
   useEffect(() => {
@@ -192,137 +124,118 @@ const InteractiveExpertise = () => {
     return () => clearInterval(interval);
   }, [activeArea, areas.length]);
 
-  const handleAreaHover = useCallback((areaId) => {
-    setActiveArea(areaId);
-  }, []);
-
-  const handleAreaLeave = useCallback(() => {
-    setActiveArea(null);
-  }, []);
-
-  // Calculate positions relative to container size
-  const getShapePosition = (x, y) => {
-    const centerOffset = containerSize / 2;
-    const spacingFactor = containerSize / 500; // Scale spacing based on container size
-    return {
-      left: centerOffset + x * SHAPE_CONFIG.spacing * spacingFactor,
-      top: centerOffset + y * SHAPE_CONFIG.spacing * spacingFactor,
-    };
+  const handleAreaClick = (areaId) => {
+    setActiveArea(areaId === activeArea ? null : areaId);
   };
 
-  // Render info box
-  const renderInfoBox = useCallback(() => {
-    if (!activeArea || areas.find((a) => a.id === activeArea)?.isCenter)
-      return null;
-
-    const activeAreaData = areas.find((a) => a.id === activeArea);
-    if (!activeAreaData) return null;
-
-    return (
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 transition-opacity duration-300">
-        <div className="w-64 sm:w-72 bg-white rounded-xl shadow-xl p-4">
-          <InfoBoxTitle className={activeAreaData.textColor}>
-            {activeAreaData.title}
-          </InfoBoxTitle>
-          <ul className="space-y-2">
-            {activeAreaData.bullets?.map((bullet, idx) => (
-              <InfoBoxText key={idx} className="flex items-start">
-                <span className={`${activeAreaData.textColor} mr-2`}>•</span>
-                {bullet}
-              </InfoBoxText>
-            ))}
-          </ul>
-        </div>
-      </div>
-    );
-  }, [activeArea, areas]);
-
   return (
-    <div className="w-full max-w-6xl mx-auto">
-      <div className="relative w-full" style={{ paddingBottom: "100%" }}>
-        {/* Main container */}
-        <div className="absolute inset-0">
-          <div
-            className="relative mx-auto rounded-full bg-gray-50 shadow-lg"
-            style={{
-              width: containerSize,
-              height: containerSize,
-              margin: "0 auto",
-            }}
-          >
-            {areas.map((area) => {
-              const { left, top } = getShapePosition(area.x, area.y);
-              const isGlowing =
-                !area.isCenter && glowingIndex === areas.indexOf(area) - 1;
-              const shapeSize = area.isCenter
-                ? SHAPE_CONFIG.centerHexagon.size
-                : SHAPE_CONFIG.circleSize;
-
-              return (
-                <div
-                  key={area.id}
-                  className={`absolute transform -translate-x-1/2 -translate-y-1/2 
-                    transition-all duration-700 ${
-                      visibleHexagons.includes(area.id)
-                        ? "opacity-100 scale-100"
-                        : "opacity-0 scale-0"
-                    }`}
-                  style={{
-                    left,
-                    top,
-                    width: shapeSize,
-                    height: shapeSize,
-                    zIndex: area.isCenter ? 10 : 20,
-                  }}
-                  onMouseEnter={() => handleAreaHover(area.id)}
-                  onMouseLeave={handleAreaLeave}
-                >
-                  <div
-                    className={`
-                      w-full h-full
-                      flex flex-col items-center justify-center 
-                      text-center p-2
-                      transition-all duration-300 cursor-pointer
-                      ${
-                        area.isCenter
-                          ? "shadow-2xl ring-2 ring-white/50"
-                          : "shadow-lg hover:shadow-xl rounded-full"
-                      }
-                      ${
-                        activeArea === area.id
-                          ? "hover:shadow-[0_0_30px_rgba(59,130,246,0.9)]"
-                          : ""
-                      }
-                      ${
-                        isGlowing && !activeArea
-                          ? "shadow-[0_0_30px_rgba(59,130,246,0.9)]"
-                          : ""
-                      }
-                      bg-gradient-to-br ${area.color}
-                    `}
-                    style={{
-                      clipPath: area.isCenter
-                        ? "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)"
-                        : undefined,
-                    }}
-                  >
-                    <HexagonTitle isCenter={area.isCenter}>
-                      {area.title}
-                    </HexagonTitle>
-                    {area.isCenter && (
-                      <span className="text-white/90 text-xs mt-1">
-                        {area.subtitle}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-            {/* Info Box */}
-            {renderInfoBox()}
+    <div
+      ref={componentRef}
+      className="relative w-full aspect-square max-w-[300px] mx-auto mt-8 reveal"
+    >
+      {/* Center Hexagon */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div
+          className={`w-40 h-40 bg-gradient-to-br from-slate-500 to-slate-900 
+          transform transition-all duration-700 shadow-lg ${
+            visibleHexagons.includes("center")
+              ? "scale-100 opacity-100"
+              : "scale-0 opacity-0"
+          }`}
+          style={{
+            clipPath:
+              "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+          }}
+        >
+          <div className="w-full h-full flex flex-col items-center justify-center text-center p-2">
+            <span className="text-white  font-bold">
+              Research & Development
+            </span>
+            <span className="text-white/90 text-[12px] mt-1">
+              Interdisciplinary Specialist
+            </span>
           </div>
         </div>
       </div>
+
+      {/* Surrounding Circles */}
+      {areas
+        .filter((area) => !area.isCenter)
+        .map((area, index) => {
+          const angle = (2 * Math.PI * index) / (areas.length - 1);
+          const radius = 120; // Adjust based on mobile screen size
+          const x = Math.cos(angle) * radius;
+          const y = Math.sin(angle) * radius;
+
+          return (
+            <div
+              key={area.id}
+              className={`absolute transform -translate-x-1/2 -translate-y-1/2 
+              transition-all duration-700 ${
+                visibleHexagons.includes(area.id)
+                  ? "scale-100 opacity-100"
+                  : "scale-0 opacity-0"
+              }`}
+              style={{
+                left: `${50 + (x / radius) * 50}%`,
+                top: `${50 + (y / radius) * 50}%`,
+                zIndex: activeArea === area.id ? 30 : 20,
+              }}
+              onClick={() => handleAreaClick(area.id)}
+            >
+              <div
+                className={`w-32 h-32 rounded-full flex items-center justify-center
+              cursor-pointer transition-all duration-300 shadow-lg
+              bg-gradient-to-br ${area.color}
+              ${activeArea === area.id ? "scale-110 shadow-xl" : ""}
+              ${
+                !activeArea && glowingIndex === index
+                  ? "shadow-[0_0_20px_rgba(0,0,255,10)]"
+                  : ""
+              }`}
+              >
+                <span className="text-white font-bold p-2 text-center">
+                  {area.title}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+
+      {/* Info Box */}
+      {activeArea && !areas.find((a) => a.id === activeArea)?.isCenter && (
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50
+          w-64 bg-white rounded-xl shadow-xl p-3 transition-opacity duration-300"
+        >
+          <h4
+            className={`text-md font-bold ${
+              areas.find((a) => a.id === activeArea)?.textColor
+            }`}
+          >
+            {areas.find((a) => a.id === activeArea)?.title}
+          </h4>
+          <ul className="mt-2 space-y-1">
+            {areas
+              .find((a) => a.id === activeArea)
+              ?.bullets.map((bullet, idx) => (
+                <li
+                  key={idx}
+                  className="text-md text-slate-600 flex items-start"
+                >
+                  <span
+                    className={`${
+                      areas.find((a) => a.id === activeArea)?.textColor
+                    } mr-1`}
+                  >
+                    •
+                  </span>
+                  {bullet}
+                </li>
+              ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
