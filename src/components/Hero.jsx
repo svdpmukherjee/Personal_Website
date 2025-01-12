@@ -27,13 +27,14 @@ const Hero = () => {
   );
 
   return (
-    <div className="pt-16 px-4" id="home">
-      <div className="max-w-[400px] mx-auto pt-8">
-        <div className="w-full flex flex-col items-center space-y-6 ">
+    <div className="pt-16 px-4 md:px-6 lg:px-8" id="home">
+      {/* Adjust main container width */}
+      <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto pt-8">
+        <div className="w-full flex flex-col items-center space-y-4 md:space-y-6">
           {/* Profile Picture Container */}
-          <div className="relative w-full max-w-[400px] aspect-square mx-auto ">
-            <div className="absolute inset-0 flex items-center justify-center ">
-              <div className="w-[100%] h-[120%] overflow-hidden">
+          <div className="relative w-full aspect-square">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-full h-[120%] overflow-hidden">
                 <img
                   src={background}
                   alt="background"
@@ -45,7 +46,7 @@ const Hero = () => {
           </div>
 
           {/* Name Animation */}
-          <div className="h-16 flex items-center">
+          <div className="h-12 md:h-16 flex items-center">
             <TypeAnimation
               sequence={[
                 "Hello! I am Suvo...",
@@ -54,7 +55,7 @@ const Hero = () => {
               ]}
               wrapper="span"
               speed={50}
-              className="text-4xl font-dancing bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text font-bold"
+              className="text-2xl md:text-3xl lg:text-4xl font-dancing bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text font-bold"
               repeat={0}
               cursor={false}
             />
@@ -68,15 +69,15 @@ const Hero = () => {
                 : "translate-y-10 opacity-0"
             }`}
           >
-            <div className="flex flex-col items-center gap-4 p-4 ">
+            <div className="flex flex-col items-center gap-4 p-4">
               <button
-                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 
+                className="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-500 to-blue-600 
                 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 
-                shadow-xl hover:shadow-xl w-full text-xl"
+                shadow-xl hover:shadow-xl w-full text-base md:text-xl"
               >
                 Download My CV
               </button>
-              <div className="flex gap-2 pb-16 ">
+              <div className="flex gap-2 pb-8 md:pb-16">
                 <SocialLink
                   href="https://linkedin.com/in/svdpmukherjee"
                   Icon={AiFillLinkedin}
@@ -97,22 +98,22 @@ const Hero = () => {
           </div>
 
           {/* Current Activity & Career Interest */}
-          <div className="space-y-12 w-[130%] text-left mt-4 ">
-            <div className="space-y-4 reveal">
-              <h2 className="text-3xl font-bold text-slate-600">
+          <div className="space-y-8 md:space-y-12 w-full md:w-[130%] text-left mt-4">
+            <div className="space-y-3 md:space-y-4 reveal">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-600">
                 Current Status
               </h2>
-              <p className="text-2xl text-slate-600">
+              <p className="text-lg md:text-xl lg:text-2xl text-slate-600">
                 Pursuing PhD in Human-Computer Interaction at University of
                 Luxembourg
               </p>
             </div>
 
-            <div className="space-y-4 pb-20 reveal">
-              <h2 className="text-3xl font-bold text-slate-600">
+            <div className="space-y-3 md:space-y-4 pb-12 md:pb-20 reveal">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-600">
                 Career Interest
               </h2>
-              <p className="text-2xl text-slate-600">
+              <p className="text-lg md:text-xl lg:text-2xl text-slate-600">
                 <span className="font-semibold">
                   R&D Specialist at the Intersection of Technology and
                   Psychology:{" "}
