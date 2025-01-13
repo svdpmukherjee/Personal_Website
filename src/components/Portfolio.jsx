@@ -74,10 +74,7 @@ const Portfolio = () => {
     const offset = window.innerWidth >= 1024 ? 100 : 80; // Different offset for desktop/mobile
 
     if (portfolioSection) {
-      const elementPosition =
-        portfolioSection.getBoundingClientRect().top +
-        window.pageYOffset -
-        offset;
+      const elementPosition = portfolioSection.offsetTop - offset;
       window.scrollTo({
         top: elementPosition,
         behavior: "smooth",
@@ -284,7 +281,7 @@ const Portfolio = () => {
   );
 
   return (
-    <div className="bg-gray-50 py-12 lg:py-20 " id="portfolio">
+    <div className="bg-gray-50 py-12 lg:py-16" id="portfolio">
       {/* Mobile View */}
       <div className="lg:hidden px-4">
         {/* Section Header */}
@@ -457,7 +454,7 @@ const Portfolio = () => {
       </div>
 
       {/* Desktop View */}
-      <div className="hidden lg:block max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="hidden lg:block max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 mb-0">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-2">
             My Projects
@@ -469,7 +466,7 @@ const Portfolio = () => {
         <div className="grid grid-cols-3 gap-8">
           {/* Navigation Column */}
 
-          <div className="lg:sticky lg:top-32 lg:h-[calc(100vh-8rem)]">
+          <div className="col-start-1 col-span-1 lg:sticky lg:top-24 lg:self-start max-h-screen overflow-y-auto">
             {/* Explore Work Animation - Desktop Only */}
             {!activeCategory && (
               <div className="absolute -top-12 left-0 right-0 text-center">
@@ -503,7 +500,7 @@ const Portfolio = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="bg-white rounded-xl shadow-lg p-6 sm:p-8"
+                className="bg-white rounded-xl shadow-lg p-6 sm:p-8 mb-8"
               >
                 {!activeCategory ? (
                   <div className="hidden lg:block">
