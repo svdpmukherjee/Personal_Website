@@ -16,9 +16,9 @@ const About = () => {
       </div>
 
       <div className="max-w-4xl mx-auto relative z-10">
-        <div className="space-y-12">
+        <div className="space-y-3">
           {/* Title Section */}
-          <div className="space-y-8">
+          <div className="space-y-8 ">
             <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent text-center">
               A bit about myself...
             </h2>

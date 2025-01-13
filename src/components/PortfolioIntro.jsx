@@ -82,7 +82,7 @@ const PortfolioIntro = () => {
       </div>
 
       {/* Areas Grid */}
-      <div className="grid grid-cols-1 gap-3">
+      {/* <div className="grid grid-cols-1 gap-3">
         {areas.map((area, index) => (
           <motion.div
             key={index}
@@ -120,7 +120,7 @@ const PortfolioIntro = () => {
 
       <p className="text-sm text-gray-500 text-center italic">
         Select a category from above to explore my projects in detail
-      </p>
+      </p> */}
     </div>
   );
 };

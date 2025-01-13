@@ -66,7 +66,7 @@ const Project2Details = () => {
     <div className="space-y-8">
       {/* Main Question */}
       <div className="space-y-4">
-        <h3 className="text-base sm:text-xl text-gray-500">
+        <h3 className="text-xl sm:text-2xl font-bold text-gray-800">
           As a privacy-conscious educator trusting students in unsupervised
           online exams, how do you minimize exam cheating?
         </h3>

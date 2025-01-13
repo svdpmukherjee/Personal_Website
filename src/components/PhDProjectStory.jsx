@@ -509,10 +509,10 @@ const PhDProjectStory = () => {
   return (
     <div className="px-4 py-8">
       <div className="space-y-8">
-        <div className="text-center space-y-4">
-          {/* <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
             User-centric Design Solutions to Prevent Cheating in Remote Exams
-          </h2> */}
+          </h2>
           <p className="text-sm text-gray-600 leading-relaxed">
             A human-centered approach to prevent exam cheating while preserving
             students&apos; privacy and well-being in remote computer-based exams
