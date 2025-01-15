@@ -6,6 +6,7 @@ import { TypeAnimation } from "react-type-animation";
 import background from "../assets/background.png";
 import ProfilePicture from "./ProfilePicture";
 import InteractiveExpertise from "./InteractiveExpertise";
+import cvPdf from "../assets/resume.pdf";
 
 const Hero = () => {
   useScrollEffects();
@@ -72,9 +73,11 @@ const Hero = () => {
               }`}
             >
               <div className="flex flex-col items-center gap-4 p-4">
-                <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-xl text-xl">
-                  Download My CV
-                </button>
+                <a href={cvPdf} target="_blank" rel="noopener noreferrer">
+                  <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-xl text-xl">
+                    Download My CV
+                  </button>
+                </a>
                 <div className="flex gap-4 pb-8">
                   <SocialLink
                     href="https://linkedin.com/in/svdpmukherjee"
@@ -102,7 +105,7 @@ const Hero = () => {
             <div className="space-y-12 reveal">
               {/* Current Status */}
               <div className="space-y-4">
-                <h2 className="text-2xl lg:text-3xl sm:text-3xl font-bold text-slate-600">
+                <h2 className="text-xl lg:text-2xl sm:text-3xl font-bold text-slate-500">
                   Current Status
                 </h2>
                 <p className="text-xl lg:text-xl sm:text-2xl text-slate-600">
@@ -113,7 +116,7 @@ const Hero = () => {
 
               {/* Career Interest */}
               <div className="space-y-4">
-                <h2 className="text-2xl lg:text-3xl sm:text-3xl  font-bold text-slate-600">
+                <h2 className="text-xl lg:text-2xl sm:text-3xl  font-bold text-slate-500">
                   Career Interest
                 </h2>
                 <p className="text-xl lg:text-xl sm:text-2xl text-slate-600">

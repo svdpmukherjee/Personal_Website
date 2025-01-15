@@ -146,7 +146,7 @@ const Navbar = () => {
                 <button
                   key={section.id}
                   onClick={() => handleNavClick(section.id)}
-                  className={`text-lg font-medium transition-colors relative ${
+                  className={`text-sm font-medium transition-colors relative ${
                     activeSection === section.id
                       ? "text-blue-600"
                       : "text-gray-600 hover:text-blue-500"

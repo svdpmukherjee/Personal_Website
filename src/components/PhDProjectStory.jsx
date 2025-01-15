@@ -389,11 +389,11 @@ const ApproachComparison = () => (
         monitoring, prioritizing security but compromising student privacy and
         comfort
       </p>
-      <div className="aspect-w-16 aspect-h-9">
+      <div className="flex items-center justify-center h-36">
         <img
           src={proctored_compromise}
           alt="Proctored exam concerns"
-          className="w-full h-48 object-contain rounded-lg"
+          className="max-h-full w-auto object-contain rounded-lg"
         />
       </div>
     </div>
@@ -408,11 +408,11 @@ const ApproachComparison = () => (
         completely. While this preserves privacy, it risks compromising exam
         credibility
       </p>
-      <div className="aspect-w-16 aspect-h-9">
+      <div className="flex items-center justify-center h-36">
         <img
           src={unproctored_compromise}
           alt="No intervention approach"
-          className="w-full h-48 object-contain rounded-lg"
+          className="max-h-full w-auto object-contain rounded-lg"
         />
       </div>
     </div>
@@ -452,7 +452,7 @@ const HumanCenteredApproach = () => (
         <h4 className="font-bold text-base md:text-lg text-gray-800 mb-2">
           User-First Design
         </h4>
-        <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+        <p className=" text-gray-600 leading-relaxed">
           Prioritizing student well-being while maintaining examination
           credibility through innovative, user-centered solutions.
         </p>

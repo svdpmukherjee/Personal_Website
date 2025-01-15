@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AiFillGithub } from "react-icons/ai";
 import { IoIosPaper } from "react-icons/io";
@@ -23,11 +23,10 @@ const BackToTopButton = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      const portfolioSection = document.getElementById("portfolio");
-      if (portfolioSection) {
-        const portfolioTop = portfolioSection.offsetTop;
-        const scrollPosition = window.pageYOffset;
-        setIsVisible(scrollPosition > portfolioTop + 300);
+      if (window.pageYOffset > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
       }
     };
 
@@ -38,12 +37,7 @@ const BackToTopButton = () => {
   const scrollToTop = () => {
     const portfolioSection = document.getElementById("portfolio");
     if (portfolioSection) {
-      const offset = 80; // Adjust this value based on your header height
-      const elementPosition = portfolioSection.offsetTop - offset;
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      });
+      portfolioSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -68,13 +62,17 @@ const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeProject, setActiveProject] = useState(null);
   const [showExplorePrompt, setShowExplorePrompt] = useState(true);
+  const contentRef = useRef(null);
 
   const scrollToSection = () => {
     const portfolioSection = document.getElementById("portfolio");
-    const offset = window.innerWidth >= 1024 ? 100 : 80; // Different offset for desktop/mobile
+    const offset = window.innerWidth >= 1024 ? 100 : 80;
 
     if (portfolioSection) {
-      const elementPosition = portfolioSection.offsetTop - offset;
+      const elementPosition =
+        portfolioSection.getBoundingClientRect().top +
+        window.pageYOffset -
+        offset;
       window.scrollTo({
         top: elementPosition,
         behavior: "smooth",
@@ -82,19 +80,35 @@ const Portfolio = () => {
     }
   };
 
+  const scrollToContent = (targetRef = contentRef.current) => {
+    if (!targetRef) return;
+
+    const isMobile = window.innerWidth < 1024;
+    const headerOffset = isMobile ? 80 : 100; // Different offset for mobile/desktop
+
+    requestAnimationFrame(() => {
+      const elementPosition = targetRef.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    });
+  };
+
+  useEffect(() => {
+    if (activeCategory || activeProject) {
+      scrollToContent();
+    }
+  }, [activeCategory, activeProject]);
+
   useEffect(() => {
     if (activeCategory) {
       setShowExplorePrompt(false);
-    }
-
-    if (!activeCategory) {
-      const timer = setTimeout(() => {
-        const buttons = document.querySelectorAll(".category-button");
-        buttons.forEach((button) => {
-          button.classList.add("pulse-attention");
-        });
-      }, 2000);
-      return () => clearTimeout(timer);
+    } else {
+      setShowExplorePrompt(true);
     }
   }, [activeCategory]);
 
@@ -103,29 +117,34 @@ const Portfolio = () => {
       prevCategory === category ? null : category
     );
     setActiveProject(null);
-    scrollToSection();
   };
 
   const handleProjectClick = (project) => {
-    setActiveProject(activeProject?.id === project.id ? null : project);
-    scrollToSection();
+    // If clicking the same project, don't do anything
+    if (activeProject?.id === project.id) return;
+
+    // Set the new active project
+    setActiveProject(project);
+
+    // Scroll to the top of the content area
+    requestAnimationFrame(() => {
+      const contentElement = document.querySelector(".lg\\:col-span-2");
+      if (contentElement) {
+        const headerOffset = 100; // Adjust this value based on your header height
+        const elementPosition = contentElement.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    });
   };
 
   const handleBackToCategories = () => {
-    const categoriesSection = document.querySelector(
-      ".portfolio-section-header"
-    );
-    if (categoriesSection) {
-      const offset = 80;
-      const elementPosition =
-        categoriesSection.getBoundingClientRect().top +
-        window.pageYOffset -
-        offset;
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      });
-    }
+    scrollToSection();
   };
 
   const portfolioData = {
@@ -146,8 +165,9 @@ const Portfolio = () => {
           title:
             "Privacy preservation in Recorded Video in a Webcam-monitored Remote Exam",
           links: {
-            site: "#",
-            github: "#",
+            site: "/projects/privacy-video",
+            github:
+              "https://osf.io/3prv8/?view_only=40c7e78d248342e8b770d7098e923360",
             publication: "https://dl.acm.org/doi/10.1145/3688459.3688474",
           },
         },
@@ -162,8 +182,9 @@ const Portfolio = () => {
           title:
             "Privacy-non-invasive Interventions to Prevent Cheating in an Unsupervised Remote Exam",
           links: {
-            site: "#",
-            github: "#",
+            // site: "/projects/textual-interventions",
+            site: "",
+            github: "https://github.com/svdpmukherjee/exam-interface",
             publication:
               "https://www.sciencedirect.com/science/article/pii/S0360131523002026",
           },
@@ -215,10 +236,11 @@ const Portfolio = () => {
         scale: activeCategory === categoryKey ? 1.05 : 1,
         y: activeCategory === categoryKey ? -5 : 0,
       }}
+      className="w-full"
     >
       <button
         onClick={() => handleCategoryClick(categoryKey)}
-        className={`category-button w-full p-6 rounded-xl flex items-center gap-4 transition-all 
+        className={`w-full p-6 rounded-xl flex items-center gap-4 transition-all duration-300
           ${
             activeCategory === categoryKey
               ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg transform scale-105"
@@ -244,7 +266,7 @@ const Portfolio = () => {
         </div>
       </button>
 
-      {/* SubProjects Panel */}
+      {/* SubProjects Panel with improved animation and overflow handling */}
       <AnimatePresence>
         {activeCategory === categoryKey && (
           <motion.div
@@ -252,7 +274,7 @@ const Portfolio = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="mt-4 ml-8 space-y-3 overflow-hidden"
+            className="mt-4 ml-8 space-y-3 overflow-visible"
           >
             {category.subProjects.map((project) => (
               <motion.button
@@ -271,7 +293,7 @@ const Portfolio = () => {
                   <FaChevronRight className="text-sm" />
                   <span className="text-xs font-bold">{project.heading}</span>
                 </div>
-                <p className="text-sm ">{project.title}</p>
+                <p className="text-sm">{project.title}</p>
               </motion.button>
             ))}
           </motion.div>
@@ -405,35 +427,38 @@ const Portfolio = () => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-wrap gap-3 mt-6">
-                  <a
-                    href={activeProject?.links.site}
+                <div className="flex flex-wrap gap-4 mt-8">
+                  <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    href={activeProject.links.site}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 
-                      transition-colors flex items-center gap-2"
+                    className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 
+                            transition-colors flex items-center gap-2"
                   >
-                    <FaExternalLinkAlt className="text-xs" /> Learn More
-                  </a>
-                  <a
-                    href={activeProject?.links.github}
+                    <FaExternalLinkAlt /> Learn More
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    href={activeProject.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-gray-700 text-white text-sm rounded-lg hover:bg-gray-600 
-                      transition-colors flex items-center gap-2"
+                    className="px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 
+                            transition-colors flex items-center gap-2"
                   >
                     <AiFillGithub /> GitHub
-                  </a>
-                  {activeProject?.links.publication && (
-                    <a
+                  </motion.a>
+                  {activeProject.links.publication && (
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
                       href={activeProject.links.publication}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 bg-purple-700 text-white text-sm rounded-lg hover:bg-purple-600 
-                        transition-colors flex items-center gap-2"
+                      className="px-6 py-3 bg-purple-700 text-white rounded-lg hover:bg-purple-600 
+                              transition-colors flex items-center gap-2"
                     >
                       <IoIosPaper /> Publication
-                    </a>
+                    </motion.a>
                   )}
                 </div>
               </>
@@ -454,7 +479,7 @@ const Portfolio = () => {
       </div>
 
       {/* Desktop View */}
-      <div className="hidden lg:block max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 mb-0">
+      <div className="hidden lg:block max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-2">
             My Projects
@@ -466,22 +491,24 @@ const Portfolio = () => {
         <div className="grid grid-cols-3 gap-8">
           {/* Navigation Column */}
 
-          <div className="col-start-1 col-span-1 lg:sticky lg:top-24 lg:self-start max-h-screen overflow-y-auto">
+          <div
+            className="lg:sticky lg:top-32 lg:self-start overflow-visible"
+            style={{ height: "min-content" }}
+          >
             {/* Explore Work Animation - Desktop Only */}
-            {!activeCategory && (
-              <div className="absolute -top-12 left-0 right-0 text-center">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="text-blue-600 font-semibold animate-bounce"
-                >
+            {showExplorePrompt && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                className="absolute -top-12 left-0 right-0 text-center"
+              >
+                <div className="text-blue-600 font-semibold animate-bounce">
                   ↓ Explore My Work ↓
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
             )}
             <div className="space-y-6">
-              {/* Category Buttons */}
               {Object.entries(portfolioData).map(([key, category]) => (
                 <CategoryButton
                   key={key}
@@ -500,7 +527,8 @@ const Portfolio = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="bg-white rounded-xl shadow-lg p-6 sm:p-8 mb-8"
+                transition={{ duration: 0.3 }}
+                className="bg-white rounded-xl shadow-lg p-6 sm:p-8"
               >
                 {!activeCategory ? (
                   <div className="hidden lg:block">
@@ -560,6 +588,8 @@ const Portfolio = () => {
                         <motion.a
                           whileHover={{ scale: 1.05 }}
                           href={activeProject.links.site}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 
                             transition-colors flex items-center gap-2"
                         >
@@ -568,6 +598,8 @@ const Portfolio = () => {
                         <motion.a
                           whileHover={{ scale: 1.05 }}
                           href={activeProject.links.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 
                             transition-colors flex items-center gap-2"
                         >
@@ -577,6 +609,8 @@ const Portfolio = () => {
                           <motion.a
                             whileHover={{ scale: 1.05 }}
                             href={activeProject.links.publication}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="px-6 py-3 bg-purple-700 text-white rounded-lg hover:bg-purple-600 
                               transition-colors flex items-center gap-2"
                           >

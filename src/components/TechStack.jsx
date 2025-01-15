@@ -120,10 +120,7 @@ const DesktopSkillItem = ({ item }) => {
 
 const DesktopStackSection = ({ title, items }) => (
   <div className="space-y-4 w-full">
-    <h3
-      className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 
-      bg-clip-text text-transparent mb-4"
-    >
+    <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-4">
       {title}
     </h3>
     <div className="grid grid-cols-2 gap-4">
@@ -207,7 +204,7 @@ const TechStack = () => {
           {
             name: "R",
             iconName: "r",
-            expertiseLevel: 0.7,
+            expertiseLevel: 0.8,
           },
         ],
       },
@@ -296,30 +293,32 @@ const TechStack = () => {
 
   return (
     <div className="w-full p-6 space-y-12 bg-gradient-to-b from-transparent via-gray-50 to-blue-50/30">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div className="space-y-12">
+      <div className="grid grid-cols-2 gap-10">
+        <div className="space-y-6">
           <DesktopStackSection
             title={stacks.development.frontend_backend.title}
             items={stacks.development.frontend_backend.items}
           />
           <DesktopStackSection
-            title={stacks.tools.research.title}
-            items={stacks.tools.research.items}
-          />
-          <DesktopStackSection
-            title={stacks.cloud.title}
-            items={stacks.cloud.items}
-          />
-        </div>
-        <div className="space-y-12">
-          <DesktopStackSection
             title={stacks.tools.design.title}
             items={stacks.tools.design.items}
           />
+        </div>
+        <div className="space-y-6">
           <DesktopStackSection
-            title={stacks.ai.title}
-            items={stacks.ai.items}
+            title={stacks.tools.research.title}
+            items={stacks.tools.research.items}
           />
+          <div className="space-y-6">
+            <DesktopStackSection
+              title={stacks.cloud.title}
+              items={stacks.cloud.items}
+            />
+            <DesktopStackSection
+              title={stacks.ai.title}
+              items={stacks.ai.items}
+            />
+          </div>
         </div>
       </div>
     </div>

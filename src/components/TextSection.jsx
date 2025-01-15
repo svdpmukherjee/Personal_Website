@@ -58,13 +58,13 @@ const MobileView = () => (
 );
 
 const DesktopView = () => (
-  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:pt-24">
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:pt-24 reveal">
     {/* Vision Section */}
     <div className="lg:sticky lg:top-24 lg:self-start">
-      <h2 className="text-3xl sm:text-4xl font-bold mb-8 gradient-text">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-8 gradient-text">
         My Vision
       </h2>
-      <div className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 space-y-6">
+      <div className="text-md sm:text-lg text-gray-600 dark:text-gray-300 space-y-6 ">
         <p className="leading-relaxed">
           In today's digital landscape, creating{" "}
           <Highlight delay={300} color="#ef59e8" style="circular_1">
@@ -103,7 +103,7 @@ const DesktopView = () => (
 
     {/* Tech Stack Section */}
     <div>
-      <h2 className="text-3xl sm:text-4xl font-bold mb-8 gradient-text">
+      <h2 className="text-3xl sm:text-3xl font-bold mb-8 gradient-text">
         Technical and Research Skill Stack
       </h2>
       <TechStack isMobileView={false} />

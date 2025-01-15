@@ -27,11 +27,7 @@ const Project1Details = () => {
     {
       title: "Need for Region-Specific Analysis",
       description:
-        "Different video regions serve distinct purposes in cheating detection and carry varying privacy risks",
-    },
-    {
-      title: "Key Video Regions Identified",
-      description: "Face, Body, Background, Other individuals present",
+        "Different video regions (Face, Body, Background, Other individuals present) serve distinct purposes in cheating detection and carry varying privacy risks",
     },
     {
       title: "Varying Protection Needs",
@@ -62,12 +58,12 @@ const Project1Details = () => {
       <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
         <div className="flex flex-col lg:flex-row">
           {/* Image Container */}
-          <div className="lg:w-1/3 p-4 bg-gray-50">
-            <div className="relative h-48 sm:h-64 lg:h-full">
+          <div className="lg:w-1/3 p-4 bg-gray-50 rounded-2xl">
+            <div className="relative h-48 sm:h-64 lg:h-full rounded-xl overflow-hidden">
               <img
                 src={reviewer}
                 alt="Webcam monitoring during remote exam"
-                className="w-full h-full object-contain rounded-lg"
+                className="w-full h-full object-contain rounded-xl"
               />
             </div>
           </div>
