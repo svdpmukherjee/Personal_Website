@@ -193,7 +193,7 @@ const InteractiveExpertise = () => {
                   !activeArea && glowingIndex === index
                     ? // ? "shadow-[0_0_20px_rgba(0,0,255,10)]"
                       // : ""
-                      "shadow-[0_0_20px_rgba(59,0,255,10)]"
+                      "shadow-[0_0_20px_rgba(59,0,255,1)]"
                     : ""
                 }`}
               >
