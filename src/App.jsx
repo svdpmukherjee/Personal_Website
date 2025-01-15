@@ -38,10 +38,10 @@ export default function App() {
 
           {/* Project details route */}
           <Route path="/projects/privacy-video" element={<Project1Explain />} />
-          <Route
+          {/* <Route
             path="/projects/textual-interventions"
             element={<Project2Explain />}
-          />
+          /> */}
         </Routes>
       </div>
     </Router>
