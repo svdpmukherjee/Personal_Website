@@ -1,13 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        fontFamily: {
-          sans: ['"PT Sans"', "sans-serif"],
-        },
+        sans: ['"PT Sans"', "sans-serif"], // Corrected nested fontFamily
       },
       screens: {
         xs: "375px",
@@ -16,6 +13,10 @@ export default {
         lg: "1024px",
         xl: "1280px",
         "2xl": "1536px",
+      },
+      boxShadow: {
+        // Add custom shadow configuration
+        "custom-glow": "0 0 20px rgba(59,0,255,1)",
       },
       fontSize: {
         xs: ["0.75rem", { lineHeight: "1rem" }],
