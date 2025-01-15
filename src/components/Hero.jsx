@@ -74,11 +74,11 @@ const Hero = () => {
             >
               <div className="flex flex-col items-center gap-4 p-4">
                 <a href={cvPdf} target="_blank" rel="noopener noreferrer">
-                  <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-xl text-xl">
+                  <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-xl lg:text-base sm:text-xl">
                     Download My CV
                   </button>
                 </a>
-                <div className="flex gap-4 pb-8">
+                <div className="flex gap-3 pb-8">
                   <SocialLink
                     href="https://linkedin.com/in/svdpmukherjee"
                     Icon={AiFillLinkedin}

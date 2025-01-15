@@ -181,15 +181,18 @@ const InteractiveExpertise = () => {
               onClick={() => handleAreaClick(area.id)}
             >
               <div
-                className={`w-20 xs:w-24 sm:w-32 h-20 xs:h-24 sm:h-32 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 shadow-lg bg-gradient-to-br ${
-                  area.color
-                } ${
-                  activeArea === area.id ? "scale-110 shadow-custom-glow" : ""
-                } ${
-                  !activeArea && glowingIndex === index
-                    ? "shadow-custom-glow"
-                    : ""
-                }`}
+                className={`w-20 xs:w-24 sm:w-32 h-20 xs:h-24 sm:h-32 rounded-full flex items-center justify-center 
+  cursor-pointer transition-all duration-300 
+  bg-gradient-to-br ${area.color}
+  ${activeArea === area.id ? "scale-110" : ""}
+  ${!activeArea && glowingIndex === index ? "" : ""}`}
+                style={{
+                  boxShadow:
+                    activeArea === area.id ||
+                    (!activeArea && glowingIndex === index)
+                      ? "0 0 20px 5px rgba(59,0,255,0.5)"
+                      : "none",
+                }}
               >
                 <span className="text-white font-bold text-xs xs:text-xs sm:text-base p-2 text-center">
                   {area.title}
