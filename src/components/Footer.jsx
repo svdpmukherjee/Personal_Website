@@ -1,128 +1,61 @@
-import { FaGithubSquare, FaInstagram, FaLinkedin } from "react-icons/fa";
-import { SiGooglescholar } from "react-icons/si";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Col, GapBand } from "./Layout";
+import { email, quotes } from "../data";
 
-const Footer = () => {
-  const navigation = [
-    { name: "Home", href: "#home" },
-    { name: "Experience", href: "#experience" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Contact", href: "#contact" },
-  ];
+export default function Footer() {
+  const [qi, setQi] = useState(0);
+  const [fade, setFade] = useState(false);
+  const [clock, setClock] = useState("Luxembourg");
 
-  const socialLinks = [
-    {
-      name: "LinkedIn",
-      href: "https://linkedin.com/in/svdpmukherjee",
-      icon: FaLinkedin,
-      color: "hover:text-blue-600",
-    },
-    {
-      name: "GitHub",
-      href: "https://github.com/svdpmukherjee",
-      icon: FaGithubSquare,
-      color: "hover:text-gray-900",
-    },
-    {
-      name: "Google Scholar",
-      href: "https://scholar.google.com/citations?user=BOmtS4sAAAAJ",
-      icon: SiGooglescholar,
-      color: "hover:text-blue-500",
-    },
-  ];
+  useEffect(() => {
+    const t = setInterval(() => {
+      setFade(true);
+      setTimeout(() => { setQi((i) => (i + 1) % quotes.length); setFade(false); }, 400);
+    }, 6000);
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    const tick = () => {
+      try {
+        const t = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Luxembourg", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false }).format(new Date());
+        setClock(`Luxembourg · ${t}`);
+      } catch (e) { setClock("Luxembourg"); }
+    };
+    tick();
+    const t = setInterval(tick, 1000);
+    return () => clearInterval(t);
+  }, []);
 
   return (
-    <footer className="bg-gray-900">
-      <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
-        <div className="space-y-8 md:w-1/2">
-          {/* Main Info */}
-          <div>
-            <h3 className="text-2xl font-semibold text-white mb-4">
-              Suvadeep Mukherjee
-            </h3>
-            <p className="text-gray-400 max-w-md">
-              PhD Researcher in Human-Computer Interaction at University of
-              Luxembourg, focusing on privacy and security in remote examination
-              systems.
-            </p>
-          </div>
-
-          {/* Navigation Links */}
-          <nav className="flex flex-wrap gap-6">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-sm text-gray-400 hover:text-white transition-colors"
-              >
-                {item.name}
-              </a>
-            ))}
-          </nav>
-
-          {/* Social Links */}
-          <div className="flex gap-6">
-            {socialLinks.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`text-gray-400 ${item.color} transition-colors`}
-                aria-label={item.name}
-              >
-                <item.icon className="h-6 w-6" />
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Right Side Info */}
-        <div className="mt-8 md:mt-0 md:w-1/2 md:text-right">
-          <div className="space-y-4">
-            {/* Contact Info */}
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-2">Contact</h4>
-              <a
-                href="mailto:suvadeep.mukherjee@uni.lu"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                suvadeep.mukherjee@uni.lu
-              </a>
-            </div>
-
-            {/* Last Updated */}
-            <div className="text-sm text-gray-400">
-              <p>Last updated: January 12, 2025</p>
-              <p className="mt-1">
-                © 2025 Suvadeep Mukherjee. All rights reserved.
-              </p>
-            </div>
-
-            {/* Structured Data for SEO */}
-            <script type="application/ld+json">
-              {JSON.stringify({
-                "@context": "http://schema.org",
-                "@type": "Person",
-                name: "Suvadeep Mukherjee",
-                jobTitle: "PhD Researcher in Human-Computer Interaction",
-                affiliation: {
-                  "@type": "Organization",
-                  name: "University of Luxembourg",
-                },
-                url: "https://your-portfolio-url.com",
-                sameAs: [
-                  "https://linkedin.com/in/svdpmukherjee",
-                  "https://github.com/svdpmukherjee",
-                  "https://scholar.google.com/citations?user=BOmtS4sAAAAJ",
-                ],
-              })}
-            </script>
-          </div>
+    <footer>
+      <GapBand height={44} />
+      <div className="band head stripes">
+        <div className="col anchored">
+          <span className="cnr tl" /><span className="cnr tr" /><span className="cnr bl" /><span className="cnr br" />
+          <div className="sh"><h2>Scrolled this far?</h2></div>
         </div>
       </div>
+      <Col className="pad foot-cta">
+        <p>If you&apos;ve read this far, we probably align on how software gets built. Let&apos;s talk about the role.</p>
+        <a className="talk" href={`mailto:${email}`}>Let&apos;s talk →</a>
+      </Col>
+      <GapBand height={20} />
+      <div className="quoteband">
+        <Col>
+          <div className="quote">
+            <div className="qm">&ldquo;</div>
+            <p style={{ opacity: fade ? 0 : 1 }}>{quotes[qi].t}</p>
+            <div className="qa" style={{ opacity: fade ? 0 : 1 }}>— {quotes[qi].a}</div>
+          </div>
+        </Col>
+      </div>
+      <GapBand height={20} />
+      <Col className="pad foot-bottom">
+        <p>Built by <b style={{ color: "var(--fg)" }}>Suvadeep Mukherjee</b> · Luxembourg</p>
+        <p className="mono">© {new Date().getFullYear()} · prototype, content still being refined</p>
+        <p className="liveline mono"><span className="ping" /> <span>{clock}</span></p>
+      </Col>
     </footer>
   );
-};
-
-export default Footer;
+}

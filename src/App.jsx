@@ -1,49 +1,47 @@
-import About from "./components/About";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import Nav from "./components/Nav";
+import SideRail from "./components/SideRail";
 import Hero from "./components/Hero";
-import Portfolio from "./components/Portfolio";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import DeliveryCycle from "./components/DeliveryCycle";
+import Projects from "./components/Projects";
 import Experience from "./components/Experience";
-import TextSection from "./components/TextSection";
-import Navbar from "./components/Navbar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Project1Explain from "./components/projects/Project1Explain";
-import Project2Explain from "./components/projects/Project2Explain";
-
-// Create a Layout component to hold the main page content
-const MainLayout = () => {
-  return (
-    <div className="relative">
-      <Navbar />
-      <main>
-        <Hero />
-        <TextSection />
-        <Experience />
-        <Portfolio />
-        <About />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
-  );
-};
+import Teaching from "./components/Teaching";
+import TechStack from "./components/TechStack";
+import GitHubActivity from "./components/GitHubActivity";
+import Contact from "./components/Contact";
+import Languages from "./components/Languages";
+import Footer from "./components/Footer";
+import { GapBand } from "./components/Layout";
 
 export default function App() {
   return (
-    <Router>
-      <div className="min-h-screen bg-white">
-        <Routes>
-          {/* Main page route */}
-          <Route path="/" element={<MainLayout />} />
-
-          {/* Project details route */}
-          <Route path="/projects/privacy-video" element={<Project1Explain />} />
-          {/* <Route
-            path="/projects/textual-interventions"
-            element={<Project2Explain />}
-          /> */}
-        </Routes>
-      </div>
-    </Router>
+    <>
+      <Nav />
+      <SideRail />
+      <main id="top">
+        <Hero />
+        <About />
+        <GapBand />
+        <Skills />
+        <GapBand />
+        <DeliveryCycle />
+        <GapBand />
+        <Projects />
+        <GapBand />
+        <Experience />
+        <GapBand />
+        <Teaching />
+        <GapBand />
+        <TechStack />
+        <GapBand />
+        <GitHubActivity />
+        <GapBand />
+        <Contact />
+        <GapBand />
+        <Languages />
+      </main>
+      <Footer />
+    </>
   );
 }
