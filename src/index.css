@@ -97,13 +97,10 @@
   @media (max-width: 1279px) { .siderail { display: none; } }
 
   /* hero */
-  .banner { position: relative; height: 150px; margin: .6rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
-    background: radial-gradient(120% 140% at 18% 20%, #20365e 0%, transparent 42%), radial-gradient(120% 130% at 85% 10%, #3a2550 0%, transparent 45%), linear-gradient(160deg, #0b1226 0%, #0a0a0a 70%); }
+  .banner { position: relative; height: 150px; margin: .6rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: var(--chip); }
   @media (min-width: 640px) { .banner { height: 180px; } }
-  .banner .grid-v { position: absolute; inset: 0; opacity: .2; background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0, rgba(255,255,255,.05) 1px, transparent 1px, transparent 5px); }
-  .banner .grid-h { position: absolute; inset: 0; opacity: .3; background-image: repeating-linear-gradient(90deg, rgba(0,0,0,.12) 0, rgba(0,0,0,.12) 1px, transparent 1px, transparent 28px); }
+  .banner .banner-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .banner .fade { position: absolute; inset: 0; background: linear-gradient(to top, color-mix(in srgb, var(--bg) 45%, transparent), transparent); }
-  .banner .stars i { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; }
   .idrow { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
   .idmain { display: flex; align-items: center; gap: 1.1rem; }
   .avatar { position: relative; width: 98px; height: 118px; flex: none; border-radius: 14px; overflow: hidden; border: 1px solid var(--line-2); background: var(--chip); box-shadow: 0 6px 18px rgba(0,0,0,.4); }

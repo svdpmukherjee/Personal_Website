@@ -1,20 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Col } from "./Layout";
 import { roles } from "../data";
+import cover from "../assets/cover_photo.png";
 
 export default function Hero() {
   const [roleIdx, setRoleIdx] = useState(0);
   const [anim, setAnim] = useState(false);
   const [photo, setPhoto] = useState(0);
-
-  const stars = useMemo(
-    () => Array.from({ length: 26 }, () => ({
-      left: (Math.random() * 100).toFixed(1),
-      top: (Math.random() * 70).toFixed(1),
-      opacity: (0.3 + Math.random() * 0.6).toFixed(2),
-    })),
-    []
-  );
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -33,12 +25,8 @@ export default function Hero() {
     <>
       <Col>
         <div className="banner">
-          <div className="stars">
-            {stars.map((s, i) => (
-              <i key={i} style={{ left: `${s.left}%`, top: `${s.top}%`, opacity: s.opacity }} />
-            ))}
-          </div>
-          <div className="grid-v" /><div className="grid-h" /><div className="fade" />
+          <img className="banner-img" src={cover} alt="" />
+          <div className="fade" />
         </div>
       </Col>
 
