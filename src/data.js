@@ -1,24 +1,27 @@
 // Content for the site, mirrored from the design artifact.
 // lvl: 1 working · 2 proficient · 3 advanced ; src: ind | aca | both
+import projMirage from "./assets/proj-mirage.png";
+import projCheating from "./assets/proj-cheating.jpg";
+import projProctoring from "./assets/proj-proctoring.jpg";
 
 export const phases = [
-  { no: "01", name: "Requirements & Analysis", what: "Elicit needs, map as-is vs to-be, define scope", ind: { y: 3, l: 2 }, aca: { y: 5, l: 3 },
+  { no: "01", name: "Requirements & Analysis", ind: { y: 3, l: 2 }, aca: { y: 5, l: 3 },
     skills: [["Requirements elicitation",3,"both"],["Stakeholder interviews",3,"aca"],["As-is / to-be journey mapping",3,"aca"],["Service blueprints",3,"aca"],["Gap analysis",2,"aca"],["Scope & client management",2,"ind"],["Miro",2,"both"]] },
-  { no: "02", name: "Hypothesis & Research Design", what: "Frame the question, design the study, size it", ind: { y: 1, l: 1 }, aca: { y: 5, l: 3 },
+  { no: "02", name: "Hypothesis & Research Design", ind: { y: 1, l: 1 }, aca: { y: 5, l: 3 },
     skills: [["Hypothesis development",3,"aca"],["Experimental design",3,"aca"],["Survey design",3,"aca"],["Power analysis",2,"aca"],["Focus groups & interviews",3,"aca"],["LimeSurvey",3,"aca"]] },
-  { no: "03", name: "UX Design & Prototyping", what: "User flows, information architecture, wireframes", ind: { y: 1, l: 2 }, aca: { y: 5, l: 3 },
+  { no: "03", name: "UX Design & Prototyping", ind: { y: 1, l: 2 }, aca: { y: 5, l: 3 },
     skills: [["UX strategy",2,"both"],["User flows",2,"both"],["Information architecture",2,"aca"],["Wireframes & prototypes",3,"both"],["Figma",2,"both"],["Miro",2,"both"]] },
-  { no: "04", name: "Solution Architecture", what: "System design, APIs, data model, agent routing", ind: { y: 3, l: 2 }, aca: { y: 4, l: 2 },
+  { no: "04", name: "Solution Architecture", ind: { y: 3, l: 2 }, aca: { y: 4, l: 2 },
     skills: [["System design",2,"both"],["REST API design",3,"both"],["Data modelling (MongoDB)",2,"both"],["Agentic workflow design",2,"aca"],["Generator / evaluator routing",2,"aca"]] },
-  { no: "05", name: "Build / Development", what: "Full-stack build, AI integration", ind: { y: 3, l: 3 }, aca: { y: 5, l: 3 },
+  { no: "05", name: "Build / Development", ind: { y: 3, l: 3 }, aca: { y: 5, l: 3 },
     skills: [["React JS",3,"both"],["Tailwind CSS",3,"both"],["Python",3,"both"],["FastAPI",3,"both"],["MongoDB",3,"both"],["Git",3,"both"],["LangChain / Hugging Face / CrewAI",2,"aca"]] },
-  { no: "06", name: "Testing & Validation", what: "Moderated pilots, UAT, blind & held-out validation", ind: { y: 3, l: 2 }, aca: { y: 4, l: 3 },
+  { no: "06", name: "Testing & Validation", ind: { y: 3, l: 2 }, aca: { y: 4, l: 3 },
     skills: [["Moderated usability pilots",3,"aca"],["User acceptance testing",2,"ind"],["Blind validation",3,"aca"],["Held-out validation",2,"aca"],["Enterprise QA / delivery",2,"ind"]] },
-  { no: "07", name: "Deployment & Delivery", what: "Ship to production, CI/CD, release lifecycle", ind: { y: 3, l: 2 }, aca: { y: 3, l: 2 },
+  { no: "07", name: "Deployment & Delivery", ind: { y: 3, l: 2 }, aca: { y: 3, l: 2 },
     skills: [["Docker",2,"both"],["Kubernetes",2,"both"],["AWS",2,"both"],["GitHub Actions (CI/CD)",2,"both"],["Vercel",3,"aca"],["Git-based release",3,"both"],["Enterprise release lifecycle",2,"ind"]] },
-  { no: "08", name: "Evaluation & Experimentation", what: "Controlled experiments, A/B, measure impact", ind: { y: 1, l: 1 }, aca: { y: 5, l: 3 },
+  { no: "08", name: "Evaluation & Experimentation", ind: { y: 1, l: 1 }, aca: { y: 5, l: 3 },
     skills: [["Controlled experiments / RCT",3,"aca"],["A/B testing",3,"aca"],["Randomisation design",3,"aca"],["Behavioural logging",3,"aca"],["Outcome measurement",3,"aca"],["Interface evaluation",2,"ind"]] },
-  { no: "09", name: "Data Management & Analysis", what: "Clean, query, model and interpret the data", ind: { y: 2, l: 2 }, aca: { y: 5, l: 3 },
+  { no: "09", name: "Data Management & Analysis", ind: { y: 2, l: 2 }, aca: { y: 5, l: 3 },
     skills: [["Advanced statistical methods",3,"aca"],["Mixed-effects & Bayesian models",3,"aca"],["SQL",3,"both"],["Machine learning",2,"both"],["Thematic analysis",3,"aca"],["Python",3,"both"],["R",2,"aca"],["STATA",2,"aca"],["MAXQDA",3,"aca"],["Data pipelines & management",2,"both"]] },
 ];
 
@@ -30,11 +33,11 @@ export const lenses = {
   data: { set: [2,8,9], note: "<b>Data &amp; research:</b> study design, controlled experimentation, and the statistical analysis behind the result." },
 };
 export const lensButtons = [
-  ["full", "Full cycle"], ["ba", "Business analyst"], ["pm", "Project / product"], ["dev", "Developer"], ["data", "Data & research"],
+  ["full", "Full cycle"], ["ba", "Business analysis"], ["pm", "Product management"], ["dev", "Development"], ["data", "Data & research"],
 ];
 
 export const projects = [
-  { cats:["ai","research","product"], title:"MIRAGE", year:"2025 –", status:{t:"Ongoing",k:"amber"}, image:"media/proj-mirage.png",
+  { cats:["ai","research","product"], title:"MIRAGE", year:"2026 –", status:{t:"Ongoing",k:"amber"}, image:projMirage,
     blurb:"A calibrated AI persona a security team can phish instead of an employee — six apps and a generator-plus-evaluator model router, validated by 187 professionals.",
     problem:"Phishing real staff to test them is slow, legally contested and spends trust — and susceptibility drops with repeated exposure, so the measurement degrades the thing it measures.",
     approach:"Six applications, a generator-plus-evaluator model router, and a validation harness (held-out set, control arm, human test-retest ceiling, pre-fixed drift threshold, role-swap ablation). 480 real workplace emails across ten job clusters became 160 traceable stimuli.",
@@ -42,7 +45,7 @@ export const projects = [
     stats:[["187","validating"],["160","stimuli"],["6","apps"]],
     tags:["LLM Agents","Generator-Evaluator","FastAPI","MongoDB","EU AI Act"],
     links:{ source:"https://github.com/svdpmukherjee" } },
-  { cats:["research","product","ai"], title:"Integrity messaging", year:"2026", status:{t:"Live",k:"live"}, image:"media/proj-cheating.jpg",
+  { cats:["research","product","ai"], title:"Integrity messaging", year:"2026", status:{t:"Live",k:"live"}, image:projCheating,
     blurb:"A live anagram-game platform that A/B-tests pre-exam integrity messages. Concept-based wording cut full cheating 42% with no hit to honest scores.",
     problem:"Online assessment is stuck between proctoring (costs privacy and trust) and doing nothing (unfair to honest students). The pre-exam message is the cheap middle option, and nobody designs it.",
     approach:"Replaced the intuition-written honour code with a blind-validated library of 45 messages across 15 psychological concepts, built a live platform (React, FastAPI, MongoDB, 18 endpoints) and ran it as a controlled experiment. An evaluator-optimizer LLM workflow with a human gate wrote the copy.",
@@ -50,7 +53,7 @@ export const projects = [
     stats:[["1,232","users"],["42%","less cheating"],["3","repos"]],
     tags:["Behavioural Experiment","LLM Evaluator-Optimizer","React","FastAPI","A/B"],
     links:{ live:"https://anagram-solving-game-study.vercel.app", source:"https://github.com/svdpmukherjee", extra:[{l:"Preprint (arXiv:2602.04450)",u:"https://arxiv.org/abs/2602.04450"}] } },
-  { cats:["research","product"], title:"Privacy-preserving proctoring", year:"2024", status:{t:"Published",k:"soft"}, image:"media/proj-proctoring.jpg",
+  { cats:["research","product"], title:"Privacy-preserving proctoring", year:"2024", status:{t:"Published",k:"soft"}, image:projProctoring,
     blurb:"A nine-expert service-design study specifying exactly what a remote-proctoring reviewer needs to see — and measuring what people will actually accept.",
     problem:"Proctoring is mandated rather than chosen, records far more than the assessment needs, and no document states what a reviewer actually needs. The privacy trade-off was argued in the literature and specified nowhere.",
     approach:"A nine-expert workshop across three disciplines, 30 stimuli with region-by-region obfuscation (synthetic faces — no real person depicted), and a 259-person within-subject study (55 Bonferroni-corrected pairwise tests) measuring perceived privacy and willingness to accept.",
@@ -67,7 +70,8 @@ export const expInd = [
   { when: "2021", what: "Data Analyst", where: "Sterlite EdIndia Foundation, India" },
 ];
 export const expAca = [
-  { when: "2021 – 2026", what: "Doctoral & Postdoctoral Researcher, HCI", where: "SnT & FHSE, University of Luxembourg" },
+  { when: "2026", what: "Postdoctoral Researcher", where: "SnT, University of Luxembourg" },
+  { when: "2021 – 2025", what: "Doctoral Researcher", where: "SnT & FHSE, University of Luxembourg" },
   { when: "2014 – 2016", what: "M.Sc., Human-Technology Interaction", where: "Eindhoven University of Technology, NL" },
   { when: "2007 – 2011", what: "B.Tech, Information Technology", where: "Heritage Institute of Technology, India" },
 ];
@@ -78,7 +82,7 @@ export const tech = [
   ["SQL",["Languages","Backend & Data"]],["R",["Languages","Backend & Data"]],["STATA",["Backend & Data"]],
   ["React",["Frontend"]],["Tailwind CSS",["Frontend"]],["HTML / CSS",["Frontend"]],["Figma",["Frontend","Research"]],
   ["FastAPI",["Backend & Data"]],["REST APIs",["Backend & Data"]],["MongoDB",["Backend & Data"]],
-  ["LangChain",["AI / ML"]],["Hugging Face",["AI / ML"]],["CrewAI",["AI / ML"]],["LLM agent workflows",["AI / ML"]],["Machine learning",["AI / ML","Backend & Data"]],
+  ["LangChain",["AI / ML"]],["Hugging Face",["AI / ML"]],["LLM agent workflows",["AI / ML"]],["Machine learning",["AI / ML","Backend & Data"]],
   ["Docker",["DevOps"]],["Kubernetes",["DevOps"]],["GitHub Actions",["DevOps"]],["AWS",["DevOps"]],["Vercel",["DevOps"]],["Git",["DevOps"]],
   ["Mixed-effects & Bayesian stats",["Research","Backend & Data"]],["Thematic analysis",["Research"]],["MAXQDA",["Research"]],["LimeSurvey",["Research"]],
 ];

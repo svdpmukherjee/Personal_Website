@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Col } from "./Layout";
 import { roles } from "../data";
 import cover from "../assets/cover_photo.png";
+import suvo1 from "../assets/suvo1.jpg";
+import suvo2 from "../assets/suvo2.jpg";
 
 export default function Hero() {
   const [roleIdx, setRoleIdx] = useState(0);
@@ -34,8 +36,8 @@ export default function Hero() {
         <div className="idrow">
           <div className="idmain">
             <div className="avatar">
-              <img className={photo === 0 ? "on" : ""} src={`${import.meta.env.BASE_URL}media/suvo1.jpg`} alt="Suvadeep Mukherjee" />
-              <img className={photo === 1 ? "on" : ""} src={`${import.meta.env.BASE_URL}media/suvo2.jpg`} alt="Suvadeep Mukherjee" />
+              <img className={photo === 0 ? "on" : ""} src={suvo1} alt="Suvadeep Mukherjee" />
+              <img className={photo === 1 ? "on" : ""} src={suvo2} alt="Suvadeep Mukherjee" />
               <div className="scan" style={{ zIndex: 2 }} /><div className="beam" style={{ zIndex: 2 }} />
             </div>
             <div>
@@ -54,12 +56,11 @@ export default function Hero() {
               </div>
             </div>
           </div>
-          <span className="kbadge">PhD · HCI &amp; Applied AI</span>
         </div>
       </Col>
 
       <Col className="pad" style={{ paddingTop: ".2rem" }}>
-        <p className="tagline">I connect a business problem to a <em>working solution</em>, end to end.</p>
+        <p className="tagline">I design, build and evaluate <em>technical solutions, end to end</em> — with an eye on the business case.</p>
         <p className="lede">I began in enterprise software engineering and moved into applied research. Across both, the work is the same: understand what people actually need, <b>shape the process</b>, <b>build the software</b>, and <b>measure whether it worked</b>.</p>
         <div className="cta-row">
           <a className="btn primary" href="#cycle">Where I work in the cycle →</a>

@@ -18,7 +18,7 @@ function Card({ p }) {
         </span>
         <div className="ret"><i className="a" /><i className="b" /><i className="c" /><i className="d" /></div>
         <span className="rec"><b />REC</span>
-        {p.image && <img src={`${import.meta.env.BASE_URL}${p.image}`} alt={`${p.title} preview`} loading="lazy" />}
+        {p.image && <img src={p.image} alt={`${p.title} preview`} loading="lazy" />}
       </div>
       <div className="pc-top"><div className="pc-title">{p.title}</div><div className="pc-year">{p.year}</div></div>
       <p className="pc-blurb">{p.blurb}</p>

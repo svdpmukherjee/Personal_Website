@@ -5,7 +5,7 @@ export default function Teaching() {
     <section id="teaching">
       <SectionHead title="Teaching" index="06 / 10" />
       <Col className="pad">
-        <p className="intro">I like making hard things usable for other people — in a lecture hall and in a hands-on workshop.</p>
+        <p className="intro">I like making hard things usable for other people, in a lecture hall and in a hands-on workshop.</p>
         <div className="teach">
           <div className="tcard">
             <div className="tk">
