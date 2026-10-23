@@ -9,21 +9,21 @@ export function Col({ className = "", children, as: Tag = "div", ...rest }) {
   );
 }
 
-export function SectionHead({ title, index }) {
+export function SectionHead({ title }) {
   return (
     <div className="band head stripes">
       <div className="col anchored">
         <span className="cnr tl" /><span className="cnr tr" /><span className="cnr bl" /><span className="cnr br" />
         <div className="sh">
           <h2>{title}</h2>
-          {index && <span className="aside">{index}</span>}
+          {/* {index && <span className="aside">{index}</span>} */}
         </div>
       </div>
     </div>
   );
 }
 
-export function GapBand({ height = 28 }) {
+export function GapBand({ height = 48 }) {
   return (
     <div className="gap stripes" style={{ height: `${height}px` }}>
       <div className="col" />

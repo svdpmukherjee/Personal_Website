@@ -26,18 +26,18 @@ export const phases = [
 ];
 
 export const lenses = {
-  full: { set: null, note: "<b>The full loop.</b> Most roles own one slice of this. I have worked hands-on across all of it, in industry and in research." },
-  ba:   { set: [1,2,6,8,9], note: "<b>Business analyst:</b> requirements and analysis, research design, validation, and the experimentation and data work that back a decision." },
+  // full: { set: null, note: "<b>The full loop.</b> Most roles own one slice of this. I have worked hands-on across all of it, in industry and in research." },
   pm:   { set: [1,2,3,4,5,6,7,8,9], note: "<b>Project / product lead:</b> every stage lights up. Owning the whole loop, not one slice, is the end-to-end signal a delivery or management role looks for." },
+  ba:   { set: [1,2,6,8,9], note: "<b>Business analyst:</b> requirements and analysis, research design, validation, and the experimentation and data work that back a decision." },
   dev:  { set: [4,5,6,7], note: "<b>Developer:</b> solution architecture, build, testing and deployment — the hands-on engineering core." },
   data: { set: [2,8,9], note: "<b>Data &amp; research:</b> study design, controlled experimentation, and the statistical analysis behind the result." },
 };
 export const lensButtons = [
-  ["full", "Full cycle"], ["ba", "Business analysis"], ["pm", "Product management"], ["dev", "Development"], ["data", "Data & research"],
+  ["pm", "Product management"], ["ba", "Business analysis"], ["dev", "Development"], ["data", "Data & research"],
 ];
 
 export const projects = [
-  { cats:["ai","research","product"], title:"MIRAGE", year:"2026 –", status:{t:"Ongoing",k:"amber"}, image:projMirage,
+  { cats:["ai","research","product"], title:"MIRAGE", year:"2026", status:{t:"In development",k:"amber"}, image:projMirage,
     blurb:"A calibrated AI persona a security team can phish instead of an employee — six apps and a generator-plus-evaluator model router, validated by 187 professionals.",
     problem:"Phishing real staff to test them is slow, legally contested and spends trust — and susceptibility drops with repeated exposure, so the measurement degrades the thing it measures.",
     approach:"Six applications, a generator-plus-evaluator model router, and a validation harness (held-out set, control arm, human test-retest ceiling, pre-fixed drift threshold, role-swap ablation). 480 real workplace emails across ten job clusters became 160 traceable stimuli.",
@@ -45,7 +45,7 @@ export const projects = [
     stats:[["187","validating"],["160","stimuli"],["6","apps"]],
     tags:["LLM Agents","Generator-Evaluator","FastAPI","MongoDB","EU AI Act"],
     links:{ source:"https://github.com/svdpmukherjee" } },
-  { cats:["research","product","ai"], title:"Integrity messaging", year:"2026", status:{t:"Live",k:"live"}, image:projCheating,
+  { cats:["research","product","ai"], title:"Integrity messaging", year:"2025", status:{t:"Live",k:"live"}, image:projCheating,
     blurb:"A live anagram-game platform that A/B-tests pre-exam integrity messages. Concept-based wording cut full cheating 42% with no hit to honest scores.",
     problem:"Online assessment is stuck between proctoring (costs privacy and trust) and doing nothing (unfair to honest students). The pre-exam message is the cheap middle option, and nobody designs it.",
     approach:"Replaced the intuition-written honour code with a blind-validated library of 45 messages across 15 psychological concepts, built a live platform (React, FastAPI, MongoDB, 18 endpoints) and ran it as a controlled experiment. An evaluator-optimizer LLM workflow with a human gate wrote the copy.",
@@ -65,12 +65,12 @@ export const projects = [
 export const projectFilters = [["all","All"],["ai","Applied AI"],["research","Research"],["product","Product"]];
 
 export const expInd = [
-  { when: "2011 – 2014", what: "Senior Software Engineer — Finance & Banking", where: "Infosys (client: American Express)" },
-  { when: "2016", what: "UX Research Intern", where: "Signify (Philips Lighting), Netherlands" },
-  { when: "2021", what: "Data Analyst", where: "Sterlite EdIndia Foundation, India" },
+  { when: "2011 – 2014", what: "Senior Software Engineer (Financial Services and Insurance)", where: "Infosys Limited, India (client: American Express)" },
+  { when: "2016 Jan - Oct", what: "UX Research Intern", where: "Signify (Philips Lighting), Netherlands" },
+  { when: "2021 Apr - Sep", what: "Data Analyst", where: "Sterlite EdIndia Foundation, India" },
 ];
 export const expAca = [
-  { when: "2026", what: "Postdoctoral Researcher", where: "SnT, University of Luxembourg" },
+  { when: "2026 Jan - Sep", what: "Postdoctoral Researcher", where: "SnT, University of Luxembourg" },
   { when: "2021 – 2025", what: "Doctoral Researcher", where: "SnT & FHSE, University of Luxembourg" },
   { when: "2014 – 2016", what: "M.Sc., Human-Technology Interaction", where: "Eindhoven University of Technology, NL" },
   { when: "2007 – 2011", what: "B.Tech, Information Technology", where: "Heritage Institute of Technology, India" },
@@ -94,7 +94,7 @@ export const languages = [
   { ll: "Bengali", lv: "Native", w: 100 },
 ];
 
-export const roles = ["Business analysis", "Product development", "Applied AI"];
+export const roles = ["Product development", "Business analysis", "Applied AI"];
 export const quotes = [
   { t: "Understand what people need, build the thing, then measure whether it worked.", a: "How I work" },
   { t: "The hard part is not can we build it, but is it worth building.", a: "Principle" },
@@ -107,7 +107,7 @@ export const navItems = [
   ["contact", "Contact"], ["languages", "Languages"],
 ];
 
-export const email = "svdp.mukherjee.lux@gmail.com";
+export const email = "svdp.mukherjee@gmail.com";
 export const socials = {
   github: "https://github.com/svdpmukherjee",
   linkedin: "https://linkedin.com/in/svdpmukherjee",

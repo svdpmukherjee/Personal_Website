@@ -8,11 +8,12 @@ const USER = "svdpmukherjee";
 // Public, CORS-enabled contribution API — no token needed. `?y=last` = trailing 12 months.
 const API = `https://github-contributions-api.jogruber.de/v4/${USER}?y=last`;
 
-const TILES = [
-  ["@svdpmukherjee", "Profile"],
-  ["3", "Open-sourced project repos"],
-  ["Full-stack", "React · FastAPI · MongoDB"],
-];
+// Tiles currently hidden (see commented block in render); keep for reference.
+// const TILES = [
+//   ["@svdpmukherjee", "Profile"],
+//   ["3", "Open-sourced project repos"],
+//   ["Full-stack", "React · FastAPI · MongoDB"],
+// ];
 
 const fmtDate = (s) =>
   new Date(s).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
@@ -39,21 +40,21 @@ export default function GitHubActivity() {
 
   return (
     <section id="github">
-      <SectionHead title="GitHub" index="08 / 10" />
+      <SectionHead title="GitHub Activity" index="08 / 10" />
       <Col className="pad">
-        <div className="gh-tiles">
+        {/* <div className="gh-tiles">
           {TILES.map(([n, c]) => (
             <div className="gh-tile" key={c}><div className="n">{n}</div><div className="c">{c}</div></div>
           ))}
-        </div>
+        </div> */}
         <div className="gh-graph">
           <div className="cap">
             <span>
-              Contribution activity · last 12 months
-              {days && !error ? ` · ${total.toLocaleString()} contributions` : ""}
+              
+              {days && !error ? ` ${total.toLocaleString()} Contributions` : ""} in last 12 months
               {days === null && <span className="gh-live" title="Loading live data" />}
             </span>
-            <a className="gh-link" href={socials.github} target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+            <a className="gh-link" href={socials.github} target="_blank" rel="noopener noreferrer">View on GitHub (@{USER}) ↗</a>
           </div>
 
           {error ? (

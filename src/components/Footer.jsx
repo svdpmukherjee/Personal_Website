@@ -52,8 +52,8 @@ export default function Footer() {
       </div>
       <GapBand height={20} />
       <Col className="pad foot-bottom">
-        <p>Built by <b style={{ color: "var(--fg)" }}>Suvadeep Mukherjee</b> · Luxembourg</p>
-        <p className="mono">© {new Date().getFullYear()} · prototype, content still being refined</p>
+        {/* <p>Built by <b style={{ color: "var(--fg)" }}>Suvadeep Mukherjee</b> · Luxembourg</p> */}
+        <p className="mono">© {new Date().getFullYear()} · content is up to date</p>
         <p className="liveline mono"><span className="ping" /> <span>{clock}</span></p>
       </Col>
     </footer>

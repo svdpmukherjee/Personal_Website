@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 // Dark-first; OS "light" is honoured unless the visitor overrides via the toggle.
 function computeDark() {
@@ -29,8 +29,11 @@ export function useTheme() {
 }
 
 // Tracks which section id is currently in view for the side rail / nav.
-export function useActiveSection(ids, offset = 180) {
+// With syncUrl, it also keeps the address bar in step: `#section` while inside
+// a section, and a clean URL (no hash) when the visitor is back at the top.
+export function useActiveSection(ids, { offset = 180, syncUrl = false } = {}) {
   const [active, setActive] = useState("");
+  const lastRef = useRef(null);
   useEffect(() => {
     const onScroll = () => {
       const pos = window.scrollY + offset;
@@ -39,11 +42,27 @@ export function useActiveSection(ids, offset = 180) {
         const el = document.getElementById(id);
         if (el && pos >= el.offsetTop && pos < el.offsetTop + el.offsetHeight) cur = id;
       }
+      if (window.scrollY < 12) {
+        cur = ""; // at the very top → no section
+      } else if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        // At the very bottom the page can't scroll far enough to put the last
+        // section under the offset line, so pin it explicitly.
+        cur = ids[ids.length - 1];
+      }
       setActive(cur);
+      if (syncUrl && cur !== lastRef.current) {
+        lastRef.current = cur;
+        // Pulse the matching section header ("you are here").
+        document.querySelectorAll("section.sec-active").forEach((el) => el.classList.remove("sec-active"));
+        if (cur) document.getElementById(cur)?.classList.add("sec-active");
+        // Keep the address bar in step; clean URL (no hash) when back at the top.
+        const url = cur ? `#${cur}` : window.location.pathname + window.location.search;
+        history.replaceState(null, "", url);
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, [ids, offset]);
+  }, [ids, offset, syncUrl]);
   return active;
 }

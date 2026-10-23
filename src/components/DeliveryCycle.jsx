@@ -62,26 +62,26 @@ function Phase({ p, idx, lensSet }) {
 }
 
 export default function DeliveryCycle() {
-  const [lens, setLens] = useState("full");
+  const [lens, setLens] = useState("pm");
   const set = lenses[lens].set;
 
   return (
     <section id="cycle">
       <SectionHead title="Delivery cycle" index="03 / 10" />
       <Col className="pad">
-        <p className="intro">Most roles own one stage of this loop. I have worked hands-on across all nine — in industry and in research. Pick a role to see which stages it draws on, or open a stage for the actual tools and how deep each one goes.</p>
+        <p className="intro">I&apos;ve worked hands-on across every role below, to varying depth, in both industry and research. Expand any role to see the tools and processes I&apos;ve used in it.</p>
         <div className="lens-row" role="group" aria-label="View the cycle as a role">
           {lensButtons.map(([key, label]) => (
             <button key={key} className="lens" aria-pressed={lens === key} onClick={() => setLens(key)}>{label}</button>
           ))}
         </div>
-        <p className="lens-note" dangerouslySetInnerHTML={{ __html: lenses[lens].note }} />
-        <div className="scale-key">
+        {/* <p className="lens-note" dangerouslySetInnerHTML={{ __html: lenses[lens].note }} /> */}
+        {/* <div className="scale-key">
           <span className="key-item"><span className="sw ind" /> Industry</span>
           <span className="key-item"><span className="sw aca" /> Research</span>
           <span className="key-item"><span className="ruler">Left bar = hands-on years (0 → 5+)</span></span>
           <span className="key-item"><span className="ruler">Right bar = depth (working → advanced)</span></span>
-        </div>
+        </div> */}
         <div className="cyclist">
           {phases.map((p, i) => <Phase key={p.no} p={p} idx={i + 1} lensSet={set} />)}
         </div>
