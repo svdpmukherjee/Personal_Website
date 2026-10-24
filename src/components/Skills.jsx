@@ -4,14 +4,14 @@ import { Col, SectionHead } from "./Layout";
 // evidence line underneath is the proof — the part they actually want to see.
 const CARDS = [
   { role: "Business analysis",
-    h: "I find the real problem before code gets written",
+    h: "I identify and understand the problem before code gets written",
     ev: "I turn conflicting requirements from stakeholders in different fields into one clear specification a team can build from." },
   { role: "Product development",
     h: "I own delivery from first scope to final release",
-    ev: "I run software projects end to end — setting the scope, planning the work, managing risk, and helping secure the funding behind them." },
+    ev: "I run software projects end to end: by setting the scope, planning the work, managing risk, and helping secure the funding behind them." },
   { role: "Engineering",
     h: "I build and ship the solution myself",
-    ev: "I've shipped live, full-stack web apps that real users depend on — React, Python / FastAPI, APIs and cloud — with the code released openly." },
+    ev: "I have shipped live, full-stack web apps for target users using tech stacks, APIs and cloud - with the code released openly." },
   { role: "Research & data",
     h: "I prove whether it actually worked",
     ev: "I design and run studies, then do the statistical analysis myself, so a decision rests on evidence instead of opinion." },
@@ -23,7 +23,7 @@ const CARDS = [
 export default function Skills() {
   return (
     <section id="skills">
-      <SectionHead title="What I bring" index="02 / 10" />
+      <SectionHead title="How I can contribute" index="02 / 10" />
       <Col className="pad">
         <div className="cards">
           {CARDS.map(({ role, h, ev, wide }) => (

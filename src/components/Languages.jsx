@@ -4,7 +4,7 @@ import { languages } from "../data";
 export default function Languages() {
   return (
     <section id="languages">
-      <SectionHead title="Languages" index="10 / 10" />
+      <SectionHead title="Languages I speak" index="10 / 10" />
       <Col className="pad">
         <div className="langrid">
           {languages.map((l) => (

@@ -26,7 +26,7 @@ export default function Teaching() {
             </div>
             <h3>Building with AI agents</h3>
             <div className="org">Live session · from concept to a working agentic app</div>
-            <p>Walked a mixed audience through agentic development end to end — the concepts on a shared Miro board, then a live hands-on build of <b style={{ color: "var(--fg)" }}>StudyPal</b>, an LLM study assistant, so everyone left with running code.</p>
+            <p>Walked a mixed audience through agentic development end to end -- the concepts on a shared Miro board, then a live hands-on build of <b style={{ color: "var(--fg)" }}>StudyPal</b>, an LLM study assistant, so everyone left with running code.</p>
             <div className="tlinks">
               <a href="https://miro.com/app/board/uXjVH6HPTsM=/" target="_blank" rel="noopener noreferrer">Miro teaching board ↗</a>
               <a href="https://github.com/svdpmukherjee/StudyPal" target="_blank" rel="noopener noreferrer">StudyPal repo ↗</a>

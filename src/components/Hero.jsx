@@ -66,10 +66,10 @@ export default function Hero() {
       </Col>
 
       <Col className="pad" style={{ paddingTop: ".2rem" }}>
-        <p className="tagline">I design, build and evaluate <em>technical solutions, end to end</em> — with an eye on the business case.</p>
+        <p className="tagline">I design, build and evaluate <em>technical solutions, end to end</em> - grounded in user needs and guided by business goals.</p>
         {/* <p className="lede">I began in enterprise software engineering and moved into applied research. Across both, the work is the same: understand what people actually need, <b>shape the process</b>, <b>build the software</b>, and <b>measure whether it worked</b>.</p> */}
         <div className="cta-row">
-          <a className="btn primary" href="#cycle">Where I work in the cycle →</a>
+          <a className="btn primary" href="#cycle">Where I fit in the lifecycle →</a>
           <a className="btn" href="#projects">Projects</a>
           <a className="btn" href="#contact">Contact</a>
         </div>

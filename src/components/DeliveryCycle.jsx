@@ -35,13 +35,12 @@ function Track({ cls, label, d }) {
   );
 }
 
-function Phase({ p, idx, lensSet }) {
-  const [open, setOpen] = useState(false);
+function Phase({ p, idx, lensSet, open, onToggle }) {
   const on = !lensSet || lensSet.indexOf(idx) > -1;
   const cls = `ph${open ? " open" : ""}${!on ? " dim" : ""}${lensSet && on ? " hot" : ""}`;
   return (
     <div className={cls}>
-      <button className="ph-head" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+      <button className="ph-head" aria-expanded={open} onClick={onToggle}>
         <span className="ph-no">{p.no}</span>
         <div><div className="ph-name">{p.name}</div></div>
         <div className="ph-bars"><Track cls="ind" label="Industry" d={p.ind} /><Track cls="aca" label="Research" d={p.aca} /></div>
@@ -63,13 +62,14 @@ function Phase({ p, idx, lensSet }) {
 
 export default function DeliveryCycle() {
   const [lens, setLens] = useState("pm");
+  const [openIdx, setOpenIdx] = useState(null); // only one phase open at a time
   const set = lenses[lens].set;
 
   return (
     <section id="cycle">
-      <SectionHead title="Delivery cycle" index="03 / 10" />
+      <SectionHead title="Across the product lifecycle" index="03 / 10" />
       <Col className="pad">
-        <p className="intro">I&apos;ve worked hands-on across every role below, to varying depth, in both industry and research. Expand any role to see the tools and processes I&apos;ve used in it.</p>
+        <p className="intro">I have worked hands-on across every role below, to varying depth, in both industry and research. Expand any role to see the tools and processes I&apos;ve used in it.</p>
         <div className="lens-row" role="group" aria-label="View the cycle as a role">
           {lensButtons.map(([key, label]) => (
             <button key={key} className="lens" aria-pressed={lens === key} onClick={() => setLens(key)}>{label}</button>
@@ -83,7 +83,16 @@ export default function DeliveryCycle() {
           <span className="key-item"><span className="ruler">Right bar = depth (working → advanced)</span></span>
         </div> */}
         <div className="cyclist">
-          {phases.map((p, i) => <Phase key={p.no} p={p} idx={i + 1} lensSet={set} />)}
+          {phases.map((p, i) => (
+            <Phase
+              key={p.no}
+              p={p}
+              idx={i + 1}
+              lensSet={set}
+              open={openIdx === i}
+              onToggle={() => setOpenIdx((o) => (o === i ? null : i))}
+            />
+          ))}
         </div>
       </Col>
     </section>

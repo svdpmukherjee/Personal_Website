@@ -1,36 +1,39 @@
 import { Col, SectionHead } from "./Layout";
 
 const SNAP = [
-  "8+ yrs across industry & research combined",
+  "8+ yrs across research & industry combined",
   "Published & presented at conferences",
   "PhD & Postdoc in Luxembourg",
   "EU-based (open to remote opportunities)",
-  "Ships full-stack & runs the study",  
+  "Builds full-stack & validates with users",
   "English: C2, German: B1, Luxembourgish: A2"
 ];
 
 // Short, honest lens on each domain I've actually worked in.
 const SECTORS = [
-  ["FinTech", "Software engineer on back-office card-and-payments systems for American Express, inside a large regulated delivery organisation."],
-  ["Socio-technical security", "Human-centred work on privacy-preserving proctoring and phishing resilience."],
-  ["Education & assessment", "Research and live platforms exploring online learning and exam integrity."],
-  ["Connected products", "UX research on smart-lighting products at Signify (Philips Lighting)."],
+  ["FinTech", "Engineered back-office card-and-payments systems for American Express, inside a large regulated delivery organisation."],
+  ["Socio-technical security", "Designed and built privacy-preserving remote proctoring solution and anti-phishing tools, validated with hundreds of users and domain experts."],
+  ["Education & assessment", "Shipped a live exam simulator with a research-backed cheating detection and prevention solution, tested on 1000+ examinees."],
+  ["Smart products", "Designed and user-tested smart-lighting interactions at Signify (formerly Philips Lighting)."],
 ];
 
 export default function About() {
   return (
     <section id="about">
-      <SectionHead title="About" index="01 / 10" />
+      <SectionHead title="About me" index="01 / 10" />
       <Col className="pad">
         <p className="about-lead">
-          <strong className="italic">Should we build this solution to the problems identified and would this actually work?</strong> Those are the questions I keep coming back to. I have taken solutions through their <b>whole arc — idea, design, build, live deployment, and measuring whether they really worked</b>. Most of that came from research: an MSc and a PhD in Human-Computer Interaction, where I was the engineer, the designer and the analyst at once, delivering products that real users could use.
+          <span className="hl">I combine</span> user research and software engineering to take digital solutions from a problem to a working system, then test whether they actually help. I work out <span className="hl">what is worth building before committing to it</span>, and judge success by usefulness, not just delivery.
         </p>
         <p className="about-lead">
-          My experience is not tied to one industry. Understanding what people need, building it properly, and proving whether it helped is the <b>same discipline in fintech, in a product team, or wherever a solution has to earn its keep</b>. I am looking for a role at that meeting point of engineering, research and business sense.
+          <span className="hl">My background</span> spans software engineering, Human-Computer Interaction and applied AI. Through research-led projects I have uncovered user and stakeholder needs, designed and built the applications, deployed them for real users, and evaluated the outcomes through experiments and data analysis.
+        </p>
+        <p className="about-lead">
+          This approach is <span className="hl">not tied to one industry</span>. I am looking to bring it to <span className="hl">technical product development roles</span>, helping shape what gets built, contributing hands-on to it, and using evidence to guide product decisions.
         </p>
 
         <div className="sectors">
-          <h4>Domains I have worked</h4>
+          <h3>Domains I have worked in</h3>
           <div className="sec-grid">
             {SECTORS.map(([l, d]) => (
               <div className="sec" key={l}><span className="sl">{l}</span><p>{d}</p></div>

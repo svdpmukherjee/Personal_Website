@@ -13,7 +13,7 @@ const TOP_LINKS = [
   ["experience", "Experience"], ["teaching", "Teaching"], ["stack", "Stack"], ["contact", "Contact"],
 ];
 const MOBILE_LINKS = [
-  ["about", "About"], ["skills", "What I bring"], ["cycle", "Delivery cycle"], ["projects", "Projects"],
+  ["about", "About"], ["skills", "What I bring"], ["cycle", "Product lifecycle"], ["projects", "Projects"],
   ["experience", "Experience"], ["teaching", "Teaching"], ["stack", "Tech stack"], ["github", "GitHub"],
   ["contact", "Contact"], ["languages", "Languages"],
 ];

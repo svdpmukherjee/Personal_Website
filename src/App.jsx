@@ -9,7 +9,6 @@ import Experience from "./components/Experience";
 import Teaching from "./components/Teaching";
 import TechStack from "./components/TechStack";
 import GitHubActivity from "./components/GitHubActivity";
-import Contact from "./components/Contact";
 import Languages from "./components/Languages";
 import Footer from "./components/Footer";
 import { GapBand } from "./components/Layout";
@@ -36,8 +35,6 @@ export default function App() {
         <TechStack />
         <GapBand />
         <GitHubActivity />
-        <GapBand />
-        <Contact />
         <GapBand />
         <Languages />
       </main>

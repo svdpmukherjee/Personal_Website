@@ -1,8 +1,9 @@
 // Content for the site, mirrored from the design artifact.
 // lvl: 1 working · 2 proficient · 3 advanced ; src: ind | aca | both
 import projMirage from "./assets/proj-mirage.png";
-import projCheating from "./assets/proj-cheating.jpg";
-import projProctoring from "./assets/proj-proctoring.jpg";
+// import projCheating from "./assets/proj-cheating.jpg";
+import projCheating from "./assets/proj-cheating.gif";
+import projProctoring from "./assets/proj-proctoring.png";
 
 export const phases = [
   { no: "01", name: "Requirements & Analysis", ind: { y: 3, l: 2 }, aca: { y: 5, l: 3 },
@@ -14,7 +15,7 @@ export const phases = [
   { no: "04", name: "Solution Architecture", ind: { y: 3, l: 2 }, aca: { y: 4, l: 2 },
     skills: [["System design",2,"both"],["REST API design",3,"both"],["Data modelling (MongoDB)",2,"both"],["Agentic workflow design",2,"aca"],["Generator / evaluator routing",2,"aca"]] },
   { no: "05", name: "Build / Development", ind: { y: 3, l: 3 }, aca: { y: 5, l: 3 },
-    skills: [["React JS",3,"both"],["Tailwind CSS",3,"both"],["Python",3,"both"],["FastAPI",3,"both"],["MongoDB",3,"both"],["Git",3,"both"],["LangChain / Hugging Face / CrewAI",2,"aca"]] },
+    skills: [["React JS",3,"both"],["Tailwind CSS",3,"both"],["Python",3,"both"],["FastAPI",3,"both"],["MongoDB",3,"both"],["Git",3,"both"],["LangChain",2,"aca"],["Hugging Face",2,"aca"]] },
   { no: "06", name: "Testing & Validation", ind: { y: 3, l: 2 }, aca: { y: 4, l: 3 },
     skills: [["Moderated usability pilots",3,"aca"],["User acceptance testing",2,"ind"],["Blind validation",3,"aca"],["Held-out validation",2,"aca"],["Enterprise QA / delivery",2,"ind"]] },
   { no: "07", name: "Deployment & Delivery", ind: { y: 3, l: 2 }, aca: { y: 3, l: 2 },
@@ -37,42 +38,39 @@ export const lensButtons = [
 ];
 
 export const projects = [
-  { cats:["ai","research","product"], title:"MIRAGE", year:"2026", status:{t:"In development",k:"amber"}, image:projMirage,
-    blurb:"A calibrated AI persona a security team can phish instead of an employee — six apps and a generator-plus-evaluator model router, validated by 187 professionals.",
-    problem:"Phishing real staff to test them is slow, legally contested and spends trust — and susceptibility drops with repeated exposure, so the measurement degrades the thing it measures.",
-    approach:"Six applications, a generator-plus-evaluator model router, and a validation harness (held-out set, control arm, human test-retest ceiling, pre-fixed drift threshold, role-swap ablation). 480 real workplace emails across ten job clusters became 160 traceable stimuli.",
-    outcome:"187 professionals validated the material across 2,992 realism ratings. Four of seven stages shipped; the one open design decision is written up and escalated rather than hidden.",
-    stats:[["187","validating"],["160","stimuli"],["6","apps"]],
-    tags:["LLM Agents","Generator-Evaluator","FastAPI","MongoDB","EU AI Act"],
-    links:{ source:"https://github.com/svdpmukherjee" } },
-  { cats:["research","product","ai"], title:"Integrity messaging", year:"2025", status:{t:"Live",k:"live"}, image:projCheating,
-    blurb:"A live anagram-game platform that A/B-tests pre-exam integrity messages. Concept-based wording cut full cheating 42% with no hit to honest scores.",
+  { cats:["ai","research","product"], title:"How can we calibrate and validate AI-personas to simulate organizational phishing behavior at scale?", year:"2026", status:{t:"In development",k:"amber"}, image:projMirage,
+    blurb:"Set of calibrated AI personas a security team can phish instead of employees at the intersection of Social Engineering, AI and Behavioral Science.",
+    problem:"Phishing real staff to test them is slow, legally contested and spends trust, and susceptibility drops with repeated exposure, so the measurement degrades the thing it measures.",
+    approach:"The idea is to calibrate AI agents to match why each employee reacts to phishing, not just whether they click. Role-specific email stimuli across ten job clusters go to 1000+ working professionals, whose clicks, traits and written reasoning estimate each person's decision 'mechanism'. A two-model loop, namely, a low-cost simulator LLM paired with a stronger calibrator LLM, rewrites each persona until the agent reasons like its human target. A four-level validity framework then checks how well the agents generalise to unseen emails, and every calibrated agent ships as a portable artifact that survives model upgrades.",
+    outcome:"Currently in progress. Results will be added here once the evaluation is complete.",
+    tags:["LLM Agents","Generator-Evaluator","Behavior Modelling", "FARM stack","EU AI Act"],
+    links:{ source:"https://github.com/svdpmukherjee/CYPEARL" } },
+  { cats:["research","product","ai"], title:"How do theory-based design solutions contribute to a fair and valid unsupervised remote assessment system?", year:"2025", status:{t:"Live",k:"live"}, image:projCheating,
+    blurb:"A live anagram-game platform that A/B-tests pre-exam behavioral theory-based integrity messages. A simple well-crafted motivational message can cut cheating tendency upto 42% without compromising honest students' performances.",
     problem:"Online assessment is stuck between proctoring (costs privacy and trust) and doing nothing (unfair to honest students). The pre-exam message is the cheap middle option, and nobody designs it.",
-    approach:"Replaced the intuition-written honour code with a blind-validated library of 45 messages across 15 psychological concepts, built a live platform (React, FastAPI, MongoDB, 18 endpoints) and ran it as a controlled experiment. An evaluator-optimizer LLM workflow with a human gate wrote the copy.",
-    outcome:"Full cheating fell 42% with no cost to scores (honest candidates scored 17% higher) or satisfaction. Delivered over five sprints in seven months as three open-sourced repos.",
-    stats:[["1,232","users"],["42%","less cheating"],["3","repos"]],
-    tags:["Behavioural Experiment","LLM Evaluator-Optimizer","React","FastAPI","A/B"],
-    links:{ live:"https://anagram-solving-game-study.vercel.app", source:"https://github.com/svdpmukherjee", extra:[{l:"Preprint (arXiv:2602.04450)",u:"https://arxiv.org/abs/2602.04450"}] } },
-  { cats:["research","product"], title:"Privacy-preserving proctoring", year:"2024", status:{t:"Published",k:"soft"}, image:projProctoring,
-    blurb:"A nine-expert service-design study specifying exactly what a remote-proctoring reviewer needs to see — and measuring what people will actually accept.",
-    problem:"Proctoring is mandated rather than chosen, records far more than the assessment needs, and no document states what a reviewer actually needs. The privacy trade-off was argued in the literature and specified nowhere.",
-    approach:"A nine-expert workshop across three disciplines, 30 stimuli with region-by-region obfuscation (synthetic faces — no real person depicted), and a 259-person within-subject study (55 Bonferroni-corrected pairwise tests) measuring perceived privacy and willingness to accept.",
+    approach:"Replaced the intuition-written honour code with a blind-validated library of 45 messages across 15 psychological concepts, built a live platform (React, FastAPI, MongoDB, 18 endpoints) and ran it as a controlled experiment with 1000+ participants. An evaluator-optimizer LLM workflow with a human gate framed those messages.",
+    outcome:"Cheating in totality fell ~42% with no cost to scores (honest candidates scored 17% higher) or satisfaction. Delivered over five sprints in seven months as three open-sourced repos.",
+    tags:["Large-scale Behavioural Experiment","LLM Evaluator-Optimizer","React","FastAPI","A/B"],
+    links:{ live:"https://anagram-solving-game-study.vercel.app", source:"https://github.com/svdpmukherjee/game-behavior-intervention-study", extra:[{l:"Preprint (arXiv:2602.04450)",u:"https://arxiv.org/abs/2602.04450"}] } },
+  { cats:["research","product"], title:"How does preserving privacy in a remote proctoring system increase user acceptance?", year:"2024", status:{t:"Published",k:"soft"}, image:projProctoring,
+    blurb:"A nine-expert service-design study specifying exactly what a remote-proctoring reviewer needs to see; and measuring what people will actually accept.",
+    problem:"In a high-stake exam, proctoring is mandated rather than chosen, records far more than the assessment needs, and no document states what a reviewer actually needs. The privacy trade-off was argued in the literature and specified nowhere.",
+    approach:"A nine-expert workshop across three disciplines, 30 stimuli with region-by-region obfuscation (using synthetic faces, so no real person depicted), and a 259-person within-subject study (55 Bonferroni-corrected pairwise tests) measuring perceived privacy and willingness to accept.",
     outcome:"A region-by-region specification a vendor can be held to, plus a measured adoption risk: the methods that score best on privacy are the ones people refuse. Read against EU AI Act Annex III.",
-    stats:[["259","participants"],["9","experts"],["55","tests"]],
-    tags:["Service Design","Usable Privacy","Within-subject","MAXQDA","EU AI Act"],
-    links:{ extra:[{l:"Publication (ACM)",u:"https://dl.acm.org/doi/10.1145/3688459.3688474"},{l:"OSF materials",u:"https://osf.io/3prv8/?view_only=40c7e78d248342e8b770d7098e923360"}] } },
+    tags:["Service Design","Usable Privacy","Within-subject","MAXQDA","Figma","Adobe Firefly"],
+    links:{ video:"https://www.youtube.com/watch?v=biVz1H69Pow", extra:[{l:"Publication (ACM)",u:"https://dl.acm.org/doi/10.1145/3688459.3688474"},{l:"OSF materials",u:"https://osf.io/3prv8/?view_only=40c7e78d248342e8b770d7098e923360"}] } },
 ];
-export const projectFilters = [["all","All"],["ai","Applied AI"],["research","Research"],["product","Product"]];
+export const projectFilters = [["all","All"],["ai","Applied AI"],["product","Product Development"]];
 
 export const expInd = [
-  { when: "2011 – 2014", what: "Senior Software Engineer (Financial Services and Insurance)", where: "Infosys Limited, India (client: American Express)" },
-  { when: "2016 Jan - Oct", what: "UX Research Intern", where: "Signify (Philips Lighting), Netherlands" },
   { when: "2021 Apr - Sep", what: "Data Analyst", where: "Sterlite EdIndia Foundation, India" },
+  { when: "2016 Jan - Oct", what: "UX Research Intern", where: "Signify (Philips Lighting), Netherlands" },
+  { when: "2011 – 2014", what: "Senior Software Engineer (Financial Services and Insurance)", where: "Infosys Limited, India (client: American Express)", award: "Best Performer, two quarters" },
 ];
 export const expAca = [
   { when: "2026 Jan - Sep", what: "Postdoctoral Researcher", where: "SnT, University of Luxembourg" },
-  { when: "2021 – 2025", what: "Doctoral Researcher", where: "SnT & FHSE, University of Luxembourg" },
-  { when: "2014 – 2016", what: "M.Sc., Human-Technology Interaction", where: "Eindhoven University of Technology, NL" },
+  { when: "2021 – 2025", what: "Doctoral Researcher", where: "SnT & FHSE, University of Luxembourg", award: "Excellent PhD Thesis Award" },
+  { when: "2014 – 2016", what: "M.Sc., Human-Technology Interaction", where: "Eindhoven University of Technology, NL", award: "ALSP Scholarship holder" },
   { when: "2007 – 2011", what: "B.Tech, Information Technology", where: "Heritage Institute of Technology, India" },
 ];
 
@@ -102,9 +100,9 @@ export const quotes = [
 ];
 
 export const navItems = [
-  ["about", "About"], ["skills", "What I bring"], ["cycle", "Delivery cycle"], ["projects", "Projects"],
+  ["about", "About"], ["skills", "How I can contribute"], ["cycle", "Product lifecycle"], ["projects", "Projects"],
   ["experience", "Experience"], ["teaching", "Teaching"], ["stack", "Tech stack"], ["github", "GitHub"],
-  ["contact", "Contact"], ["languages", "Languages"],
+  ["languages", "Languages"],
 ];
 
 export const email = "svdp.mukherjee@gmail.com";

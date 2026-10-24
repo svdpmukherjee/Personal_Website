@@ -31,16 +31,21 @@ export function useTheme() {
 // Tracks which section id is currently in view for the side rail / nav.
 // With syncUrl, it also keeps the address bar in step: `#section` while inside
 // a section, and a clean URL (no hash) when the visitor is back at the top.
-export function useActiveSection(ids, { offset = 180, syncUrl = false } = {}) {
+export function useActiveSection(ids, { offset = 0.6, syncUrl = false } = {}) {
   const [active, setActive] = useState("");
   const lastRef = useRef(null);
   useEffect(() => {
     const onScroll = () => {
-      const pos = window.scrollY + offset;
+      // Trigger line: a fixed point `offset` of the way down the viewport (0.6 =
+      // 60%). The active section is
+      // the LAST one whose top edge has scrolled above that line — so once you
+      // enter a section it stays active until the next heading reaches the line,
+      // leaving no dead zones over the gap spacers between sections.
+      const line = window.innerHeight * offset;
       let cur = "";
       for (const id of ids) {
         const el = document.getElementById(id);
-        if (el && pos >= el.offsetTop && pos < el.offsetTop + el.offsetHeight) cur = id;
+        if (el && el.getBoundingClientRect().top <= line) cur = id;
       }
       if (window.scrollY < 12) {
         cur = ""; // at the very top → no section
