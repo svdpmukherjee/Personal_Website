@@ -22,15 +22,17 @@ export default function About() {
     <section id="about">
       <SectionHead title="About me" index="01 / 10" />
       <Col className="pad">
-        <p className="about-lead">
-          <span className="hl">I combine</span> user research and software engineering to take digital solutions from a problem to a working system, then test whether they actually help. I work out <span className="hl">what is worth building before committing to it</span>, and judge success by usefulness, not just delivery.
-        </p>
-        <p className="about-lead">
-          <span className="hl">My background</span> spans software engineering, Human-Computer Interaction and applied AI. Through research-led projects I have uncovered user and stakeholder needs, designed and built the applications, deployed them for real users, and evaluated the outcomes through experiments and data analysis.
-        </p>
-        <p className="about-lead">
-          This approach is <span className="hl">not tied to one industry</span>. I am looking to bring it to <span className="hl">technical product development roles</span>, helping shape what gets built, contributing hands-on to it, and using evidence to guide product decisions.
-        </p>
+        <div className="about-frame">
+          <p className="about-lead">
+            <span className="hl">I combine</span> user research, product thinking and hands-on engineering to take digital products from a problem to a working system, then test whether they actually help. I work out <b>what is worth building before committing to it</b>, and judge success by usefulness, not just delivery.
+          </p>
+          <p className="about-lead">
+            <span className="hl">My background</span> spans software engineering, user experience (UX) research and applied AI. Through research-led projects I have uncovered user and stakeholder needs, designed and built the applications, deployed them for real users, and evaluated the outcomes through experiments and data analysis.
+          </p>
+          <p className="about-lead">
+            This approach is <span className="hl">not tied to one industry</span>. Therefore, I am looking to bring it to <span className="hl">technical product development roles</span>, helping shape what gets built, contributing hands-on to it, and using evidence to guide product decisions.
+          </p>
+        </div>
 
         <div className="sectors">
           <h3>Domains I have worked in</h3>

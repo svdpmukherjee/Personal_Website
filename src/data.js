@@ -39,7 +39,7 @@ export const lensButtons = [
 
 export const projects = [
   { cats:["ai","research","product"], title:"How can we calibrate and validate AI-personas to simulate organizational phishing behavior at scale?", year:"2026", status:{t:"In development",k:"amber"}, image:projMirage,
-    blurb:"Set of calibrated AI personas a security team can phish instead of employees at the intersection of Social Engineering, AI and Behavioral Science.",
+    blurb:"Set of calibrated AI personas a security team can phish instead of employees. The solution lies at the intersection of social engineering, AI and behavioral science.",
     problem:"Phishing real staff to test them is slow, legally contested and spends trust, and susceptibility drops with repeated exposure, so the measurement degrades the thing it measures.",
     approach:"The idea is to calibrate AI agents to match why each employee reacts to phishing, not just whether they click. Role-specific email stimuli across ten job clusters go to 1000+ working professionals, whose clicks, traits and written reasoning estimate each person's decision 'mechanism'. A two-model loop, namely, a low-cost simulator LLM paired with a stronger calibrator LLM, rewrites each persona until the agent reasons like its human target. A four-level validity framework then checks how well the agents generalise to unseen emails, and every calibrated agent ships as a portable artifact that survives model upgrades.",
     outcome:"Currently in progress. Results will be added here once the evaluation is complete.",
@@ -55,7 +55,7 @@ export const projects = [
   { cats:["research","product"], title:"How does preserving privacy in a remote proctoring system increase user acceptance?", year:"2024", status:{t:"Published",k:"soft"}, image:projProctoring,
     blurb:"A nine-expert service-design study specifying exactly what a remote-proctoring reviewer needs to see; and measuring what people will actually accept.",
     problem:"In a high-stake exam, proctoring is mandated rather than chosen, records far more than the assessment needs, and no document states what a reviewer actually needs. The privacy trade-off was argued in the literature and specified nowhere.",
-    approach:"A nine-expert workshop across three disciplines, 30 stimuli with region-by-region obfuscation (using synthetic faces, so no real person depicted), and a 259-person within-subject study (55 Bonferroni-corrected pairwise tests) measuring perceived privacy and willingness to accept.",
+    approach:"A nine-expert workshop across three disciplines, 30 stimuli with region-by-region obfuscation (using synthetic faces, so no real person depicted), and a 259-person within-subject study (Bonferroni-corrected pairwise tests) measuring perceived privacy and willingness to accept.",
     outcome:"A region-by-region specification a vendor can be held to, plus a measured adoption risk: the methods that score best on privacy are the ones people refuse. Read against EU AI Act Annex III.",
     tags:["Service Design","Usable Privacy","Within-subject","MAXQDA","Figma","Adobe Firefly"],
     links:{ video:"https://www.youtube.com/watch?v=biVz1H69Pow", extra:[{l:"Publication (ACM)",u:"https://dl.acm.org/doi/10.1145/3688459.3688474"},{l:"OSF materials",u:"https://osf.io/3prv8/?view_only=40c7e78d248342e8b770d7098e923360"}] } },
@@ -102,7 +102,7 @@ export const quotes = [
 export const navItems = [
   ["about", "About"], ["skills", "How I can contribute"], ["cycle", "Product lifecycle"], ["projects", "Projects"],
   ["experience", "Experience"], ["teaching", "Teaching"], ["stack", "Tech stack"], ["github", "GitHub"],
-  ["languages", "Languages"],
+  ["languages", "Languages"], ["contact", "Contact"],
 ];
 
 export const email = "svdp.mukherjee@gmail.com";

@@ -25,6 +25,7 @@ dist-ssr
 
 # Local working material — not part of the deployed site
 /perosnal_wbesite/
+/archived/
 /reference-portfolio/
 /project_information/
 /personal_info/

@@ -7,13 +7,15 @@ const GH = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="currentC
 const LI = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9z" /></svg>);
 const SC = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l11 6 9-4.9V17h2V9zM4 14v3.5c0 1.9 3.6 3.5 8 3.5s8-1.6 8-3.5V14l-8 4.4z" /></svg>);
 const ML = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>);
+const FB = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z" /></svg>);
 const Play = () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="3" /><path d="m10 9 5 3-5 3V9z" fill="currentColor" stroke="none" /></svg>);
 
 const CONTACTS = [
-  [socials.github, "GitHub", GH, true],
   [socials.linkedin, "LinkedIn", LI, true],
-  [socials.scholar, "Scholar", SC, true],
   [`mailto:${email}`, "Mail", ML, false],
+  [socials.github, "GitHub", GH, true],
+  [socials.scholar, "Scholar", SC, true],
+  ["https://www.facebook.com/svdp.mukherjee", "Facebook", FB, true],
 ];
 
 export default function Footer() {
@@ -39,7 +41,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer>
+    <footer id="contact">
       <GapBand height={44} />
       <div className="band head stripes">
         <div className="col anchored">
@@ -48,7 +50,7 @@ export default function Footer() {
         </div>
       </div>
       <Col className="pad foot-cta">
-        <p>If you&apos;ve read this far, let&apos;s connect and talk about the role.</p>
+        <p>If you have read this far, let&apos;s connect and talk about the role.</p>
       </Col>
       <Col>
         <div className="contact-grid">
